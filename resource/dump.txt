@@ -1,0 +1,21 @@
+        <section class="about" id="about">
+			<div class="about-img">
+				<img src="for-home-pg.png" alt="">
+			</div>
+
+			<div class="about-content">
+				<h2 class="heading">About <span>Me</span></h2>
+				<h3>Frontend Developer	</h3>
+				<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+				Tempore officia asperiores labore officiis suscipit ex at non impedit nostrum
+				animi illum mollitia itaque reprehenderit laudantium molestiae eum porro 
+				molestias repudiandae, amet ea eos alias corporis laborum nobis. 
+				Tempore deserunt repellendus quos nihil voluptas aut est suscipit.</p>
+				<a href="#" class="btn">Read More</a>
+			</div>
+		</section>
+
+		<section class="section resume" id="resume">
+			<h2 class="heading"><span>My Resume</span></h2>
+			<embed src="resume.pdf" type="application/pdf" height="600px" width="5	00px">
+		</section>
