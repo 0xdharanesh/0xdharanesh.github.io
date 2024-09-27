@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dharanesh Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
+    <style>
+        /* General reset and styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Container for resume iframe */
+        .resume-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-top: 56.25%; /* 16:9 ratio */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 2em auto;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover effect on the container */
+        .resume-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: none;
+        }
+
+        /* Link styling */
+        .resume-link {
+            display: block;
+            text-align: center;
+            margin: 1em 0;
+            text-decoration: none;
+            font-size: 18px;
+            color: #1e90ff;
+            transition: color 0.3s ease;
+        }
+
+        .resume-link:hover {
+            color: #0056b3;
+        }
+
+        /* Footer with your name */
+        .footer {
+            text-align: center;
+            margin-top: 2em;
+            color: #555;
+        }
+
+        .footer span {
+            font-weight: bold;
+            font-style: italic;
+            color: #1e90ff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Resume Section -->
+    <div class="resume-container">
+        <iframe loading="lazy" src="https://www.canva.com/design/DAFM1rC1ajw/LXoQfUz6S3I50nRI_qIGpw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+    </div>
+
+    <!-- Link to view or download resume -->
+    <a class="resume-link" href="https://www.canva.com/design/DAFM1rC1ajw/LXoQfUz6S3I50nRI_qIGpw/view?utm_content=DAFM1rC1ajw&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">
+        View or Download Dharanesh's Resume
+    </a>
+
+    <!-- Footer with your name -->
+    <div class="footer">
+        Created by <span>{தாரனேஷ்}</span>
+    </div>
+</body>
+
+</html>

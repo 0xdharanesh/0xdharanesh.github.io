@@ -1,0 +1,3 @@
+[submodule "green-env-theme"]
+	path = green-env-theme
+	url = git@github.com:0xdharanesh/green-env-theme.git
