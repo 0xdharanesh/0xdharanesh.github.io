@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main  # This triggers the workflow on pushes to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # This sets the environment for the job
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4  # This uses the checkout action
+        with:
+          submodules: true  # Ensures submodules are included
+          token: ${{ secrets.gh_projects_use_PAT}}  # This references the secret you created
+
+      - name: Build your project
+        run: echo "Building the project"  # Replace this with your actual build commands
