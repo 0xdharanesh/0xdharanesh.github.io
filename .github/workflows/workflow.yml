@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v4  # This uses the checkout action
         with:
           submodules: true  # Ensures submodules are included
-          token: ${{ secrets.gh_projects_use_PAT}}  # This references the secret you created
+          token: ${{ secrets.GH_PROJECTS_USE_PAT }} # This references the secret you created
 
       - name: Build your project
         run: echo "Building the project"  # Replace this with your actual build commands
