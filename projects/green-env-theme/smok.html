@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tamil">
+
+<head>
+    <!------Title Section------->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | air Pollution</title>
+    <link rel="stylesheet" type="text/css" href="style-blog.css">
+    <link rel="stylesheet" href="fa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <button id="back-to-top-btn">
+        <i class="fas fa-angle-double-up"></i>
+    </button>
+    <!--------Header Section--------->
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <!------here we using i tag for mobile view------>
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#join">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+            <!------as we seen in above part is a navigation part in 
+          header section it,s help to find the places that we need------->
+        </nav>
+        <div class="main-content">
+            <p>
+                சுற்றுச்சூழல் மாசுபாடு அல்லது சூழல் மாசடைதல் (Pollution) என்பது மனித செயல்கள் மூலம்
+                உருவாகும் மாசுகளால், சூழலின் ஆதாரங்களாகிய காற்று, நீர், மண் வளங்களும், அங்கு வாழும்
+                உயிரினங்களும் பாதிப்புக்குள்ளாகி, அதனால் சூழல் சமநிலை சீரற்றுப் போகும் நிலையைக் குறிக்கும்.
+                சூழலுக்கும் அங்கே வாழுகின்ற உயிரினங்களுக்கும் கேடு விளைவிக்கக் கூடியவையின் சேர்க்கையினால்
+                சூழற் சமநிலை பாதிக்கப்படும். <br>
+
+
+                சூழல் மாசினால் அச்சூழ்மண்டலத்தில் வாழும் தாவரங்களும்,
+                விலங்குகளும் பல்வேறு வகையான பாதிப்புகளுக்கு உள்ளாகின்றன.
+                தற்பொழுது உலகை அச்சுறுத்தும் பத்து அச்சுறுத்தல்களில் சூழ்நிலைச் சீர்கேடும் ஒன்று என ஐக்கிய
+                நாடுகள் அவை அறிவித்துள்ளது. சூழல் மாசானது சில வேதியியல் பதார்த்தங்களாகவோ, அல்லது
+                வெப்பம், ஒளி, ஒலி போன்ற சக்திகளாலானதாகவோ இருக்கலாம்.
+                பல்வேறு காரணங்களால் சூழல் மாசடைகின்றது.
+            </p>
+        </div>
+    </section>
+
+    <!-------Contact Section------->
+
+    <section class="con" id="join">
+        <h1>
+            "பசுமை தாயகம் செய்வோம் பார்போற்ற வாழ்வோம்"
+        </h1>
+        <!-----herre we add som contact abou this website------>
+        <a href="#about" class="con-btn">Join With Us</a>
+    </section>
+
+    <!----------Footer Section------------->
+
+    <section class="footer" id="about">
+        <h4>About Us</h4>
+        <!------here we add about this westsite------->
+        <P>
+            Dharanesh V, Second Year, Computer Engineering at
+        </p>
+        <h4>
+            Goverment Polytechnic College, coimbatore.
+        </h4>
+        <div class="icons">
+            <a href="https://www.facebook.com/dabeetlucifer"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/dabeet_lucifer"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/dabeet_lucifer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/dharanesh"><i class="fab fa-linkedin"></i></a>
+            <a href="https://t.me/dabeet_lucifer"><i class="fab fa-telegram"></i></a>
+            <a href="https://github.com/dabeet-lucifer"><i class="fab fa-github"></i></a>
+        </div>
+
+        <p>build by Dharanesh</p>
+    </section>
+
+    <!------JS for toggle menu------->
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+
+        window.addEventListener("scroll", scrollFunction);
+
+        function scrollFunction() {
+            if (window.pageYOffset > 300) { // Show backToTopButton
+                if (!backToTopButton.classList.contains("btnEntrance")) {
+                    backToTopButton.classList.remove("btnExit");
+                    backToTopButton.classList.add("btnEntrance");
+                    backToTopButton.style.display = "block";
+                }
+            }
+            else { // Hide backToTopButton
+                if (backToTopButton.classList.contains("btnEntrance")) {
+                    backToTopButton.classList.remove("btnEntrance");
+                    backToTopButton.classList.add("btnExit");
+                    setTimeout(function () {
+                        backToTopButton.style.display = "none";
+                    }, 250);
+                }
+            }
+        }
+
+        backToTopButton.addEventListener("click", smoothScrollBackToTop);
+
+        // function backToTop() {
+        //   window.scrollTo(0, 0);
+        // }
+
+        function smoothScrollBackToTop() {
+            const targetPosition = 0;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 750;
+            let start = null;
+
+            window.requestAnimationFrame(step);
+
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                window.scrollTo(0, easeInOutCubic(progress, startPosition, distance, duration));
+                if (progress < duration) window.requestAnimationFrame(step);
+            }
+        }
+
+        function easeInOutCubic(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t * t + b;
+            t -= 2;
+            return c / 2 * (t * t * t + 2) + b;
+        };
+    </script>
+</body>
+
+</html>

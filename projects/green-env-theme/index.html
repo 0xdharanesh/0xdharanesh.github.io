@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!------Title Section------->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasumai</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <button id="back-to-top-btn">
+        <i class="fas fa-angle-double-up"></i>
+    </button>
+    <!--------Header Section--------->
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <!------here we using i tag for mobile view------>
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#join">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+            <!------as we seen in above part is a navigation part in 
+          header section it,s help to find the places that we need------->
+        </nav>
+        <div class="main-content">
+            <!-----This part for add some codes or quote------->
+            <h1>"நீரின்றி அமையாது உலகு"</h1>
+            <p>
+                மரம் வளர்ப்போம் <br>
+                மழை பெறுவோம்
+            </p>
+            <a href="#" class="more-btn">For More</a>
+        </div>
+    </section>
+
+    <!----- down0 section ----->
+
+    <section class="down0">
+        <h1>மனிதன் உயிர் வாழ தேவை ஆக்சிஜன் <br>
+            மரம் வளர்த்தால்தான் ஆக்சிஜன்</h1>
+        <!------ down 0 to add some content-------->
+        <div class="row">
+            <div class="down0-col">
+                <h3>மரம்</h3>
+                <p>
+                    ஒவ்வொரு வெள்ளைத் தாளும்<br>
+                    மரத்தின் இறப்புச் சான்றிதழ்
+                </p>
+            </div>
+            <div class="down0-col">
+                <h3>இயற்கை</h3>
+                <p>
+                    இன்று இயற்கையைப் பேணு <br>
+                    பின் இயற்கை உன்னை பேணும்
+                </p>
+            </div>
+            <div class="down0-col">
+                <h3>மரம்</h3>
+                <p>
+                    நீ அழைத்தால் மழை வராது <br>
+                    ஆனால் மரம் அழைத்தால் மழை வரும்
+                </p>
+            </div>
+        </div>
+        <a href="#home" class="down0-btn">
+            For More
+        </a>
+    </section>
+
+    <!-----------Blogs {down1} Section--------------->
+
+    <section class="down1" id="blog">
+        <h1> Blogs </h1>
+        <p>blogs about environment isuses</p>
+        <!------blogs{down1} for add some content about blogs on this web site----->
+        <div class="row">
+            <div class="down1-col">
+                <a href="smok.html">
+                    <img src="images/smoke.jpg">
+                    <div class="layer">
+                        <h3>காற்று மாசு , மூச்சுக்கு கேடு</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="down1-col">
+                <a href="#">
+                    <img src="images/landp.jpg">
+                    <div class="layer">
+                        <h3>நெகிழியின் வேகம் எதிர்காலத்திற்கு சாபம்</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="down1-col">
+                <a href="#">
+                    <img src="images/water-pol.jpg">
+                    <div class="layer">
+                        <h3>நீர் மாசு நித்தம் இங்கே</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <a href="smok.html" class="down1-btn">
+            For More Blogs
+        </a>
+    </section>
+
+    <!---------- Gallery {down2} Section ---------->
+    <section class="gall" id="gallery">
+        <h1>Gallery</h1>
+        <p>
+            some nature pictures
+        </p>
+        <!----Gall sectios is uesd to add som pics about this website----->
+        <div class="row">
+            <div class="gall-col">
+                <a href="#">
+                    <img src="images/gal0.jpeg">
+                    <h3>
+                        Tree
+                    </h3>
+                </a>
+            </div>
+            <div class="gall-col">
+                <a href="#">
+                    <img src="images/gal1.jpg">
+                    <h3>
+                        River
+                    </h3>
+                </a>
+            </div>
+            <div class="gall-col">
+                <a href="#">
+                    <img src="images/gal2.jpg">
+                    <h3>
+                        Falls
+                    </h3>
+                </a>
+            </div>
+        </div>
+        <a href="#gall" class="gall-btn">
+            For More Pictures
+        </a>
+    </section>
+
+    <!-------Contact Section------->
+
+    <section class="con" id="join">
+        <h1>
+            "பசுமை தாயகம் செய்வோம் பார்போற்ற வாழ்வோம்"
+        </h1>
+        <!-----herre we add som contact abou this website------>
+        <a href="#about" class="con-btn">Join With Us</a>
+    </section>
+
+    <!----------Footer Section------------->
+
+    <section class="footer" id="about">
+        <h4>About Us</h4>
+        <p>
+            Dharanesh V, Second Year, Computer Engineering at
+            <br>
+            Government Polytechnic College, Coimbatore.
+        </p>
+        <div class="icons">
+            <a href="https://www.facebook.com/dabeetlucifer"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/dabeet_lucifer"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/dabeet_lucifer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/dharanesh"><i class="fab fa-linkedin"></i></a>
+            <a href="https://t.me/dabeet_lucifer"><i class="fab fa-telegram"></i></a>
+            <a href="https://github.com/0xdharanesh"><i class="fab fa-github"></i></a>
+        </div>        
+        <p>build by Dharanesh</p>
+        <!-- <p>build with <i class="fa fa-heart-o"></i> by Dharanesh</p> -->
+    </section>
+
+    <!------JS for toggle menu------->
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+
+
+        const backToTopButton = document.querySelector("#back-to-top-btn");
+
+        window.addEventListener("scroll", scrollFunction);
+
+        function scrollFunction() {
+            if (window.pageYOffset > 300) { // Show backToTopButton
+                if (!backToTopButton.classList.contains("btnEntrance")) {
+                    backToTopButton.classList.remove("btnExit");
+                    backToTopButton.classList.add("btnEntrance");
+                    backToTopButton.style.display = "block";
+                }
+            }
+            else { // Hide backToTopButton
+                if (backToTopButton.classList.contains("btnEntrance")) {
+                    backToTopButton.classList.remove("btnEntrance");
+                    backToTopButton.classList.add("btnExit");
+                    setTimeout(function () {
+                        backToTopButton.style.display = "none";
+                    }, 250);
+                }
+            }
+        }
+
+        backToTopButton.addEventListener("click", smoothScrollBackToTop);
+
+        // function backToTop() {
+        //   window.scrollTo(0, 0);
+        // }
+
+        function smoothScrollBackToTop() {
+            const targetPosition = 0;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 750;
+            let start = null;
+
+            window.requestAnimationFrame(step);
+
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                window.scrollTo(0, easeInOutCubic(progress, startPosition, distance, duration));
+                if (progress < duration) window.requestAnimationFrame(step);
+            }
+        }
+
+        function easeInOutCubic(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t * t + b;
+            t -= 2;
+            return c / 2 * (t * t * t + 2) + b;
+        };
+    </script>
+</body>
+
+</html>
