@@ -1,489 +1,567 @@
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Dharanesh</title>
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-            <text y='.9em' font-size='90'>✨</text></svg>">
-		<link rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="style.css" />
-		<!-- box icons -->
-		<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
-		<style>
-			HTML {
-				font-size: 80%;
-				overflow: hidden;
-			}
-
-			body {
-				margin: 0;
-				width: 100%;
-				height: 100%;
-				font-family: 'Montserrat', sans-serif;
-				font-weight: 300;
-				font-size: 15px;
-				line-height: 1.7;
-				color: #c4c3ca;
-				min-height: 100vh;
-				width: 100%;
-				background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(images/batman.jpeg);
-				background-position: center;
-				background-size: cover;
-				position: relative;
-				overflow-x: hidden;
-				-webkit-transition: all 300ms linear;
-				transition: all 300ms linear;
-			}
-
-			.page {
-				width: 100vw;
-				height: 100vh;
-				min-width: 400px;
-				min-height: 400px;
-				display: flex;
-				flex-flow: row;
-				/* Aligns the content horizontally */
-				justify-content: center;
-				align-items: center;
-
-				font-family: 'Barlow', sans-serif;
-				color: #fff;
-			}
-
-			.home-content {
-				width: 50%;
-				padding: 20px;
-				text-align: left;
-			}
-
-			.home-content span {
-				color: #007BFF;
-				font-weight: bold;
-			}
-
-			.home-content h3 {
-				font-size: 3.2rem;
-				font-weight: 700;
-				margin: 0;
-			}
-
-			.home-content h1 {
-				font-size: 5.6rem;
-				font-weight: 700;
-				line-height: 1.3;
-				margin: 0;
-			}
-
-			.home-content p {
-				font-size: 1.6rem;
-			}
-
-			.btn {
-				display: inline-block;
-				padding: 1rem 2.8rem;
-				background: var(--main-color);
-				border-radius: 4rem;
-				box-shadow: 0 0 1rem var(--main-color);
-				font-size: 1.6rem;
-				color: var(--second-bg-color);
-				letter-spacing: 0.1rem;
-				font-weight: 600;
-				transition: 0.5s ease;
-			}
-
-			.btn:hover {
-				box-shadow: none;
-			}
-
-			.filter {
-				display: none;
-			}
-
-			h1 {
-				font-size: 24px;
-				margin-bottom: 20px;
-			}
-
-			.imgWrap {
-				width: 100%;
-				height: 100%;
-				max-width: 500px;
-				max-height: 500px;
-				position: relative;
-				overflow: hidden;
-
-				img {
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-					position: absolute;
-					top: 50%;
-					left: 60%;
-					transform: translate(-50%, -50%);
-				}
-
-				.red {
-					filter: url(#alphaRed);
-					/* mix-blend-mode: lighten; */
-				}
-
-				.green {
-					filter: url(#alphaGreen);
-					mix-blend-mode: lighten;
-				}
-
-				.blue {
-					filter: url(#alphaBlue);
-					mix-blend-mode: lighten;
-				}
-
-				.text {
-					display: block;
-					color: #fff;
-					font-size: 18px;
-					padding: 2px 10px;
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-					opacity: 0;
-					transition: opacity .3s;
-
-					span {
-						position: relative;
-						z-index: 1;
-					}
-
-					&::before {
-						content: "";
-						display: block;
-						width: 100%;
-						height: 100%;
-						background-color: #000;
-						position: absolute;
-						top: 50%;
-						left: 50%;
-						transform: scale(0, 1) translate(-50%, -50%);
-						transform-origin: center left;
-						transition: transform 0.2s;
-						z-index: 0;
-					}
-				}
-
-				&:hover {
-					--time: 0.3s;
-
-					.red {
-						transform: translate(-49.5%, -49.8%);
-						animation-name: imgGlitch;
-						animation-duration: var(--time);
-						animation-timing-function: linear;
-						animation-iteration-count: infinite;
-					}
-
-					.green {
-						transform: translate(-50.5%, -48.8%);
-						animation-name: imgGlitch;
-						animation-duration: var(--time);
-						animation-timing-function: linear;
-						animation-iteration-count: infinite;
-					}
-
-					.blue {
-						transform: translate(-50.5%, -50.8%);
-						animation-name: imgGlitch;
-						animation-duration: var(--time);
-						animation-timing-function: linear;
-						animation-iteration-count: infinite;
-					}
-
-					.text {
-						opacity: 1;
-
-						&::before {
-							transform: scale(1, 1) translate(-50%, -50%);
-						}
-					}
-				}
-			}
-
-			@keyframes imgGlitch {
-				0% {
-					/* clip-path: path("M400,21.66V10.49h-116.29V0H39.36V54.56H0v36.09H101.25v9.77H.23v5.52H101.25v14.44H22.77v15.29H13.82v39.06H.23v6.79H13.82v15.29h60.63v20.81H10.25v51.17H.23v26.75H61.69v30.57h-29.35v12.1H0v30.57H22.77v31.36H400v-25.41h-31.43v-5.95h31.43v-8.28h-31.43v-15.92h-9.57v-14.65h32.56v-13.38h8.44v-10.83h-8.44v-52.23h-79.37v-21.02h69.78v-7.64h18.03v-24.7h-8.44v-52.58h-22.99v-11.89h31.43v-15.29h-31.43v-36.3h31.43V35.03h-116.29v-13.38h116.29ZM138.57,120.38h15.14v15.29h-15.14v-15.29ZM74.45,386.85v-18.08h39.56v14.01h144.19v4.06H74.45Zm89.32-42.28v-6.37h-34.45v-12.1h48.49v18.47h-14.04Zm56.73-25.48h-5.05v-2.55h5.05v2.55Zm-5.05-13.38v-10.19h5.05v10.19h-5.05Z"); */
-					clip-path: inset(0 0 0 0);
-				}
-
-				50% {
-					clip-path: path("M398.2,238.77v-14.06h2.28v-24.74h-2.28v-37.76h-8.45v-4.24H215.93v-3.23h178.76v-61.25H254.7v-3.19h33.11v-11.59h102.55V29.58h-52.25V0H93.75V13.18H0v11.19H39.84v29.77H.48v36.15H39.84v28.22H18.22v6.81h5.04v10.06H14.3v61.25h60.63v2.12H1.05v56.57H29.76v21.71H96.62v3.81h4.79v7.66h-3.83v-6.14H.6v14.67H62.17v13.8H.48v30.62H82.37v3.83h35.94v8.77H15.17v13.3H118.31v8.77H.48v23.84H244.84v-12.97h134.3v-18.11h21.34v-8.29h-21.34v-26.19h19.02v-25.45h-42.19v-26.19h18.5v-1.93h26.01v-10.85h-26.01v-25.51h-71.49v-5.73h95.22Zm-171.06-75.27v14.95h-11.21v-14.95h11.21Zm-88.09-38.17h38.45v-5.25h15.55v15.31h-54.01v-10.06Zm76.88,189.34v-3.83h40.42v14.92h-10.22v-11.09h-30.21Zm-45.94,30.62h7.52v8.77h-7.52v-8.77Zm0,22.07h7.52v8.77h-7.52v-8.77Z");
-				}
-
-				100% {
-					/* clip-path: path("M400.21,112.61v-15.31H234.82v-9.04h52.51v-6.59h112.67V32.54h-33.6V6.06h-95.3V0H69.47V2.36H29.34V13.55h40.13v7.51H32.34v20.87h-12.38v10.18H0v36.15H19.96v49.37h18.2v23.05H13.82v11.8H.23v6.81H13.82v37.96h18.52v22.74H13.14v13.3h19.2v8.96h106.23v4.44H.23v26.8H61.69v30.62h-29.35v14.67H114.47v11.23H17.55v30.62h18.3v17.63h51.68v-17.63h26.94v11.98h143.72v5.65h141.81v-25.45h-114.47v-5.21h101.25v-.75h13.22v-8.29h-13.22v-29.24h-17.58v-10.32h30.72v-10.85h-30.72v-5.11h30.72v-31.26h-16.99v-29.1h17.08v-24.74h-60.14v-6.74h-24.11v-8.11h70.6v-61.25h-20.92v-29.24h34.78Zm-164.97,180.87v-8.94h88.66v12.37h-108.46v-3.43h19.79Zm-50.53-151.63v18.82h-30.76v-23.05h71.6v4.23h-40.84Z"); */
-					clip-path: inset(0 0 0 0);
-				}
-			}
-
-			/* Media Queries */
-			@media (max-width: 576px) {
-
-				.logo-wrap a {
-					position: relative;
-					font-size: 1.5rem;
-				}
-
-				.page {
-					flex-flow: column;
-				}
-
-				.imgWrap {
-					width: 100%;
-					height: 100%;
-					max-width: 500px;
-					max-height: 500px;
-					position: relative;
-					overflow: hidden;
-
-					img {
-						width: 100%;
-						height: 100%;
-						object-fit: cover;
-						position: absolute;
-						top: 50%;
-						left: 50%;
-						transform: translate(-50%, -50%);
-					}
-				}
-
-				.home {
-					padding-left: 20px;
-					flex-direction: column;
-					align-items: center;
-					text-align: center;
-				}
-
-				.home-img {
-					margin-bottom: 20px;
-				}
-
-				.home-content h1 {
-					font-size: 2rem;
-				}
-
-				.home-content h3 {
-					font-size: 1.2rem;
-				}
-
-				.home-content p {
-					font-size: 0.9rem;
-				}
-
-				.home-content {
-					padding: 0 20px;
-				}
-			}
-		</style>
-	</head>
-
-	<body>
-		<header class="cd-header">
-			<div class="header-wrapper">
-				<div class="logo-wrap">
-					<a class="hover-target"><span>Dabeet_Lucifer</span></a>
-				</div>
-				<div class="nav-but-wrap">
-					<div class="menu-icon hover-target">
-						<span class="menu-icon__line menu-icon__line-left"></span>
-						<span class="menu-icon__line"></span>
-						<span class="menu-icon__line menu-icon__line-right"></span>
-					</div>
-				</div>
-			</div>
-		</header>
-
-		<div class="nav">
-			<div class="nav__content">
-				<ul class="nav__list">
-					<li class="nav__list-item active-nav">
-						<a href="index.html" class="hover-target">Home</a>
-					</li>
-					<li class="nav__list-item">
-						<a href="projects.html" class="hover-target">Projects</a>
-					</li>
-					<li class="nav__list-item">
-						<a href="about.html" class="hover-target">About</a>
-					</li>
-					<li class="nav__list-item">
-						<a href="ShowCase.html" class="hover-target">Show Case</a>
-					</li>
-					<li class="nav__list-item">
-						<a href="contact.html" class="hover-target">Contact</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-
-		<svg class="filter">
-			<filter id="alphaRed">
-				<feColorMatrix mode="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="joint" />
-			</filter>
-			<filter id="alphaGreen">
-				<feColorMatrix mode="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="joint" />
-			</filter>
-			<filter id="alphaBlue">
-				<feColorMatrix mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="joint" />
-			</filter>
-			<filter id="alpha">
-				<feColorMatrix type="saturate" values="0" />
-			</filter>
-		</svg>
-		<div class="page">
-			<div class="imgWrap">
-				<img class="red" src="images/D1.png">
-				<img class="green" src="images/D1.png">
-				<img class="blue" src="images/D1.png">
-			</div>
-			<div class="home-content">
-				<h2>Hey buddy... Am</h2>
-				<h1>Dharanesh</h1>
-				<!-- <h3>A <span>Tech Guy</span></h3> -->
-				<h3>A <span id="dynamic-text">Tech Guy</span></h3>
-				<p>
-					With the capacity to pick up new technologies rapidly
-					and apply them.
-				</p>
-				<a href="#" class="btn">Know More</a>
-			</div>
-		</div>
-		<div class="cursor" id="cursor"></div>
-		<div class="cursor2" id="cursor2"></div>
-		<div class="cursor3" id="cursor3"></div>
-
-		<!-- partial -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="./script.js"></script>
-		<!------JS for toggle menu------->
-		<script>
-			// Array of words to type
-			const words = ["Research Engineer ! ", "Tech Enthusiast ! ", "Developer ! "];
-			let wordIndex = 0; // To keep track of the current word
-			let letterIndex = 0; // To keep track of the current letter in the word
-			let currentWord = ""; // The word currently being typed
-			let isDeleting = false; // Tracks whether we're typing or deleting
-
-			const dynamicText = document.getElementById("dynamic-text");
-
-			function typeEffect() {
-				// Update the current word dynamically
-				currentWord = words[wordIndex];
-
-				// Handle typing and deleting logic
-				if (!isDeleting) {
-					dynamicText.textContent = currentWord.slice(0, letterIndex++);
-				} else {
-					dynamicText.textContent = currentWord.slice(0, letterIndex--);
-				}
-
-				// If word is fully typed, start deleting after a pause
-				if (!isDeleting && letterIndex === currentWord.length) {
-					isDeleting = true; // Start deleting
-					setTimeout(typeEffect, 2000); // Longer pause after typing the full word
-					return;
-				}
-
-				// If word is fully deleted, move to the next word
-				if (isDeleting && letterIndex === 0) {
-					isDeleting = false;
-					wordIndex = (wordIndex + 1) % words.length; // Loop through words
-				}
-
-				// Adjust typing speed
-				const typingSpeed = isDeleting ? 50 : 150; // Speed for deleting vs typing
-				setTimeout(typeEffect, typingSpeed);
-			}
-
-			// Mapping for l33t code conversions
-			const l33tMap = {
-				'a': '@', 'A': '4',
-				'b': '6', 'B': '8',
-				'c': '<', 'C': '(',
-				// 'd': '(|)', 
-				'D': '[)',
-				'e': '€', 'E': '3',
-				'f': 'ƒ', 'F': '|=',
-				// 'g': '6', 'G': '9',
-				// 'h': '#', 
-				'H': '#',
-				'i': '1',
-				// 'I': '!',
-				// 'j': '_/', 'J': '_|',
-				'k': '|<',
-				// 'K': '|X',
-				// 'l': '£', 
-				'L': '|_',
-				// 'm': '|\\/|', 'M': '|V|',
-				// 'n': '|\\|', 'N': '^',
-				'o': 'Ø', 'O': '0',
-				// 'p': '|D', 'P': '|2',
-				'q': '9', 'Q': '(,)',
-				// 'r': '12', 'R': '|2',
-				's': '5', 'S': '$',
-				// 't': '7', 
-				'T': '7',
-				// 'u': '|_|', 'U': 'µ',
-				// 'v': '\\/', 
-				'V': '\/',
-				// 'w': '\\/\\/', 'W': 'VV',
-				// 'x': '}{', 
-				'X': '><',
-				'y': '`/', 'Y': '¥',
-				// 'z': '7_', 
-				'Z': '2'
-			};
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dharanesh</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+           <text y='.9em' font-size='90'>✨</text></svg>">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="style.css" />
+        <!-- box icons -->
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
 
-			function getRandomInt(min, max) {
-				return Math.floor(Math.random() * (max - min + 1)) + min;
-			}
+        <style>
+            HTML {
+                font-size: 80%;
+                overflow: hidden;
+            }
 
-			//To convert text to l33t code
-			function toL33t(text) {
-				return text.split('').map(char => {
-					return l33tMap[char.toLowerCase()] || char;
-				}).join('');
-			}
 
-			// Function to change a random letter to l33t and back
-			function randomizeTextL33tEffect() {
-				const textElements = document.querySelectorAll('.home-content h1, .home-content h2, .home-content p');
+            body {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 300;
+                font-size: 15px;
+                line-height: 1.7;
+                color: #c4c3ca;
+                min-height: 100vh;
+                width: 100%;
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(images/batman.jpeg);
+                background-position: center;
+                background-size: cover;
+                position: relative;
+                overflow-x: hidden;
+                -webkit-transition: all 300ms linear;
+                transition: all 300ms linear;
+            }
 
-				// Pick a random text element
-				const randomTextElement = textElements[getRandomInt(0, textElements.length - 1)];
 
-				// Pick a random letter within the selected text element
-				const text = randomTextElement.innerText;
-				const randomIndex = getRandomInt(0, text.length - 1);
-				const originalChar = text[randomIndex];
+            .page {
+                width: 100vw;
+                height: 100vh;
+                min-width: 400px;
+                min-height: 400px;
+                display: flex;
+                flex-flow: row;
+                /* Aligns the content horizontally */
+                justify-content: center;
+                align-items: center;
 
-				// Convert the letter to l33t
-				const l33tChar = l33tMap[originalChar.toLowerCase()] || originalChar;
 
-				// Replace the character with the l33t code for a few seconds
-				const updatedText = text.slice(0, randomIndex) + l33tChar + text.slice(randomIndex + 1);
-				randomTextElement.innerText = updatedText;
+                font-family: 'Barlow', sans-serif;
+                color: #fff;
+            }
 
-				// After a short delay, revert back to the original text
-				setTimeout(() => {
-					randomTextElement.innerText = text;
-				}, 1000);
-			}
 
-			setInterval(randomizeTextL33tEffect, 1000);
+            .home-content {
+                width: 50%;
+                padding: 20px;
+                text-align: left;
+            }
 
-			typeEffect();
-		</script>
-	</body>
+
+            .home-content span {
+                color: #007BFF;
+                font-weight: bold;
+            }
+
+
+            .home-content h3 {
+                font-size: 3.2rem;
+                font-weight: 700;
+                margin: 0;
+            }
+
+
+            .home-content h1 {
+                font-size: 5.6rem;
+                font-weight: 700;
+                line-height: 1.3;
+                margin: 0;
+            }
+
+
+            .home-content p {
+                font-size: 1.6rem;
+            }
+
+
+            .btn {
+                display: inline-block;
+                padding: 1rem 2.8rem;
+                background: var(--main-color);
+                border-radius: 4rem;
+                box-shadow: 0 0 1rem var(--main-color);
+                font-size: 1.6rem;
+                color: var(--second-bg-color);
+                letter-spacing: 0.1rem;
+                font-weight: 600;
+                transition: 0.5s ease;
+            }
+
+
+            .btn:hover {
+                box-shadow: none;
+            }
+
+
+            .filter {
+                display: none;
+            }
+
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+
+            .imgWrap {
+                width: 100%;
+                height: 100%;
+                max-width: 500px;
+                max-height: 500px;
+                position: relative;
+                overflow: hidden;
+
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    position: absolute;
+                    top: 50%;
+                    left: 60%;
+                    transform: translate(-50%, -50%);
+                }
+
+
+                .red {
+                    filter: url(#alphaRed);
+                    /* mix-blend-mode: lighten; */
+                }
+
+
+                .green {
+                    filter: url(#alphaGreen);
+                    mix-blend-mode: lighten;
+                }
+
+
+                .blue {
+                    filter: url(#alphaBlue);
+                    mix-blend-mode: lighten;
+                }
+
+
+                .text {
+                    display: block;
+                    color: #fff;
+                    font-size: 18px;
+                    padding: 2px 10px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    opacity: 0;
+                    transition: opacity .3s;
+
+
+                    span {
+                        position: relative;
+                        z-index: 1;
+                    }
+
+
+                    &::before {
+                        content: "";
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #000;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: scale(0, 1) translate(-50%, -50%);
+                        transform-origin: center left;
+                        transition: transform 0.2s;
+                        z-index: 0;
+                    }
+                }
+
+
+                &:hover {
+                    --time: 0.3s;
+
+
+                    .red {
+                        transform: translate(-49.5%, -49.8%);
+                        animation-name: imgGlitch;
+                        animation-duration: var(--time);
+                        animation-timing-function: linear;
+                        animation-iteration-count: infinite;
+                    }
+
+
+                    .green {
+                        transform: translate(-50.5%, -48.8%);
+                        animation-name: imgGlitch;
+                        animation-duration: var(--time);
+                        animation-timing-function: linear;
+                        animation-iteration-count: infinite;
+                    }
+
+
+                    .blue {
+                        transform: translate(-50.5%, -50.8%);
+                        animation-name: imgGlitch;
+                        animation-duration: var(--time);
+                        animation-timing-function: linear;
+                        animation-iteration-count: infinite;
+                    }
+
+
+                    .text {
+                        opacity: 1;
+
+
+                        &::before {
+                            transform: scale(1, 1) translate(-50%, -50%);
+                        }
+                    }
+                }
+            }
+
+
+            @keyframes imgGlitch {
+                0% {
+                    /* clip-path: path("M400,21.66V10.49h-116.29V0H39.36V54.56H0v36.09H101.25v9.77H.23v5.52H101.25v14.44H22.77v15.29H13.82v39.06H.23v6.79H13.82v15.29h60.63v20.81H10.25v51.17H.23v26.75H61.69v30.57h-29.35v12.1H0v30.57H22.77v31.36H400v-25.41h-31.43v-5.95h31.43v-8.28h-31.43v-15.92h-9.57v-14.65h32.56v-13.38h8.44v-10.83h-8.44v-52.23h-79.37v-21.02h69.78v-7.64h18.03v-24.7h-8.44v-52.58h-22.99v-11.89h31.43v-15.29h-31.43v-36.3h31.43V35.03h-116.29v-13.38h116.29ZM138.57,120.38h15.14v15.29h-15.14v-15.29ZM74.45,386.85v-18.08h39.56v14.01h144.19v4.06H74.45Zm89.32-42.28v-6.37h-34.45v-12.1h48.49v18.47h-14.04Zm56.73-25.48h-5.05v-2.55h5.05v2.55Zm-5.05-13.38v-10.19h5.05v10.19h-5.05Z"); */
+                    clip-path: inset(0 0 0 0);
+                }
+
+
+                50% {
+                    clip-path: path("M398.2,238.77v-14.06h2.28v-24.74h-2.28v-37.76h-8.45v-4.24H215.93v-3.23h178.76v-61.25H254.7v-3.19h33.11v-11.59h102.55V29.58h-52.25V0H93.75V13.18H0v11.19H39.84v29.77H.48v36.15H39.84v28.22H18.22v6.81h5.04v10.06H14.3v61.25h60.63v2.12H1.05v56.57H29.76v21.71H96.62v3.81h4.79v7.66h-3.83v-6.14H.6v14.67H62.17v13.8H.48v30.62H82.37v3.83h35.94v8.77H15.17v13.3H118.31v8.77H.48v23.84H244.84v-12.97h134.3v-18.11h21.34v-8.29h-21.34v-26.19h19.02v-25.45h-42.19v-26.19h18.5v-1.93h26.01v-10.85h-26.01v-25.51h-71.49v-5.73h95.22Zm-171.06-75.27v14.95h-11.21v-14.95h11.21Zm-88.09-38.17h38.45v-5.25h15.55v15.31h-54.01v-10.06Zm76.88,189.34v-3.83h40.42v14.92h-10.22v-11.09h-30.21Zm-45.94,30.62h7.52v8.77h-7.52v-8.77Zm0,22.07h7.52v8.77h-7.52v-8.77Z");
+                }
+
+
+                100% {
+                    /* clip-path: path("M400.21,112.61v-15.31H234.82v-9.04h52.51v-6.59h112.67V32.54h-33.6V6.06h-95.3V0H69.47V2.36H29.34V13.55h40.13v7.51H32.34v20.87h-12.38v10.18H0v36.15H19.96v49.37h18.2v23.05H13.82v11.8H.23v6.81H13.82v37.96h18.52v22.74H13.14v13.3h19.2v8.96h106.23v4.44H.23v26.8H61.69v30.62h-29.35v14.67H114.47v11.23H17.55v30.62h18.3v17.63h51.68v-17.63h26.94v11.98h143.72v5.65h141.81v-25.45h-114.47v-5.21h101.25v-.75h13.22v-8.29h-13.22v-29.24h-17.58v-10.32h30.72v-10.85h-30.72v-5.11h30.72v-31.26h-16.99v-29.1h17.08v-24.74h-60.14v-6.74h-24.11v-8.11h70.6v-61.25h-20.92v-29.24h34.78Zm-164.97,180.87v-8.94h88.66v12.37h-108.46v-3.43h19.79Zm-50.53-151.63v18.82h-30.76v-23.05h71.6v4.23h-40.84Z"); */
+                    clip-path: inset(0 0 0 0);
+                }
+            }
+
+
+            /* Media Queries */
+            @media (max-width: 576px) {
+
+
+                .logo-wrap a {
+                    position: relative;
+                    font-size: 1.5rem;
+                }
+
+
+                .page {
+                    flex-flow: column;
+                }
+
+
+                .imgWrap {
+                    width: 100%;
+                    height: 100%;
+                    max-width: 500px;
+                    max-height: 500px;
+                    position: relative;
+                    overflow: hidden;
+
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+
+
+                .home {
+                    padding-left: 20px;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                }
+
+
+                .home-img {
+                    margin-bottom: 20px;
+                }
+
+
+                .home-content h1 {
+                    font-size: 2rem;
+                }
+
+
+                .home-content h3 {
+                    font-size: 1.2rem;
+                }
+
+
+                .home-content p {
+                    font-size: 0.9rem;
+                }
+
+
+                .home-content {
+                    padding: 0 20px;
+                }
+            }
+        </style>
+    </head>
+
+
+    <body>
+        <header class="cd-header">
+            <div class="header-wrapper">
+                <div class="logo-wrap">
+                    <a class="hover-target"><span>{தாரனேஷ்}!</span></a>
+                </div>
+                <div class="nav-but-wrap">
+                    <div class="menu-icon hover-target">
+                        <span class="menu-icon__line menu-icon__line-left"></span>
+                        <span class="menu-icon__line"></span>
+                        <span class="menu-icon__line menu-icon__line-right"></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="nav">
+            <div class="nav__content">
+                <ul class="nav__list">
+                    <li class="nav__list-item active-nav">
+                        <a href="index.html" class="hover-target">Home</a>
+                    </li>
+                    <li class="nav__list-item">
+                        <a href="projects.html" class="hover-target">Projects</a>
+                    </li>
+                    <li class="nav__list-item">
+                        <a href="about.html" class="hover-target">About</a>
+                    </li>
+                    <li class="nav__list-item">
+                        <a href="ShowCase.html" class="hover-target">Show Case</a>
+                    </li>
+                    <li class="nav__list-item">
+                        <a href="contact.html" class="hover-target">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <svg class="filter">
+            <filter id="alphaRed">
+                <feColorMatrix mode="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="joint" />
+            </filter>
+            <filter id="alphaGreen">
+                <feColorMatrix mode="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="joint" />
+            </filter>
+            <filter id="alphaBlue">
+                <feColorMatrix mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="joint" />
+            </filter>
+            <filter id="alpha">
+                <feColorMatrix type="saturate" values="0" />
+            </filter>
+        </svg>
+        <div class="page">
+            <div class="imgWrap">
+                <img class="red" src="images/D1.png">
+                <img class="green" src="images/D1.png">
+                <img class="blue" src="images/D1.png">
+            </div>
+            <div class="home-content">
+                <!-- <h2>Hey buddy... Am</h2> -->
+                <h2 id="greeting"></h2>
+                <h1>Dharanesh</h1>
+                <!-- <h3>A <span>Tech Guy</span></h3> -->
+                <h3>A <span id="dynamic-text">Tech Guy</span></h3>
+                <p>
+                    With the capacity to pick up new technologies rapidly
+                    and apply them.
+                </p>
+                <a href="#" class="btn">Know More</a>
+            </div>
+        </div>
+        <div class="cursor" id="cursor"></div>
+        <div class="cursor2" id="cursor2"></div>
+        <div class="cursor3" id="cursor3"></div>
+
+
+        <!-- partial -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="./script.js"></script>
+        <!------JS for toggle menu------->
+        <script>
+            const greetings = ["Hey there!", "Hey buddy!", "Holamigo!", "What's up buddy?", "Hello friend!", "Yo... buddy!", "Greetings!", "Howdy!"];
+            document.getElementById("greeting").innerText = greetings[Math.floor(Math.random() * greetings.length)];
+            // Array of words to type
+            const words = ["Research Engineer ! ", "Tech Enthusiast ! ", "Developer ! "];
+            let wordIndex = 0; // To keep track of the current word
+            let letterIndex = 0; // To keep track of the current letter in the word
+            let currentWord = ""; // The word currently being typed
+            let isDeleting = false; // Tracks whether we're typing or deleting
+
+
+            const dynamicText = document.getElementById("dynamic-text");
+
+
+            function typeEffect() {
+                // Update the current word dynamically
+                currentWord = words[wordIndex];
+
+
+                // Handle typing and deleting logic
+                if (!isDeleting) {
+                    dynamicText.textContent = currentWord.slice(0, letterIndex++);
+                } else {
+                    dynamicText.textContent = currentWord.slice(0, letterIndex--);
+                }
+
+
+                // If word is fully typed, start deleting after a pause
+                if (!isDeleting && letterIndex === currentWord.length) {
+                    isDeleting = true; // Start deleting
+                    setTimeout(typeEffect, 2000); // Longer pause after typing the full word
+                    return;
+                }
+
+
+                // If word is fully deleted, move to the next word
+                if (isDeleting && letterIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length; // Loop through words
+                }
+
+
+                // Adjust typing speed
+                const typingSpeed = isDeleting ? 50 : 150; // Speed for deleting vs typing
+                setTimeout(typeEffect, typingSpeed);
+            }
+
+
+            // Mapping for l33t code conversions
+            const l33tMap = {
+                'a': '@', 'A': '4',
+                'b': '6', 'B': '8',
+                'c': '<', 'C': '(',
+                'D': '[)',
+                'e': '€', 'E': '3',
+                'f': 'ƒ', 'F': '|=',
+                'H': '#',
+                'i': '1',
+                'k': '|<',
+                'L': '|_',
+                'o': 'Ø', 'O': '0',
+                'q': '9', 'Q': '(,)',
+                's': '5', 'S': '$',
+                'T': '7',
+                'V': '\/',
+                'X': '><',
+                'y': '`/', 'Y': '¥',
+                'Z': '2'
+            };
+
+
+            // Function to get a random integer between min and max
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+
+            // Function to convert a single character to l33t
+            function toL33t(char) {
+                return l33tMap[char] || char; // If there's a l33t version, return it, else return the same character
+            }
+
+
+            // Function to apply l33t effect one letter at a time
+            function applyL33tEffect() {
+                const textElements = document.querySelectorAll('.home-content h1, .home-content h2, .home-content p');
+
+
+                textElements.forEach(element => {
+                    let originalText = element.dataset.originalText || element.innerText; // Get the original text
+                    let newText = originalText.split('');
+
+
+                    // Pick a random letter to convert each time
+                    const randomIndex = getRandomInt(0, newText.length - 1);
+                    newText[randomIndex] = toL33t(newText[randomIndex]);
+
+
+                    element.innerText = newText.join(''); // Update the element's text
+                });
+            }
+
+
+            // Function to revert text back to normal
+            function revertTextEffect() {
+                const textElements = document.querySelectorAll('.home-content h1, .home-content h2, .home-content p');
+
+
+                textElements.forEach(element => {
+                    if (element.dataset.originalText) {
+                        element.innerText = element.dataset.originalText; // Restore original text
+                    }
+                });
+            }
+
+
+            // Interval for effect
+            let intervalId;
+            const imgWrap = document.querySelector(".imgWrap");
+
+
+            imgWrap.addEventListener("mouseenter", () => {
+                // Save the original text when hovering starts
+                const textElements = document.querySelectorAll('.home-content h1, .home-content h2, .home-content p');
+                textElements.forEach(element => {
+                    if (!element.dataset.originalText) {
+                        element.dataset.originalText = element.innerText; // Store original text only once
+                    }
+                });
+
+
+                if (!intervalId) {
+                    intervalId = setInterval(applyL33tEffect, 100); // Apply effect continuously
+                }
+            });
+
+
+            imgWrap.addEventListener("mouseleave", () => {
+                clearInterval(intervalId);
+                intervalId = null;
+                revertTextEffect(); // Restore text instantly
+            });
+
+
+            typeEffect();
+        </script>
+    </body>
 
 </html>
+
+<!-- #TODO
+- Add the span also in the le3d c0ad
+-->
