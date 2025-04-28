@@ -1,0 +1,200 @@
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>About Dharanesh</title>
+		<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+		<link rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" />
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+				<text y='.9em' font-size='90'>🤔</text></svg>">
+		<!-- <link rel="stylesheet" href="fa.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+		<style>
+			#back-to-top-btn {
+				display: none;
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				font-size: 26px;
+				width: 50px;
+				height: 50px;
+				background-color: #fff;
+				color: #333;
+				cursor: pointer;
+				outline: none;
+				border: 3px solid #333;
+				border-radius: 50%;
+				transition-duration: 0.2s;
+				transition-timing-function: ease-in-out;
+				transition-property: background-color, color;
+			}
+
+			#back-to-top-btn:hover,
+			#back-to-top-btn:focus {
+				background-color: #333;
+				color: #fff;
+			}
+
+			html,
+			body {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 300;
+				font-size: 15px;
+				line-height: 1.7;
+				color: #c4c3ca;
+				min-height: 100vh;
+				width: 100%;
+				background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../images/batman.jpeg);
+				background-position: center;
+				background-size: cover;
+				background-attachment: fixed;
+				position: relative;
+				overflow-x: hidden;
+				display: flex;
+				/* Flexbox added */
+				flex-direction: column;
+				/* Stack content vertically */
+				align-items: center;
+				/* Center horizontally */
+				justify-content: center;
+				/* Center vertically */
+				-webkit-transition: all 1000ms linear;
+				transition: all 1000ms linear;
+				/* overflow: hidden; */
+				/* Prevents default scrolling */
+			}
+
+			.Name h1 {
+                width: 100%;
+                height: 60vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                text-align: center;
+                font-size: 2rem;
+                font-weight: 700;
+                letter-spacing: 3px;
+                color: #00ffcc;
+                text-shadow: 0px 0px 20px #00ffcc;
+            }
+		</style>
+	</head>
+
+	<body>
+
+		<header class="cd-header">
+			<div class="header-wrapper">
+				<div class="logo-wrap">
+					<a class="hover-target"><span>{தாரனேஷ்}!</span></a>
+				</div>
+				<div class="nav-but-wrap">
+					<div class="menu-icon hover-target">
+						<span class="menu-icon__line menu-icon__line-left"></span>
+						<span class="menu-icon__line"></span>
+						<span class="menu-icon__line menu-icon__line-right"></span>
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+		<div class="nav">
+			<div class="nav__content">
+				<ul class="nav__list">
+					<li class="nav__list-item">
+						<a href="../" class="hover-target">Home</a>
+					</li>
+					<li class="nav__list-item">
+						<a href="../projects/" class="hover-target">Projects</a>
+					</li>
+					<li class="nav__list-item ">
+						<a href="../pages/about.html" class="hover-target">About</a>
+					</li>
+					<li class="nav__list-item">
+						<a href="../pages/highlights.html" class="hover-target">Highlights</a>
+					</li>
+					<li class="nav__list-item">
+						<a href="../pages/contact.html" class="hover-target">Contact</a>
+					</li>
+					<li class="nav__list-item active-nav">
+						<a href="blog/" class="hover-target">Blog</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+
+		<button id="back-to-top-btn">
+			<i class="fas fa-angle-double-left"></i>
+		</button>
+
+		<div class="content-section">
+			<div class="Name">
+				<h1>0xD#4R4N35#</h1>
+			</div>
+		</div>
+		<section>
+			<div class="cursor" id="cursor"></div>
+			<div class="cursor2" id="cursor2"></div>
+			<div class="cursor3" id="cursor3"></div>
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script src="../assets/js/script.js"></script>
+		</section>
+
+		<script>
+			
+
+			//name effect
+			document.addEventListener("DOMContentLoaded", function () {
+				const h1 = document.querySelector(".Name h1");
+				const originalText = "0xD#4R4N35#";
+				const finalText = "0xDHARANESH";
+				let index = 0;
+
+				function typeEffect() {
+					if (index < finalText.length) {
+						h1.textContent = finalText.slice(0, index + 1);
+						index++;
+						setTimeout(typeEffect, 100);
+					} else {
+						setTimeout(reverseEffect, 500);
+					}
+				}
+
+				function reverseEffect() {
+					let letters = finalText.split("");
+					let targetLetters = originalText.split("");
+					let i = 0;
+
+					let interval = setInterval(() => {
+						if (i < targetLetters.length) {
+							letters[i] = targetLetters[i];
+							h1.textContent = letters.join("");
+							i++;
+						} else {
+							clearInterval(interval);
+						}
+					}, 100);
+				}
+
+				typeEffect();
+			});
+
+
+			
+			// Redirect to a new URL after 3 seconds
+			setTimeout(function () {
+				window.location.href = '../dev.html';
+			}, 500);
+
+		</script>
+	</body>
+
+</html>
