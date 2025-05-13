@@ -10,8 +10,9 @@
         <link rel="stylesheet" href="../assets/css/style.css">
         <style>
             html {
-				font-size: 62.5%;
-			}
+                font-size: 62.5%;
+            }
+
             body {
                 font-family: 'Montserrat', sans-serif;
                 font-weight: 300;
@@ -59,8 +60,12 @@
                 flex-wrap: wrap;
                 gap: 20px;
                 justify-content: center;
-                margin: 40px 0;
+                margin: 40px auto;
                 animation: fadeIn 2.5s ease-in;
+                max-width: 1400px;
+                /* Limits total row width */
+                padding: 0 20px;
+                /* Adds side padding */
             }
 
             .project-card {
@@ -68,9 +73,11 @@
                 border-radius: 10px;
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
                 padding: 20px;
-                max-width: 300px;
                 text-align: center;
                 transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+                flex: 1 1 22%;
+                max-width: 22%;
+                box-sizing: border-box;
             }
 
             .project-card:hover {
@@ -101,6 +108,42 @@
                 color: #388E3C;
             }
 
+            .note-container {
+                background-color: #f8f9fa34;
+                border-left: 4px solid #4a86e8;
+                padding: 16px 20px;
+                margin: 20px 0;
+                border-radius: 4px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .note-heading {
+                color: #ffffff;
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 12px;
+            }
+
+            .note-text {
+                color: #ffffff;
+                font-size: 14px;
+                line-height: 1.5;
+                margin-bottom: 8px;
+            }
+
+            .bullet-point {
+                position: relative;
+                padding-left: 18px;
+            }
+
+            .bullet-point:before {
+                content: "•";
+                position: absolute;
+                left: 4px;
+                color: #4a86e8;
+            }
+
             /* Animations */
             @keyframes fadeIn {
                 0% {
@@ -111,6 +154,22 @@
                 100% {
                     opacity: 1;
                     transform: translateY(0);
+                }
+            }
+
+            @media (max-width: 1024px) {
+                .project-card {
+                    flex: 1 1 calc(50% - 20px);
+                    /* 2 per row on tablets */
+                    max-width: calc(50% - 20px);
+                }
+            }
+
+            @media (max-width: 600px) {
+                .project-card {
+                    flex: 1 1 100%;
+                    /* 1 per row on mobile */
+                    max-width: 100%;
                 }
             }
 
@@ -151,27 +210,27 @@
                     <li class="nav__list-item">
                         <a href="../" class="hover-target">Home</a>
                     </li>
-                    <li class="nav__list-item active-nav">
-                        <a href="#" class="hover-target">Projects</a>
-                    </li>
                     <li class="nav__list-item">
                         <a href="../pages/about.html" class="hover-target">About</a>
+                    </li>
+                    <li class="nav__list-item active-nav">
+                        <a href="#" class="hover-target">Projects</a>
                     </li>
                     <li class="nav__list-item">
                         <a href="../pages/highlights.html" class="hover-target">Highlights</a>
                     </li>
                     <li class="nav__list-item">
-                        <a href="../pages/contact.html" class="hover-target">Contact</a>
+                        <a href="../blog/" class="hover-target">Blog</a>
                     </li>
                     <li class="nav__list-item">
-                        <a href="../blog/" class="hover-target">Blog</a>
+                        <a href="../pages/contact.html" class="hover-target">Contact</a>
                     </li>
                 </ul>
             </div>
         </div>
 
         <section class="title">
-            <h1>Welcome to Dharanesh's Projects Showcase 🌟</h1>
+            <h1>Projects Showcase 🌟</h1>
             <p>Here are some of the projects I have worked on. Feel free to explore!</p>
         </section>
 
@@ -192,23 +251,55 @@
 
             <div class="project-card">
                 <h2>🔧 indusight-IIoT</h2>
-                <p>A smart automation project with IoT integration. this project done as freelance.
+                <p>A smart automation project for industries with IoT integration. To monitor and control the machines.
+                    A freelance Project.
                 </p>
             </div>
+
+            <div class="project-card">
+                <h2>🔓 RF2PULSE 🔑</h2>
+                <p>
+                    Converts RF signals to a digital pulse signal.
+                    A freelance Project.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <h2>🧹 SmartVac Bot 🤖</h2>
+                <p>
+                    Autonomous Obstacle-Avoiding Vacuum Robot
+                    A freelance Project.
+                    Visit <a href="https://github.com/0xdharanesh/SmartVac">SmartVac</a> repo
+                </p>
+            </div>
+
+            <div class="project-card">
+                <h2>🎓 Marksy 🧾</h2>
+                <p>
+                    A simple project to handle the college student and faculty and their results. using PHP and SQL.
+                    A college mini project for someone.
+                    Visit <a href="https://github.com/0xdharanesh/Marksy">Marksy</a> repo
+                </p>
+            </div>
+
             <div class="project-card">
                 <h2>🔒 Encryption-Decryption Tool</h2>
-                <p>An unique encryption and decryption technique in this project that using Tamil letters with the
-                    alphanumeric
-                    letters.
+                <p>
+                    An unique encryption and decryption technique in this project that using Tamil letters with the
+                    alphanumeric letters.
+                </p>
             </div>
             <!-- A project exploring security vulnerabilities and providing real-time solutions. for Encryption and decryption.  This promotes data security and is highly effective.  -->
         </section>
+        <section class="note-container">
+            <div class="note-heading">Repository Access Note</div>
+            <div class="note-text bullet-point">Only publicly shareable projects are included in the repository links.
+            </div>
+            <div class="note-text bullet-point">Projects with sensitive data are maintained in private repositories,
+                while NDA work is excluded entirely to maintain confidentiality and professional ethics.</div>
+        </section>
 
-        <!-- <footer>
-        <p>Designed and coded by Dharanesh. Let's connect! ✨</p>
-    </footer> -->
         <section>
-
             <div class='cursor' id="cursor"></div>
             <div class='cursor2' id="cursor2"></div>
             <div class='cursor3' id="cursor3"></div>
