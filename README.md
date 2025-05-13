@@ -13,26 +13,22 @@
 ├── assets/
 |   ├── css/
 |   |   └──style.css
-|   ├── js/
-|   |   └── script.js
-|   └── images/
-│       ├── batman.png                
-|       └── img_for_home.png
+|   ├── images/
+│   |   ├── batman.png                
+|   |   └── img_for_home.png
+|   └── js/
+|       └── script.js
 ├── blog/
-│   ├── index.html
-│   └── core-of-life.html
-├── images/       
-│   ├── batman.png                
-|   └── img_for_home.png
+│   ├── core-of-life.html
+│   └── index.html
+├── pages/        
+│   ├── about.html
+│   ├── contact.html
+│   └── highlights.html
 ├── projects/        
 │   ├── index.html
 │   └── green-env-theme
-├── about.html
-├── contact.html
 ├── index.html
-├── README.md
-├── script.js
-├── ShowCase.html                       
-├── style.css
+└── README.md
 
 ```
