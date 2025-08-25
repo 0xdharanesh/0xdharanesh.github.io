@@ -108,7 +108,7 @@
                 color: #388E3C;
             }
 
-            .note-container {
+            /* .note-container {
                 background-color: #f8f9fa34;
                 border-left: 4px solid #4a86e8;
                 padding: 16px 20px;
@@ -116,7 +116,7 @@
                 border-radius: 4px;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            }
+            } */
 
             .note-heading {
                 color: #ffffff;
@@ -144,6 +144,18 @@
                 color: #4a86e8;
             }
 
+            .site-footer {
+                width: 100%;
+                margin-top: auto; /* Pushes footer to bottom */
+                background: rgba(0, 0, 0, 0.5); /* Optional background */
+                padding: 20px 0;
+            }
+
+            .note-container {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+ 
             /* Animations */
             @keyframes fadeIn {
                 0% {
@@ -165,26 +177,73 @@
                 }
             }
 
-            @media (max-width: 600px) {
-                .project-card {
-                    flex: 1 1 100%;
-                    /* 1 per row on mobile */
-                    max-width: 100%;
-                }
-            }
-
-            /* Responsive Design */
-            @media screen and (max-width: 576px) {
+            /* @media (max-width: 600px) {
                 .projects {
                     flex-direction: column;
-                    align-items: center;
+                    align-items: stretch;
+                    gap: 16px;
+                    padding: 0 8px;
+                }
+                .project-card {
+                    flex: 1 1 100%;
+                    max-width: 100%;
+                    min-width: 0;
+                    margin: 0 auto;
+                    padding: 16px 10px;
+                    font-size: 1.1rem;
+                }
+                .project-card h2 {
+                    font-size: 1.2rem;
+                }
+                .project-card p {
+                    font-size: 1rem;
+                }
+            } */
+
+            /* Media Queries */
+            @media (max-width: 576px) {
+
+                .logo-wrap a {
+                    position: relative;
+                    font-size: 1.5rem;
+                }
+
+                .page {
+                    flex-flow: column;
+                }
+
+                .imgWrap {
+                    width: 100%;
+                    height: 100%;
+                    max-width: 500px;
+                    max-height: 500px;
+                    position: relative;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
                 }
 
                 .project-card {
-                    max-width: 80%;
+                    flex: 1 1 100%;
+                    max-width: 100%;
+                    min-width: 0;
+                    flex-direction: column;
+                    gap: 20px;
+                    width: 100%;
+                    height: auto;
+                    max-width: 90%;
                 }
 
             }
+        
         </style>
     </head>
 
@@ -230,6 +289,13 @@
         </div>
 
         <section class="title">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <h1>Projects Showcase 🌟</h1>
             <p>Here are some of the projects I have worked on. Feel free to explore!</p>
         </section>
@@ -291,13 +357,14 @@
             </div>
             <!-- A project exploring security vulnerabilities and providing real-time solutions. for Encryption and decryption.  This promotes data security and is highly effective.  -->
         </section>
-        <section class="note-container">
+        
+        <!-- <section class="note-container">
             <div class="note-heading">Repository Access Note</div>
             <div class="note-text bullet-point">Only publicly shareable projects are included in the repository links.
             </div>
             <div class="note-text bullet-point">Projects with sensitive data are maintained in private repositories,
                 while NDA work is excluded entirely to maintain confidentiality and professional ethics.</div>
-        </section>
+        </section> -->
 
         <section>
             <div class='cursor' id="cursor"></div>
@@ -307,5 +374,18 @@
             <script src="../assets/js/script.js"></script>
         </section>
     </body>
+
+    <footer class="site-footer">
+        <section class="note-container">
+            <div class="note-heading">Repository Access Note</div>
+            <div class="note-text bullet-point">
+                Only publicly shareable projects are included in the repository links.
+            </div>
+            <div class="note-text bullet-point">
+                Projects with sensitive data are maintained in private repositories,
+                while NDA work is excluded entirely to maintain confidentiality and professional ethics.
+            </div>
+        </section>
+    </footer>
 
 </html>
