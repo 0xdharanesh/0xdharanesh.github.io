@@ -360,9 +360,10 @@
             <div class="home-content">
                 <h1 id="greeting"></h1>
                 <h2>It’s Dharanesh</h2>
-                <h3>A <span id="dynamic-text">Tech Guy</span></h3>
+                <h3>A <span id="dynamic-text"></span></h3>
                 <p>
-                    Passionate Learner Exploring Diverse Engineering Technologies 🤟
+                    Passionate Learner Exploring Diverse Engineering Technologies 🤟 <br>
+                    Worst then you think and always beyond your expectations!
                 </p>
                 <a href="pages/about.html" class="btn">Know More</a>
             </div>
@@ -390,8 +391,9 @@
             ];
 
             document.getElementById("greeting").innerText = greetings[Math.floor(Math.random() * greetings.length)];
-            // Array of words to type
-            const words = ["R&D Engineer ! ", "Tech Enthusiast ! "];
+            // Array of words to type #TODO implement more text
+            const words = ["Techie ! ", "R&D Engineer ! ", "Cyber Sec Enthusiast ! "];
+            // with Hands-On Electronics Knowledge
             let wordIndex = 0; // To keep track of the current word
             let letterIndex = 0; // To keep track of the current letter in the word
             let currentWord = ""; // The word currently being typed
