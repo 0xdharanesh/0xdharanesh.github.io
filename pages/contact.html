@@ -138,6 +138,10 @@
 				color: #b9b9b9;
 			}
 
+			.telegram:hover .bi {
+				color: #26a5e4;
+			}
+
 			/* Footer */
 			footer {
 				margin: 30px 0;
@@ -161,6 +165,15 @@
 
 			/* Responsive Design */
 			@media screen and (max-width: 576px) {
+				html {
+					overflow-y: auto;
+					overflow-x: hidden;
+				}
+
+				body {
+					overflow-y: auto;
+				}
+
 				.contact-section {
 					grid-template-columns: 1fr;
 					gap: 15px;
@@ -240,7 +253,6 @@
 		</section>
 
 		<section class="contact-section">
-			<!-- #TODO : Plan on vertical scrolling -->
 			<!-- Email -->
 			<div class="contact-card email">
 				<a href="mailto:0xdharanesh@gmail.com" class="social-link">
@@ -312,6 +324,13 @@
 					<i class="bi bi-twitter-x"></i>
 				</a>
 			</div>
+
+			<!-- Telegram -->
+			<div class="contact-card telegram">
+				<a href="https://t.me/dabeet_lucifer" target="_blank" class="social-link">
+					<i class="bi bi-telegram"></i>
+				</a>
+			</div>
 		</section>
 
 		<footer>
@@ -341,9 +360,5 @@
 			});
 		</script>
 	</body>
-	<!--
-	TODO
-	This page is not scrollable in the mobile view
-	-->
 
 </html>
