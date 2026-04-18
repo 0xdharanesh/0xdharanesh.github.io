@@ -34,8 +34,3 @@
 ```
 
 ## Todo
-
-- [ ] Add a Fan speed controlled by temperature projects page
-- [ ] jerome website
-- [ ] Viyam website
-- [ ] Helmet detection project

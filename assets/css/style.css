@@ -25,6 +25,26 @@ html {
 	overflow-x: hidden;
 }
 
+#desktop-warning {
+  display: none;
+}
+
+/* Show warning + hide content on larger screens */
+@media (min-width: 768px) {
+  #desktop-warning {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 20px;
+  }
+
+  #main-content {
+    display: none;
+  }
+}
 /* #Cursor */
 
 .cursor,
