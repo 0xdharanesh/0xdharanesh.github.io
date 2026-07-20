@@ -1,45 +1,21 @@
+<!DOCTYPE html>
 <html lang="en">
 
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Blogs</title>
+		<title>Blog | Dharanesh</title>
+		<meta name="description" content="Notes and writing from Dharanesh — life, mindset, and technology.">
+		<link rel="canonical" href="https://0xdharanesh.github.io/blog/">
+		<meta property="og:title" content="Blog | Dharanesh">
+		<meta property="og:description" content="Notes and writing from Dharanesh — life, mindset, and technology.">
+		<meta property="og:url" content="https://0xdharanesh.github.io/blog/">
+		<meta property="og:type" content="website">
 		<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
-		<link rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" />
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-				<text y='.9em' font-size='90'>📰</text></svg>">
-		<!-- <link rel="stylesheet" href="fa.css"> -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+		<link rel="icon"
+			href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
 		<style>
-			#back-to-top-btn {
-				display: none;
-				position: fixed;
-				bottom: 20px;
-				right: 20px;
-				font-size: 26px;
-				width: 50px;
-				height: 50px;
-				background-color: #fff;
-				color: #333;
-				cursor: pointer;
-				outline: none;
-				border: 3px solid #333;
-				border-radius: 50%;
-				transition-duration: 0.2s;
-				transition-timing-function: ease-in-out;
-				transition-property: background-color, color;
-			}
-
-			#back-to-top-btn:hover,
-			#back-to-top-btn:focus {
-				background-color: #333;
-				color: #fff;
-			}
-
 			html,
 			body {
 				font-family: 'Montserrat', sans-serif;
@@ -49,119 +25,114 @@
 				color: #c4c3ca;
 				min-height: 100vh;
 				width: 100%;
-				background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../assets/images/batman.jpeg);
+				background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(../assets/images/batman.jpeg);
 				background-position: center;
 				background-size: cover;
 				background-attachment: fixed;
-				position: relative;
 				overflow-x: hidden;
-				display: flex;
-				/* Flexbox added */
-				flex-direction: column;
-				/* Stack content vertically */
-				align-items: center;
-				/* Center horizontally */
-				justify-content: center;
-				/* Center vertically */
-				-webkit-transition: all 1000ms linear;
-				transition: all 1000ms linear;
-				/* overflow: hidden; */
-				/* Prevents default scrolling */
 			}
 
-			.Name h1 {
+			main {
 				width: 100%;
-				height: 60vh;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				position: relative;
+				max-width: 820px;
+				margin: 0 auto;
+				padding: 7rem 1.25rem 4rem;
+				box-sizing: border-box;
+			}
+
+			.page-intro {
 				text-align: center;
-				font-size: 2rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.page-intro h1 {
+				font-size: 2.2rem;
 				font-weight: 700;
-				letter-spacing: 3px;
+				letter-spacing: 2px;
 				color: #00ffcc;
-				text-shadow: 0px 0px 20px #00ffcc;
+				text-shadow: 0 0 18px rgba(0, 255, 204, 0.35);
+				margin-bottom: 0.75rem;
 			}
 
-			.down1 {
-				width: 80%;
-				margin: auto;
-				text-align: center;
-				padding-top: 50px;
+			.page-intro p {
+				font-size: 1.05rem;
+				color: #e8e8e8;
+				max-width: 36rem;
+				margin: 0 auto;
 			}
 
-			.down1-col {
-				flex-basis: 32%;
-				border-radius: 10px;
-				margin-bottom: 30px;
-				position: relative;
-				overflow: hidden;
+			.posts {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
 			}
 
-			.down1-col {
-				height: 50%;
-				width: 100%;
+			.post {
+				display: block;
+				padding: 1.25rem 1.4rem;
+				background: rgba(0, 0, 0, 0.55);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				border-radius: 12px;
+				color: inherit;
+				transition: border-color 0.25s ease, transform 0.25s ease;
 			}
 
-			.layer {
-				background: transparent;
-				height: 100%;
-				width: 100%;
-				position: absolute;
-				top: 0;
-				left: 0;
-				transition: 0.5s;
+			a.post:hover {
+				border-color: rgba(0, 255, 204, 0.55);
+				transform: translateY(-2px);
 			}
 
-			.layer:hover {
-				background: transparent;
+			.post-meta {
+				font-size: 0.8rem;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				color: #8167a9;
+				margin-bottom: 0.4rem;
 			}
 
-			.layer h3 {
-				width: 100%;
-				font-weight: 500;
+			.post h2 {
+				font-size: 1.35rem;
+				font-weight: 600;
 				color: #fff;
-				font-size: 26px;
-				bottom: 0;
-				left: 50%;
-				transform: translateX(-50%);
-				position: absolute;
-				transition: 0.5s;
+				margin-bottom: 0.4rem;
 			}
 
-			.layer:hover h3 {
-				bottom: 49%;
-				opacity: 1;
+			.post p {
+				font-size: 0.98rem;
+				color: #c4c3ca;
 			}
 
-			.down1-btn {
-				display: inline-block;
-				text-decoration: none;
-				color: rgb(0, 0, 0);
-				border: 1px solid rgb(153, 190, 118);
-				border-radius: 15px;
-				padding: 12px 32px;
-				font-size: 15px;
-				background: transparent;
-				position: relative;
-				cursor: pointer;
+			.post.soon {
+				opacity: 0.72;
+				cursor: default;
 			}
 
-			.down1-btn:hover {
-				border: 1px solid rgb(112, 228, 96);
-				background: rgb(112, 228, 96);
-				transition: 1s;
+			.post.soon h2::after {
+				content: " · Coming soon";
+				font-size: 0.75rem;
+				font-weight: 500;
+				letter-spacing: 0.5px;
+				color: #00ffcc;
+				text-transform: uppercase;
+			}
+
+			@media (max-width: 576px) {
+				main {
+					padding-top: 6rem;
+				}
+
+				.page-intro h1 {
+					font-size: 1.75rem;
+				}
 			}
 		</style>
 	</head>
 
 	<body>
-
 		<header class="cd-header">
 			<div class="header-wrapper">
 				<div class="logo-wrap">
-					<a class="hover-target"><span>{தாரனேஷ்}!</span></a>
+					<a href="../" class="hover-target"><span>{தாரனேஷ்}!</span></a>
 				</div>
 				<div class="nav-but-wrap">
 					<div class="menu-icon hover-target">
@@ -173,14 +144,13 @@
 			</div>
 		</header>
 
-
 		<div class="nav">
 			<div class="nav__content">
 				<ul class="nav__list">
 					<li class="nav__list-item">
 						<a href="../" class="hover-target">Home</a>
 					</li>
-					<li class="nav__list-item ">
+					<li class="nav__list-item">
 						<a href="../pages/about.html" class="hover-target">About</a>
 					</li>
 					<li class="nav__list-item">
@@ -190,7 +160,7 @@
 						<a href="../pages/highlights.html" class="hover-target">Highlights</a>
 					</li>
 					<li class="nav__list-item active-nav">
-						<a href="blog/" class="hover-target">Blog</a>
+						<a href="./" class="hover-target">Blog</a>
 					</li>
 					<li class="nav__list-item">
 						<a href="../pages/contact.html" class="hover-target">Contact</a>
@@ -199,123 +169,50 @@
 			</div>
 		</div>
 
-
-		<button id="back-to-top-btn">
-			<i class="fas fa-angle-double-left"></i>
-		</button>
-
-		<div class="content-section">
-			<div class="Name">
-				<h1>0xD#4R4N35#</h1>
+		<main>
+			<div class="page-intro">
+				<h1>Blog</h1>
+				<p>Notes on life, body, mind, and the systems that shape us.</p>
 			</div>
-		</div>
 
-		<section class="down1" id="blog">
-			<h1> Blogs </h1>
-			<p>blogs about environment isuses</p>
-			<!------blogs{down1} for add some content about blogs on this web site----->
-			<div class="row">
-				<div class="down1-col">
-					<a href="smok.html">
-						<img src="images/smoke.jpg">
-						<div class="layer">
-							<h3>காற்று மாசு , மூச்சுக்கு கேடு</h3>
-						</div>
-					</a>
-				</div>
-				<div class="down1-col">
-					<a href="#">
-						<img src="images/landp.jpg">
-						<div class="layer">
-							<h3>நெகிழியின் வேகம் எதிர்காலத்திற்கு சாபம்</h3>
-						</div>
-					</a>
-				</div>
-				<div class="down1-col">
-					<a href="#">
-						<img src="images/water-pol.jpg">
-						<div class="layer">
-							<h3>நீர் மாசு நித்தம் இங்கே</h3>
-						</div>
-					</a>
-				</div>
-			</div>
-			<a href="smok.html" class="down1-btn">
-				For More Blogs
+		<section class="posts" aria-label="Blog posts">
+			<a class="post" href="core-of-life.html">
+				<div class="post-meta">Life · Published</div>
+				<h2>What Is the Core of Life</h2>
+				<p>Health, wealth, and relationships — the three pillars everything else is built on.</p>
+			</a>
+
+			<a class="post" href="potential-of-nap.html">
+				<div class="post-meta">Body · Published</div>
+				<h2>The Potential of Nap</h2>
+				<p>NASA-style short rest, sleep inertia, and how a timed nap can buy back alertness.</p>
+			</a>
+
+			<a class="post" href="potential-of-water.html">
+				<div class="post-meta">Body · Published</div>
+				<h2>The Potential of Water</h2>
+				<p>What dehydration does to attention and mood — and how to hydrate without obsession.</p>
+			</a>
+
+			<a class="post" href="illness-of-social-media.html">
+				<div class="post-meta">Mind · Published</div>
+				<h2>Illness of Social Media</h2>
+				<p>What meta-analyses link to compulsive use: anxiety, FoMO, loneliness, and fractured attention.</p>
+			</a>
+
+			<a class="post" href="beauty-of-mental-support.html">
+				<div class="post-meta">Mind · Published</div>
+				<h2>The Beauty of Mental Support</h2>
+				<p>Why connection protects mental health — and how to give and receive support well.</p>
 			</a>
 		</section>
+		</main>
 
-		<div class="content-section">
-			<div class="Name">
-				<h1>What is life</h1>
-			</div>
-		</div>
-		<div class="content-section">
-			<div class="Name">
-				<h1>Butterfly effect - psychologically</h1>
-				<h2>This could ruin too</h2>
-			</div>
-		</div>
-		<div class="content-section">
-			<div class="Name">
-				<h1>Why to sleep</h1>
-			</div>
-		</div>
-		<section>
-			<div class="cursor" id="cursor"></div>
-			<div class="cursor2" id="cursor2"></div>
-			<div class="cursor3" id="cursor3"></div>
-
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-			<script src="../assets/js/script.js"></script>
-		</section>
-
-		<script>
-
-			//name effect
-			document.addEventListener("DOMContentLoaded", function () {
-				const h1 = document.querySelector(".Name h1");
-				const originalText = "0xD#4R4N35#";
-				const finalText = "0xDHARANESH";
-				let index = 0;
-
-				function typeEffect() {
-					if (index < finalText.length) {
-						h1.textContent = finalText.slice(0, index + 1);
-						index++;
-						setTimeout(typeEffect, 100);
-					} else {
-						setTimeout(reverseEffect, 500);
-					}
-				}
-
-				function reverseEffect() {
-					let letters = finalText.split("");
-					let targetLetters = originalText.split("");
-					let i = 0;
-
-					let interval = setInterval(() => {
-						if (i < targetLetters.length) {
-							letters[i] = targetLetters[i];
-							h1.textContent = letters.join("");
-							i++;
-						} else {
-							clearInterval(interval);
-						}
-					}, 100);
-				}
-
-				typeEffect();
-			});
-
-
-
-			// Redirect to a new URL after 3 seconds
-			setTimeout(function () {
-				window.location.href = '../dev.html';
-			}, 500);
-
-		</script>
+		<div class="cursor" id="cursor"></div>
+		<div class="cursor2" id="cursor2"></div>
+		<div class="cursor3" id="cursor3"></div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="../assets/js/script.js"></script>
 	</body>
 
 </html>
