@@ -28,7 +28,27 @@
   <url>
     <loc>https://0xdharanesh.github.io/blog/core-of-life.html</loc>
     <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://0xdharanesh.github.io/blog/potential-of-nap.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://0xdharanesh.github.io/blog/potential-of-water.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://0xdharanesh.github.io/blog/illness-of-social-media.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://0xdharanesh.github.io/blog/beauty-of-mental-support.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://0xdharanesh.github.io/pages/contact.html</loc>
