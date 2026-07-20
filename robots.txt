@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /dev.html
+Disallow: /pages/con2.html
+
+Sitemap: https://0xdharanesh.github.io/sitemap.xml

@@ -199,6 +199,11 @@ html {
 .nav {
 	position: fixed;
 	z-index: 98;
+	/* Keep menu layout stable even when Bootstrap's .nav { display:flex } is loaded */
+	display: block;
+	flex-wrap: unset;
+	padding: 0;
+	margin: 0;
 }
 
 .nav:before,
@@ -213,6 +218,7 @@ html {
 	border-bottom-right-radius: 200%;
 	z-index: -1;
 	transition: border-radius linear 0.8s, width cubic-bezier(0.77, 0, 0.175, 1) 0.6s, height cubic-bezier(0.77, 0, 0.175, 1) 0.6s;
+	box-sizing: border-box;
 }
 
 .nav:after {
@@ -244,6 +250,7 @@ html {
 	position: relative;
 	padding: 0;
 	margin: 0;
+	list-style: none;
 	z-index: 2;
 }
 
@@ -257,6 +264,7 @@ html {
 	color: #fff;
 	overflow: hidden;
 	font-family: 'Poppins', sans-serif;
+	/* px keeps size identical across pages with different html font-size / DOCTYPE */
 	font-size: 22px;
 	line-height: 1.2;
 	letter-spacing: 2px;
@@ -266,8 +274,8 @@ html {
 	transition: opacity .2s ease, -webkit-transform .2s ease;
 	transition: opacity .2s ease, transform .2s ease;
 	transition: opacity .2s ease, transform .2s ease, -webkit-transform .2s ease;
-	margin-top: 7px;
-	margin-bottom: 7px;
+	margin-top: 4px;
+	margin-bottom: 4px;
 }
 
 .nav__list-item a {
@@ -277,7 +285,9 @@ html {
 	overflow: hidden;
 	cursor: pointer;
 	font-family: 'Poppins', sans-serif;
+	font-size: 22px;
 	font-weight: 600;
+	line-height: 1.2;
 	z-index: 2;
 	padding-left: 40px;
 	padding-top: 5px;
