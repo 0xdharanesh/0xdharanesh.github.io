@@ -110,6 +110,11 @@
                 border: #0056b3;
                 border-radius: 5px;
                 width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                margin: 0;
+                overflow-wrap: anywhere;
+                word-break: break-word;
             }
 
 
@@ -152,6 +157,8 @@
                 align-items: center;
                 gap: 12px;
                 margin-top: 10px;
+                margin-bottom: 48px;
+                padding-bottom: 16px;
             }
 
             #navigation button {
@@ -178,7 +185,7 @@
             @media screen and (max-width: 576px) {
                 body {
                     justify-content: flex-start;
-                    padding: 5rem 0.75rem 2rem;
+                    padding: 5rem 0.75rem 3.5rem;
                     box-sizing: border-box;
                     overflow-x: hidden;
                     overflow-y: auto;
@@ -210,10 +217,12 @@
                 }
 
                 .gallery-item {
-                    width: 100%;
+                    width: min(100%, 300px);
                     height: auto;
                     max-width: 100%;
                     margin-right: 0;
+                    overflow: hidden;
+                    box-sizing: border-box;
                 }
 
                 .gallery-item:hover {
@@ -225,6 +234,15 @@
                     height: auto;
                     max-height: 260px;
                     object-fit: contain;
+                    display: block;
+                }
+
+                .gallery-item p {
+                    font-size: 12px;
+                    padding: 6px 8px;
+                    width: 100%;
+                    max-width: 100%;
+                    box-sizing: border-box;
                 }
 
                 /* Certificate section adjustments */
@@ -263,7 +281,8 @@
                     gap: 10px;
                     width: 100%;
                     max-width: 360px;
-                    margin: 12px auto 0;
+                    margin: 12px auto 40px;
+                    padding-bottom: 12px;
                 }
 
                 #navigation button {
