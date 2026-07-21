@@ -132,10 +132,18 @@ strong {
 
 @media (max-width: 576px) {
     main {
-        padding-top: 6rem;
+        padding: 5.5rem 1rem 3rem;
     }
 
     h1 {
         font-size: 1.65rem;
+    }
+
+    .lede {
+        font-size: 1rem;
+    }
+
+    p, li {
+        font-size: 1rem;
     }
 }

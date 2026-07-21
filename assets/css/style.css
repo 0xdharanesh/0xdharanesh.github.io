@@ -385,7 +385,7 @@ body.nav-active .nav {
 
 body.nav-active .nav:before,
 body.nav-active .nav:after {
-	width: 250px;
+	width: 240px;
 	height: 350px;
 	border-radius: 15px;
 }
@@ -467,19 +467,72 @@ body.nav-active .nav__list-item:nth-child(10) {
 
 @media screen and (max-width: 576px) {
 
-	/* Center the header elements properly */
+	/* Keep header sticky and usable on phones */
 	.cd-header {
-		position: relative;
-		/* Allow header to scroll with content */
+		position: fixed;
 		width: 100%;
-		text-align: center;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		text-align: left;
+	}
+
+	.header-wrapper {
+		width: calc(100% - 2rem);
+		margin-left: 1rem;
+		margin-right: 1rem;
+	}
+
+	.logo-wrap {
+		top: 1.1rem;
+		right: 0;
 	}
 
 	.logo-wrap a {
 		position: relative;
-		font-size: 1.5rem;
-		/* Smaller logo size */
+		font-size: 1.1rem;
+		letter-spacing: 1px;
+	}
 
+	.nav-but-wrap {
+		margin-top: 1rem;
+		padding-left: 0;
+		padding-top: 0.5rem;
+	}
+
+	/* Fit open menu snugly around the 6 links */
+	.nav:before,
+	.nav:after {
+		left: 1rem;
+		top: 0.75rem;
+	}
+
+	.nav__content {
+		left: 1rem;
+		top: 4.25rem;
+		width: min(240px, calc(100vw - 2rem));
+	}
+
+	body.nav-active .nav:before,
+	body.nav-active .nav:after {
+		width: min(230px, calc(100vw - 2rem));
+		height: 340px;
+	}
+
+	.nav__list-item {
+		margin-top: 3px;
+		margin-bottom: 3px;
+	}
+
+	.nav__list-item,
+	.nav__list-item a {
+		font-size: 18px;
+	}
+
+	.nav__list-item a {
+		padding-top: 4px;
+		padding-bottom: 4px;
+		padding-left: 28px;
 	}
 }
 

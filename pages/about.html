@@ -269,8 +269,12 @@
 
             @media (max-width: 768px) {
                 html, body {
-                    overflow-y: auto;
-                    overflow-x: hidden;
+                    overflow-y: auto !important;
+                    overflow-x: hidden !important;
+                    height: auto !important;
+                    display: block;
+                    justify-content: flex-start;
+                    align-items: stretch;
                 }
 
                 .two-col-grid,
@@ -281,75 +285,89 @@
 
                 .styled-list li {
                     text-align: left;
-                    font-size: 0.8rem;
+                    font-size: 0.85rem;
                 }
 
                 .animation-container {
-                    display: none;
+                    display: none !important;
                 }
 
                 .page {
-                    height: auto;
+                    height: auto !important;
+                    min-height: 0;
                     position: static;
+                    width: 100%;
                 }
 
                 .content {
-                    position: static;
+                    position: static !important;
+                    display: flex;
                     flex-direction: column;
-                    width: 100%;
-                    left: auto;
+                    width: 100% !important;
+                    left: auto !important;
+                    top: auto !important;
                     transform: none !important;
                 }
 
                 .content-section {
                     position: static;
                     width: 100%;
-                    height: auto;
-                    min-height: 100vh;
+                    height: auto !important;
+                    min-height: 0;
                     display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 80px 15px 40px;
+                    align-items: stretch;
+                    justify-content: flex-start;
+                    padding: 0.75rem 12px;
                     margin: 0;
                 }
 
+                .content-section:first-of-type {
+                    padding-top: 5rem;
+                }
+
+                .content-section:last-of-type {
+                    padding-bottom: 2rem;
+                }
+
                 .content-section>div {
-                    position: static;
-                    margin: 0 auto;
-                    padding: 25px 15px;
-                    width: 95%;
-                    max-width: 500px;
-                    text-align: center;
+                    position: static !important;
+                    margin: 0 auto !important;
+                    padding: 1.1rem 0.9rem;
+                    width: 100%;
+                    max-width: 520px;
+                    text-align: left;
                     overflow-x: hidden;
                     word-wrap: break-word;
                     overflow-wrap: break-word;
+                    box-sizing: border-box;
+                }
+
+                .Name {
+                    text-align: center;
+                    align-items: center;
                 }
 
                 .Name h1 {
-                    font-size: 1.5rem;
+                    font-size: 1.45rem;
                     height: auto;
-                    padding: 40px 0;
+                    padding: 0.5rem 0;
                     justify-content: center;
+                    width: 100%;
                 }
 
-                .Experience {
+                .Experience,
+                .Education {
                     font-size: 1rem;
                     height: auto;
                     width: 100%;
-                    align-items: center;
+                    align-items: stretch;
                 }
 
-                .Experience h2 {
-                    font-size: 1.5rem;
-                }
-
-                .Education h2 {
-                    font-size: 1.5rem;
-                }
-
-                .Education {
-                    width: 100%;
-                    align-items: center;
+                .Experience h2,
+                .Education h2,
+                .content-section h4 {
+                    font-size: 1.25rem;
+                    text-align: left;
                 }
 
                 .Education .two-col-grid > div {
@@ -357,12 +375,13 @@
                     overflow-wrap: break-word;
                 }
 
-                .arrow-animated {
+                .arrow-animated,
+                .walk-text {
                     display: none;
                 }
 
-                .walk-text {
-                    display: none;
+                .resume-btn {
+                    align-self: flex-start;
                 }
             }
 
@@ -707,39 +726,66 @@
                     ease: "sine.inOut"
                 }, 0)
 
-            const numberOfCycles = Math.ceil(3 * window.innerWidth / window.innerHeight)
-            const numSections = document.querySelectorAll(".content-section").length;
-            const targetXPercent = - ((numSections - 1) / numSections) * 100;
+            // Horizontal scroll + walker only on larger screens
+            const desktopAbout = window.matchMedia("(min-width: 769px)");
 
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".page",
-                    scrub: true,
-                    start: "0% 0%",
-                    end: "100% 100%"
+            function setupDesktopScroll() {
+                const numberOfCycles = Math.ceil(3 * window.innerWidth / window.innerHeight);
+                const numSections = document.querySelectorAll(".content-section").length;
+                const targetXPercent = - ((numSections - 1) / numSections) * 100;
+
+                return gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".page",
+                        scrub: true,
+                        start: "0% 0%",
+                        end: "100% 100%"
+                    }
+                })
+                    .fromTo(content, {
+                        xPercent: 0
+                    }, {
+                        xPercent: targetXPercent,
+                        ease: "none"
+                    }, 0)
+                    .fromTo(bodyTimeline, {
+                        time: .7
+                    }, {
+                        time: .75 + numberOfCycles
+                    }, 0)
+                    .fromTo(backCycle, {
+                        time: .7
+                    }, {
+                        time: .75 + numberOfCycles
+                    }, 0)
+                    .fromTo(frontCycle, {
+                        time: .2
+                    }, {
+                        time: .25 + numberOfCycles
+                    }, 0);
+            }
+
+            let aboutScrollTl = null;
+            if (desktopAbout.matches) {
+                aboutScrollTl = setupDesktopScroll();
+            } else {
+                gsap.set(content, { clearProps: "transform,xPercent" });
+            }
+
+            desktopAbout.addEventListener("change", (event) => {
+                if (aboutScrollTl) {
+                    aboutScrollTl.scrollTrigger && aboutScrollTl.scrollTrigger.kill();
+                    aboutScrollTl.kill();
+                    aboutScrollTl = null;
                 }
-            })
-                .fromTo(content, {
-                    xPercent: 0
-                }, {
-                    xPercent: targetXPercent,
-                    ease: "none"
-                }, 0)
-                .fromTo(bodyTimeline, {
-                    time: .7
-                }, {
-                    time: .75 + numberOfCycles
-                }, 0)
-                .fromTo(backCycle, {
-                    time: .7
-                }, {
-                    time: .75 + numberOfCycles
-                }, 0)
-                .fromTo(frontCycle, {
-                    time: .2
-                }, {
-                    time: .25 + numberOfCycles
-                }, 0)
+                ScrollTrigger.getAll().forEach((t) => t.kill());
+                if (event.matches) {
+                    aboutScrollTl = setupDesktopScroll();
+                } else {
+                    gsap.set(content, { clearProps: "transform,xPercent" });
+                }
+                ScrollTrigger.refresh();
+            });
 
             window.addEventListener("resize", () => {
                 ScrollTrigger.refresh();

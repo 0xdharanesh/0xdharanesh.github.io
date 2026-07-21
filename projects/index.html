@@ -18,7 +18,7 @@
         <style>
             HTML {
                 font-size: 62.5%;
-                overflow: hidden;
+                overflow-x: hidden;
             }
 
             /* body {
@@ -109,9 +109,15 @@
             }
 
             .project-card:hover {
-                transform: translateY(-10px);
-                transform: scale(1.3);
-                box-shadow: 0 12px 24px rgba(0, 0, 0, 1);
+                transform: translateY(-6px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+            }
+
+            @media (hover: hover) and (pointer: fine) {
+                .project-card:hover {
+                    transform: translateY(-8px) scale(1.03);
+                    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+                }
             }
 
             .project-card h2 {
@@ -230,46 +236,100 @@
 
             /* Media Queries */
             @media (max-width: 576px) {
+                html {
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                }
+
+                body {
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    padding: 4.75rem 0 1.5rem;
+                    box-sizing: border-box;
+                    min-height: 100dvh;
+                    height: auto;
+                }
 
                 .logo-wrap a {
                     position: relative;
                     font-size: 1.5rem;
                 }
 
-                .page {
-                    flex-flow: column;
+                .title {
+                    margin: 0.75rem 1rem 0.5rem;
+                    width: auto;
                 }
 
-                .imgWrap {
-                    width: 100%;
-                    height: 100%;
-                    max-width: 500px;
-                    max-height: 500px;
-                    position: relative;
-                    overflow: hidden;
+                .title h1 {
+                    font-size: 2rem;
+                    line-height: 1.25;
+                }
 
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                    }
+                .title p {
+                    font-size: 1.2rem;
+                    margin-top: 0.35rem;
+                }
+
+                .projects {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 12px;
+                    padding: 0 12px 1.25rem;
+                    margin: 0.75rem auto 0;
+                    width: 100%;
+                    max-width: 100%;
+                    box-sizing: border-box;
                 }
 
                 .project-card {
-                    flex: 1 1 100%;
+                    flex: none;
+                    width: 100%;
                     max-width: 100%;
                     min-width: 0;
-                    flex-direction: column;
-                    gap: 20px;
-                    width: 100%;
+                    margin: 0;
+                    padding: 14px 12px;
                     height: auto;
-                    max-width: 90%;
+                    box-sizing: border-box;
+                    transform: none !important;
                 }
 
+                .project-card:hover {
+                    transform: none !important;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+                }
+
+                .project-card h2 {
+                    font-size: 1.35rem;
+                    margin-bottom: 0.5rem;
+                }
+
+                .project-card p {
+                    font-size: 1.1rem;
+                    line-height: 1.45;
+                }
+
+                .note-container {
+                    margin: 0.75rem 12px 1rem;
+                    max-width: none;
+                    width: auto;
+                    box-sizing: border-box;
+                    padding: 12px 14px;
+                }
+
+                .note-heading {
+                    font-size: 15px;
+                }
+
+                .note-text {
+                    font-size: 13px;
+                }
+
+                .site-footer {
+                    padding: 1rem 12px;
+                    font-size: 1.1rem;
+                    text-align: center;
+                }
             }
         </style>
     </head>

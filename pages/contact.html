@@ -27,7 +27,7 @@
 		<style>
 			HTML {
                 font-size: 80%;
-                overflow: hidden;
+                overflow-x: hidden;
             }
 
 			body {
@@ -179,32 +179,54 @@
 
 				body {
 					overflow-y: auto;
+					overflow-x: hidden;
+					justify-content: flex-start;
+					padding: 5.5rem 1rem 2rem;
+					box-sizing: border-box;
 				}
 
-				.contact-section {
-					grid-template-columns: 1fr;
-					gap: 15px;
-					width: 20%;
-					padding: 10px;
-				}
-
-				.contact-card {
-					padding: 15px;
-					font-size: 1.5rem;
+				.title {
+					width: 100%;
+					padding: 0 0.5rem;
 				}
 
 				.title h1 {
 					font-size: 2rem;
 				}
 
-				/* .title p {
-					font-size: 1rem;
-				} */
-
-				.social-link {
-					font-size: 1.5rem;
+				.title p {
+					font-size: 1.2rem;
 				}
 
+				.contact-section {
+					grid-template-columns: repeat(3, minmax(0, 1fr));
+					gap: 12px;
+					width: 100%;
+					max-width: 360px;
+					margin: 1.5rem auto;
+					padding: 0;
+				}
+
+				.contact-card {
+					padding: 14px 8px;
+					font-size: 1rem;
+				}
+
+				.social-link {
+					font-size: 1.6rem;
+				}
+
+				footer {
+					font-size: 1.2rem;
+					margin: 1.5rem 0 0;
+					padding: 0 0.5rem;
+				}
+			}
+
+			@media screen and (max-width: 380px) {
+				.contact-section {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
 			}
 		</style>
 	</head>

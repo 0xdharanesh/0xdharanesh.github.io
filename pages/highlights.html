@@ -176,42 +176,80 @@
             }
 
             @media screen and (max-width: 576px) {
+                body {
+                    justify-content: flex-start;
+                    padding: 5rem 0.75rem 2rem;
+                    box-sizing: border-box;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                }
+
+                h1 {
+                    margin-top: 0.5rem;
+                    font-size: 1.8rem;
+                    padding: 0 0.5rem;
+                }
+
+                h2 {
+                    margin-top: 1.5rem;
+                    font-size: 1.4rem;
+                }
 
                 /* Gallery Layout Adjustments */
                 .gallery {
-                    padding: 10px;
+                    padding: 10px 0;
+                    gap: 20px;
+                    width: 100%;
                 }
 
                 .gallery-row {
                     flex-direction: column;
+                    align-items: center;
                     gap: 20px;
+                    width: 100%;
                 }
 
                 .gallery-item {
                     width: 100%;
                     height: auto;
-                    max-width: 90%;
+                    max-width: 100%;
+                    margin-right: 0;
+                }
+
+                .gallery-item:hover {
+                    transform: none;
                 }
 
                 .gallery-item img {
                     width: 100%;
                     height: auto;
+                    max-height: 260px;
+                    object-fit: contain;
                 }
 
                 /* Certificate section adjustments */
                 #certificateList {
                     width: 100%;
                     max-width: 100%;
+                    margin: 12px auto;
+                }
+
+                .certificate-frame {
+                    width: 100%;
+                    max-width: 100%;
+                    height: 240px;
                 }
 
                 .certificate-description {
                     text-align: center;
                     margin-top: 15px;
-                    font-size: 13px;
+                    font-size: 1.1rem;
+                    width: 100%;
                     color: white;
                     background: rgba(0, 0, 0, 0.5);
                     padding: 10px;
                     border-radius: 5px;
+                    box-sizing: border-box;
                 }
 
                 .certificate-item {
@@ -220,13 +258,17 @@
 
                 /* Button adjustments for better spacing */
                 #navigation {
-                    flex-direction: column;
+                    flex-direction: row;
+                    flex-wrap: wrap;
                     gap: 10px;
-                    width: 90%;
+                    width: 100%;
+                    max-width: 360px;
+                    margin: 12px auto 0;
                 }
 
                 #navigation button {
-                    width: 100%;
+                    flex: 1 1 calc(50% - 10px);
+                    min-width: 120px;
                     font-size: 14px;
                 }
             }
