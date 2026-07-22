@@ -1,53 +1,47 @@
-(function ($) {
+(function () {
 	"use strict";
 
-	//Page cursors
+	// Page cursors
+	var t = document.getElementById("cursor");
+	var e = document.getElementById("cursor2");
+	var i = document.getElementById("cursor3");
 
-	document.getElementsByTagName("body")[0].addEventListener("mousemove", function (n) {
-		t.style.left = n.clientX + "px",
-			t.style.top = n.clientY + "px",
-			e.style.left = n.clientX + "px",
-			e.style.top = n.clientY + "px",
-			i.style.left = n.clientX + "px",
-			i.style.top = n.clientY + "px"
-	});
-	var t = document.getElementById("cursor"),
-		e = document.getElementById("cursor2"),
-		i = document.getElementById("cursor3");
-	function n(t) {
-		e.classList.add("hover"), i.classList.add("hover")
-	}
-	function s(t) {
-		e.classList.remove("hover"), i.classList.remove("hover")
-	}
-	s();
-	for (var r = document.querySelectorAll(".hover-target"), a = r.length - 1; a >= 0; a--) {
-		o(r[a])
-	}
-	function o(t) {
-		t.addEventListener("mouseover", n), t.addEventListener("mouseout", s)
+	if (t && e && i) {
+		document.body.addEventListener("mousemove", function (n) {
+			t.style.left = n.clientX + "px";
+			t.style.top = n.clientY + "px";
+			e.style.left = n.clientX + "px";
+			e.style.top = n.clientY + "px";
+			i.style.left = n.clientX + "px";
+			i.style.top = n.clientY + "px";
+		});
+
+		function addHover() {
+			e.classList.add("hover");
+			i.classList.add("hover");
+		}
+
+		function removeHover() {
+			e.classList.remove("hover");
+			i.classList.remove("hover");
+		}
+
+		removeHover();
+
+		var hoverTargets = document.querySelectorAll(".hover-target");
+		for (var a = hoverTargets.length - 1; a >= 0; a--) {
+			hoverTargets[a].addEventListener("mouseover", addHover);
+			hoverTargets[a].addEventListener("mouseout", removeHover);
+		}
 	}
 
-	//Navigation
+	// Navigation
+	var body = document.querySelector("body");
+	var menu = document.querySelector(".menu-icon");
 
-	var app = function () {
-		var body = undefined;
-		var menu = undefined;
-		var menuItems = undefined;
-		var init = function init() {
-			body = document.querySelector('body');
-			menu = document.querySelector('.menu-icon');
-			menuItems = document.querySelectorAll('.nav__list-item');
-			applyListeners();
-		};
-		var applyListeners = function applyListeners() {
-			menu.addEventListener('click', function () {
-				return toggleClass(body, 'nav-active');
-			});
-		};
-		var toggleClass = function toggleClass(element, stringClass) {
-			if (element.classList.contains(stringClass)) element.classList.remove(stringClass); else element.classList.add(stringClass);
-		};
-		init();
-	}();
-})(jQuery);
+	if (body && menu) {
+		menu.addEventListener("click", function () {
+			body.classList.toggle("nav-active");
+		});
+	}
+})();

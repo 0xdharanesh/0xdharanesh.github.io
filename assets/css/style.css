@@ -249,6 +249,7 @@ html {
 .nav__list {
 	position: relative;
 	padding: 0;
+	padding-bottom: 16px;
 	margin: 0;
 	list-style: none;
 	z-index: 2;
@@ -366,7 +367,7 @@ body.nav-active .nav {
 body.nav-active .nav:before,
 body.nav-active .nav:after {
 	width: 250px;
-	height: 350px;
+	height: 370px;
 	border-radius: 15px;
 }
 
@@ -497,7 +498,11 @@ body.nav-active .nav__list-item:nth-child(10) {
 	body.nav-active .nav:before,
 	body.nav-active .nav:after {
 		width: min(230px, calc(100vw - 2rem));
-		height: 340px;
+		height: 320px;
+	}
+
+	.nav__list {
+		padding-bottom: 12px;
 	}
 
 	.nav__list-item {
