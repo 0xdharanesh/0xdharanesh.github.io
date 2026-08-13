@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>About | Dharanesh</title>
         <meta name="description"
-            content="Software engineer at Iotics Technology with a background in computer engineering, IoT builds, and competition awards.">
+            content="Software engineer at Iotics Technology — diploma in Computer Engineering (GPTC Coimbatore), coursework in B.E. ECE at GCT, currently pursuing BBA at Manipal University.">
         <link rel="canonical" href="https://0xdharanesh.github.io/pages/about.html">
         <meta property="og:title" content="About | Dharanesh">
         <meta property="og:description"
@@ -64,28 +64,6 @@
                 scrollbar-width: none;
             }
 
-            .animation-container {
-                position: fixed;
-                left: 0;
-                bottom: 0;
-                width: 30%;
-                height: 40vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                font-family: sans-serif;
-                font-size: 15px;
-            }
-
-            svg {
-                height: 42vh;
-            }
-
-            .page {
-                height: 400vh;
-            }
-
             .content {
                 position: fixed;
                 top: 0;
@@ -107,15 +85,15 @@
                 align-items: center;
                 justify-content: center;
                 width: 90%;
-                margin-top: -10vh;
-                margin-bottom: -10vh;
+                margin-top: -6vh;
+                margin-bottom: -6vh;
                 max-width: 1000px;
                 text-align: center;
                 background: rgba(0, 0, 0, 0.65);
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
                 border-radius: 20px;
-                padding: 40px;
+                padding: 28px 32px;
                 box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
                 border: 1px solid rgba(255, 255, 255, 0.1);
             }
@@ -148,7 +126,6 @@
 
             .Name h1 {
                 width: 100%;
-                /* height: 60vh; */
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -165,9 +142,235 @@
                 color: var(--text-secondary);
             }
 
+            .name-subtitle {
+                margin-top: 0.35rem !important;
+                font-size: 1rem !important;
+                letter-spacing: 0.04em;
+                color: rgba(255, 255, 255, 0.85) !important;
+            }
+
+            .manifesto {
+                max-width: 34rem;
+                margin: 1rem auto 0.5rem !important;
+                font-size: 1.05rem !important;
+                line-height: 1.55 !important;
+                color: var(--text-secondary) !important;
+            }
+
+            .walk-text {
+                margin-top: 1.25rem !important;
+                font-size: 1.15rem !important;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--accent-color) !important;
+            }
+
+            .scroll-hint {
+                margin-top: 0.35rem !important;
+                font-size: 0.9rem !important;
+                color: rgba(196, 195, 202, 0.85) !important;
+            }
+
+            .mobile-path-hint {
+                display: none;
+            }
+
+            .role-bullets {
+                margin: 0.75rem 0 0;
+                padding-left: 1.1rem;
+                text-align: left;
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+                line-height: 1.45;
+                font-weight: 400;
+                letter-spacing: normal;
+                text-shadow: none;
+            }
+
+            .role-bullets li {
+                margin-bottom: 0.4rem;
+            }
+
+            .section-note {
+                margin-top: 1rem !important;
+                font-size: 0.9rem !important;
+                color: rgba(196, 195, 202, 0.9) !important;
+                text-align: left;
+                width: 100%;
+            }
+
+            .group-label {
+                display: block;
+                width: 100%;
+                text-align: left;
+                margin: 1rem 0 0.4rem;
+                font-size: 0.85rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--accent-color);
+                text-shadow: none;
+            }
+
+            .group-label:first-of-type {
+                margin-top: 0;
+            }
+
+            .year-panel {
+                width: 100%;
+                max-height: none;
+                overflow: visible;
+                text-align: left;
+                align-items: stretch !important;
+            }
+
+            .year-panel h2 {
+                width: 100%;
+                text-align: center;
+                font-size: 2.2rem;
+                color: var(--accent-color);
+                text-shadow: 0 0 20px var(--accent-glow);
+                margin: 0 0 0.25rem;
+                letter-spacing: 0.12em;
+            }
+
+            .year-kicker {
+                text-align: center;
+                width: 100%;
+                margin: 0 0 0.75rem !important;
+                font-size: 0.9rem !important;
+                color: rgba(196, 195, 202, 0.9) !important;
+            }
+
+            .timeline-block {
+                margin-bottom: 0.7rem;
+                padding: 0.65rem 0.85rem;
+                border-left: 3px solid var(--accent-color);
+                background: rgba(0, 255, 204, 0.06);
+                border-radius: 0 10px 10px 0;
+            }
+
+            .timeline-block h3 {
+                margin: 0 0 0.25rem;
+                font-size: 1rem;
+                color: var(--accent-color);
+                letter-spacing: 0.04em;
+                text-shadow: none;
+            }
+
+            .timeline-block p,
+            .timeline-block li {
+                font-size: 0.88rem;
+                line-height: 1.4;
+                color: var(--text-secondary);
+                font-weight: 400;
+                letter-spacing: normal;
+                text-shadow: none;
+            }
+
+            .timeline-block ul {
+                margin: 0.25rem 0 0;
+                padding-left: 1.05rem;
+            }
+
+            .timeline-block li {
+                margin-bottom: 0.2rem;
+            }
+
+            .timeline-block a {
+                color: var(--accent-color);
+                text-decoration: underline;
+            }
+
+            .timeline-tag {
+                display: inline-block;
+                margin-bottom: 0.35rem;
+                font-size: 0.7rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: #04120f;
+                background: var(--accent-color);
+                padding: 0.15rem 0.45rem;
+                border-radius: 999px;
+            }
+
+            .page {
+                height: 640vh;
+            }
+
+            .journey-rail {
+                position: fixed;
+                left: 1.25rem;
+                bottom: 0.85rem;
+                z-index: 6;
+                width: min(72vw, 520px);
+                pointer-events: none;
+            }
+
+            .journey-years {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.3rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .journey-years span {
+                font-size: 0.62rem;
+                letter-spacing: 0.04em;
+                padding: 0.18rem 0.4rem;
+                border-radius: 999px;
+                border: 1px solid rgba(0, 255, 204, 0.35);
+                color: rgba(196, 195, 202, 0.7);
+                background: rgba(0, 0, 0, 0.35);
+                transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+            }
+
+            .journey-years span.is-active {
+                color: #04120f;
+                background: var(--accent-color);
+                border-color: var(--accent-color);
+                box-shadow: 0 0 12px var(--accent-glow);
+            }
+
+            .journey-chapter {
+                font-size: 0.8rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--accent-color);
+                text-shadow: 0 0 10px var(--accent-glow);
+            }
+
+            .animation-container {
+                position: fixed;
+                left: 0;
+                bottom: 3.25rem;
+                width: 30%;
+                height: 36vh;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                flex-direction: column;
+                font-family: sans-serif;
+                font-size: 15px;
+                z-index: 4;
+                pointer-events: none;
+            }
+
+            .animation-container svg {
+                height: 38vh;
+                filter: drop-shadow(0 0 8px rgba(0, 255, 204, 0.45));
+            }
+
+            .dude {
+                stroke: var(--accent-color);
+                stroke-width: 6;
+            }
+
             .Experience {
                 width: 100%;
-                height: 60vh;
+                min-height: 0;
+                height: auto;
+                max-height: 78vh;
+                overflow-y: auto;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -201,7 +404,10 @@
 
             .Education {
                 width: 100%;
-                height: 60vh;
+                min-height: 0;
+                height: auto;
+                max-height: 78vh;
+                overflow-y: auto;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -289,7 +495,37 @@
                 }
 
                 .animation-container {
-                    display: none !important;
+                    display: flex !important;
+                    left: auto;
+                    right: 0.5rem;
+                    bottom: 0.5rem;
+                    width: 28vw;
+                    max-width: 120px;
+                    height: 18vh;
+                    opacity: 0.85;
+                    z-index: 3;
+                }
+
+                .animation-container svg {
+                    height: 16vh;
+                }
+
+                .journey-rail {
+                    left: 0.75rem;
+                    bottom: 0.75rem;
+                    width: auto;
+                    max-width: 55vw;
+                }
+
+                .journey-years {
+                    display: none;
+                }
+
+                .journey-chapter {
+                    font-size: 0.7rem;
+                    background: rgba(0, 0, 0, 0.45);
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 6px;
                 }
 
                 .page {
@@ -355,6 +591,32 @@
                     width: 100%;
                 }
 
+                .name-subtitle {
+                    font-size: 0.9rem !important;
+                }
+
+                .manifesto {
+                    font-size: 0.95rem !important;
+                    text-align: center;
+                }
+
+                .walk-text,
+                .arrow-animated {
+                    display: none;
+                }
+
+                .scroll-hint {
+                    display: none;
+                }
+
+                .mobile-path-hint {
+                    display: block;
+                    margin-top: 0.85rem !important;
+                    font-size: 0.9rem !important;
+                    color: var(--accent-color) !important;
+                    text-align: center;
+                }
+
                 .Experience,
                 .Education {
                     font-size: 1rem;
@@ -375,9 +637,37 @@
                     overflow-wrap: break-word;
                 }
 
-                .arrow-animated,
-                .walk-text {
-                    display: none;
+                .role-bullets {
+                    font-size: 0.88rem;
+                }
+
+                .year-panel {
+                    max-height: none;
+                    overflow: visible;
+                }
+
+                .year-panel h2 {
+                    font-size: 1.6rem;
+                    text-align: left;
+                    letter-spacing: 0.08em;
+                }
+
+                .year-kicker {
+                    text-align: left !important;
+                    font-size: 0.85rem !important;
+                }
+
+                .timeline-block {
+                    padding: 0.7rem 0.8rem;
+                }
+
+                .timeline-block h3 {
+                    font-size: 0.95rem;
+                }
+
+                .timeline-block p,
+                .timeline-block li {
+                    font-size: 0.85rem;
                 }
 
                 .resume-btn {
@@ -436,117 +726,221 @@
 
         <div class="page"></div>
         <div class="content">
-            <div class="content-section">
+            <div class="content-section" data-stage="about" data-chapter="About">
                 <div class="Name">
                     <h1>0xD#4R4N35#</h1>
+                    <p class="name-subtitle">Dharanesh — Software Engineer · IoT &amp; R&amp;D</p>
+                    <p class="manifesto">
+                        From polytechnic labs and ECE coursework to industrial IoT and applied R&amp;D —
+                        I build things that move data, machines, and ideas, while growing business fundamentals through a BBA at Manipal.
+                    </p>
                     <p class="walk-text">Walk with me</p>
-                    <p class="arrow-animated">→</p>
+                    <p class="arrow-animated" aria-hidden="true">→</p>
+                    <p class="scroll-hint">Scroll to walk the stages — Work + study → school</p>
+                    <p class="mobile-path-hint">Scroll the stages ↓</p>
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="Experience">
-                    <h2 class="title" style="width: 100%; text-align: center; margin-bottom: 1.5rem;">Professional Experience</h2>
-                    <div class="two-col-grid">
-                        <div>
-                            <h3 class="Dept">Research and Development</h3>
-                            <h4 class="Comp">Iotics technology private limited </h4>
-                            <h4 class="Date">8-07-2023 - Present</h4>
-                            <p>Designation : Software Engineer</p>
-                        </div>
-                        <div>
-                            <h3 class="Dept">Intern</h3>
-                            <h4 class="Comp">Taramsys </h4>
-                            <h4 class="Date"> 1-07-22 - 28-07-22</h4>
-                            <p>Domain : Web Design</p>
-                            <p>Conduct day-to-day tasks</p>
-                        </div>
+            <div class="content-section" data-stage="work-bba" data-chapter="Work + BBA">
+                <div class="year-panel">
+                    <h2>Work + BBA</h2>
+                    <p class="year-kicker">Current chapter — industry R&amp;D with business studies</p>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Work</span>
+                        <h3>Software Engineer — R&amp;D · Iotics Technology</h3>
+                        <p>Jul 2023 – present</p>
+                        <ul>
+                            <li>Contribute to R&amp;D software for IoT and applied systems.</li>
+                            <li>Work across application and embedded-adjacent product development.</li>
+                            <li>Collaborate on builds that connect hardware, data, and software.</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Study</span>
+                        <h3>BBA · Manipal University</h3>
+                        <p>In progress — pursuing Bachelor of Business Administration alongside full-time work, building business fundamentals next to engineering practice.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="content-section">
-                <div class="Education">
-                    <h2 style="margin-bottom: 1.5rem;">Education</h2>
-                    <div class="two-col-grid">
-                        <div>
-                            <h4>Engineering</h4>
-                            <p>Government Polytechnic College, Coimbatore | 2023</p>
-                            <p>COMPUTER ENGINEERING</p>
-                            <p>Overall 81.44 %</p>
-                        </div>
-                        <div>
-                            <h4>Higher Secondary Education</h4>
-                            <p>Government Hr. Sec. School, Malliyagarai | 2022</p>
-                            <p>Major in BASIC ELECTRICAL ENGINEERING</p>
-                            <p>Scored 84%</p>
-                        </div>
-                        <div>
-                            <h4>Senior Secondary Education</h4>
-                            <p>Saraswathi Matric School, Ulipuram | 2019</p>
-                            <p>Tamil Nadu State Board of Education</p>
-                            <p>Scored 72%</p>
-                        </div>
+            <div class="content-section" data-stage="work-be" data-chapter="Work + BE">
+                <div class="year-panel">
+                    <h2>Work + BE</h2>
+                    <p class="year-kicker">Industry role during the engineering attempt</p>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Work</span>
+                        <h3>Software Engineer — R&amp;D · Iotics Technology</h3>
+                        <p>Continued full-time R&amp;D while exploring a formal B.E. path after diploma.</p>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Study</span>
+                        <h3>B.E. ECE · Government College of Technology (GCT), Coimbatore</h3>
+                        <p>Started Electronics and Communication Engineering after diploma; later discontinued the program to realign toward industry work and continuing studies (BBA).</p>
                     </div>
                 </div>
             </div>
 
-            <div class="content-section">
-                <div>
-                    <h4>Badge of honors</h4>
-                    <ul class="two-col-grid-list styled-list">
-                        <li>Best out going student by Directorate of Technical Education (GPTC Coimbatore)</li>
-                        <li>Best out going student by Government Polytechnic college, Coimbatore</li>
-                        <li>Won FIRST place in Paper Presentation on "Augmented Reality and Virtual Reality" at SRI RANGANATHAR INSTITUTE</li>
-                        <li>Secured SECOND place in "WEB DESIGN CONTEST" at Sri Ramakrishna Polytechnic College</li>
-                        <li>Secured SECOND place in "Waste to art 2022" at Government Polytechnic College</li>
-                        <li>Third place in Paper Presentation on "5G technology" at RVS INSTITUTE</li>
-                        <li>Second place in interschool kabaddi competition (Saraswathi Matric)</li>
-                        <li>Medal at interschool chess competition (Saraswathi Matric)</li>
-                    </ul>
+            <div class="content-section" data-stage="work" data-chapter="Work">
+                <div class="year-panel">
+                    <h2>Work</h2>
+                    <p class="year-kicker">First industry chapter — career before dual study framing</p>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Work</span>
+                        <h3>Joined Iotics Technology — Software Engineer (R&amp;D)</h3>
+                        <p>From 28 Jul 2023 — first full-time industry role in research and development for IoT and applied systems.</p>
+                        <ul>
+                            <li>Entered professional R&amp;D after diploma and skill training.</li>
+                            <li>This chapter sits between college/PLC and later Work + study stages.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="content-section">
-                <div>
-                    <h4>Extracurricular Activities & Events</h4>
-                    <ul class="two-col-grid-list styled-list">
-                        <li>Placement-Student Coordinator</li>
-                        <li>Secretary in annual day sports meet 2023</li>
-                        <li>Secretary in GPL 2023</li>
-                        <li>Coordinator: Waste to art 2022</li>
-                        <li>Coordinator & DJ: Hostel Day 2022</li>
-                        <li>Coordinator & DJ: Karaoke club auditions</li>
-                        <li>Coordinator & DJ: Movie show by Naan Mudhalvan</li>
-                        <li>Coordinator: Placement training</li>
-                        <li>Coordinator: Book Reading Club events</li>
-                        <li>Coordinator & DJ: Pongal celebration 2023</li>
-                        <li>Coordinator, DJ & secretary: Sports day 2023</li>
-                        <li>Coordinator, DJ: Annual day 2023</li>
-                    </ul>
+            <div class="content-section" data-stage="plc" data-chapter="PLC">
+                <div class="year-panel">
+                    <h2>PLC course</h2>
+                    <p class="year-kicker">National skill certification</p>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Certificate</span>
+                        <h3>PLC Programmer &amp; Troubleshooter · NSDC / IAS</h3>
+                        <p>Job role IAS/Q5604 · NSQF Level 4 · PMKVY · Cleared 14 Aug 2023 · Grade B (81.69%)</p>
+                        <ul>
+                            <li>Develop PLC programs using related software</li>
+                            <li>Test programs with simulators</li>
+                            <li>Commission and trial-run on site</li>
+                            <li>Troubleshoot faults in machines / process plants</li>
+                            <li>Employability, teamwork, and workplace safety modules</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="content-section">
-                <div>
-                    <h4>Clubs</h4>
-                    <ul class="two-col-grid-list styled-list">
-                        <li>President in Video and Photography club</li>
-                        <li>Admin in Advertisement Club</li>
-                        <li>Admin in Book Reading club</li>
-                        <li>Disc jockey in Karaoke Club</li>
-                        <li>Disc jockey in Cultural Club</li>
-                        <li>Admin in Movie Club</li>
-                        <li>Admin in BIS Club</li>
-                        <li>Member anti drug committee</li>
-                    </ul>
+            <div class="content-section" data-stage="diploma" data-chapter="Diploma">
+                <div class="year-panel">
+                    <h2>Diploma + college days</h2>
+                    <p class="year-kicker">GPTC Coimbatore — study, internship, campus life</p>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">College</span>
+                        <h3>Diploma — Computer Engineering · GPTC Coimbatore</h3>
+                        <p>2021–2023 · Overall 81.44%. Computing fundamentals, systems, and practical builds.</p>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Internship</span>
+                        <h3>Intern — Taramsys</h3>
+                        <p>1–28 Jul 2022 · Web design — day-to-day UI and layout under guidance. <a href="../pages/highlights.html">Certificate on Highlights</a>.</p>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Achievements</span>
+                        <h3>College awards &amp; contests</h3>
+                        <ul>
+                            <li>Best outgoing student — DOTE &amp; GPTC Coimbatore</li>
+                            <li>1st — AR/VR paper, Sri Ranganathar · 2nd — Web Design, Sri Ramakrishna Polytechnic</li>
+                            <li>2nd — Waste to Art 2022 · 3rd — 5G paper, RVS Institute</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Campus life</span>
+                        <h3>Leadership, clubs &amp; events</h3>
+                        <ul>
+                            <li>Placement coordinator · Secretary — GPL 2023 &amp; Sports Day 2023</li>
+                            <li>President — Video &amp; Photography Club · DJ — Karaoke &amp; Cultural clubs</li>
+                            <li>Admin — Advertisement, Book Reading, Movie, BIS · Anti-drug committee</li>
+                            <li>Coordinator / DJ — Waste to Art, Hostel Day, Pongal, Annual Day, Soul to Scrap, club events</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">College workshops</span>
+                        <h3>Campus-linked training</h3>
+                        <ul>
+                            <li>Embedded Systems (IIES) · ESD &amp; IoT (Pantech) · AR/VR FDP (Naan Mudhalvan / Inga Metaverse)</li>
+                            <li>C training — IIT Bombay Spoken Tutorial · Entrepreneurship — TN EDII</li>
+                        </ul>
+                        <p>Full certificate set is on <a href="../pages/highlights.html">Highlights</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" data-stage="hss" data-chapter="HSS">
+                <div class="year-panel">
+                    <h2>HSS</h2>
+                    <p class="year-kicker">Higher secondary · self-learning · early courses</p>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">School</span>
+                        <h3>Higher Secondary · Government Hr. Sec. School, Malliyagarai</h3>
+                        <p>2019–2021 · Basic Electrical Engineering · 84%</p>
+                        <p>Formal electrical foundation that opened the door to electronics and IoT experiments.</p>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Self-learning</span>
+                        <h3>Cybersecurity</h3>
+                        <ul>
+                            <li>Self-driven study across networks, ethical hacking basics, and web security</li>
+                            <li>Udemy — Cybersecurity · Shellcode · Linux OS</li>
+                            <li>Cybrary — Network Engineer career path</li>
+                            <li>Web pentesting workshop — Cyberkrypts</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Self-learning</span>
+                        <h3>Electronics &amp; systems curiosity</h3>
+                        <ul>
+                            <li>Hands-on interest in circuits and electronics alongside Basic Electrical Engineering</li>
+                            <li>Early tinkering that later connected to embedded / IoT paths</li>
+                            <li>Comfort with tools, OS (Linux), and building small technical experiments</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Courses</span>
+                        <h3>Online courses &amp; certificates</h3>
+                        <ul>
+                            <li>SoloLearn — JavaScript · Udemy — HTML, Python 3, SEO, Statistics for CS</li>
+                            <li>Devtown — HTML/CSS/JS · Tech for Good — Openweaver</li>
+                            <li>Continued learning on platforms like GUVI / Netcad alongside formal school</li>
+                        </ul>
+                        <p>Browse the certificate gallery on <a href="../pages/highlights.html">Highlights</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" data-stage="sslc" data-chapter="SSLC">
+                <div class="year-panel">
+                    <h2>SSLC + school days</h2>
+                    <p class="year-kicker">Where the walk begins</p>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">School</span>
+                        <h3>Senior Secondary · Saraswathi Matric School, Ulipuram</h3>
+                        <p>2019 · Tamil Nadu State Board · 72%</p>
+                    </div>
+                    <div class="timeline-block">
+                        <span class="timeline-tag">Achievements</span>
+                        <h3>School days</h3>
+                        <ul>
+                            <li>2nd — Interschool kabaddi</li>
+                            <li>Medal — Interschool chess</li>
+                        </ul>
+                        <p>The start of the path that leads to polytechnic, industry, and beyond.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <div class="journey-rail" aria-hidden="true">
+            <div class="journey-years">
+                <span data-stage="about">About</span>
+                <span data-stage="work-bba">Work+BBA</span>
+                <span data-stage="work-be">Work+BE</span>
+                <span data-stage="work">Work</span>
+                <span data-stage="plc">PLC</span>
+                <span data-stage="diploma">Diploma</span>
+                <span data-stage="hss">HSS</span>
+                <span data-stage="sslc">SSLC</span>
+            </div>
+            <div class="journey-chapter" id="journey-chapter">About</div>
+        </div>
+
         <div class="animation-container">
-            <svg viewBox="0 -10 315 350">
-                <g class="dude" stroke="black" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"
+            <svg viewBox="0 -10 315 350" aria-hidden="true">
+                <g class="dude" stroke-linecap="round" stroke-linejoin="round"
                     fill="none">
                     <g class="leg">
                         <path class="leg-bottom"
@@ -629,7 +1023,22 @@
             const armBottoms = Array.from(dude.querySelectorAll(".arm-bottom"));
 
             const content = document.querySelector(".content");
-            const arrowEl = document.querySelector(".arrow-animated");
+            const sections = Array.from(document.querySelectorAll(".content-section"));
+            const chapterEl = document.getElementById("journey-chapter");
+            const stageChips = Array.from(document.querySelectorAll(".journey-years span"));
+
+            function updateJourney(index) {
+                const section = sections[index] || sections[0];
+                if (!section) return;
+                const chapter = section.dataset.chapter || "About";
+                const stage = section.dataset.stage || "about";
+                if (chapterEl) chapterEl.textContent = chapter;
+                stageChips.forEach((chip) => {
+                    chip.classList.toggle("is-active", chip.dataset.stage === stage);
+                });
+            }
+
+            updateJourney(0);
 
             gsap.set(arms, {
                 svgOrigin: "180 58"
@@ -727,10 +1136,29 @@
 
             // Horizontal scroll + walker only on larger screens
             const desktopAbout = window.matchMedia("(min-width: 769px)");
+            let idleWalkInterval = null;
+
+            function stopIdleWalk() {
+                if (idleWalkInterval) {
+                    clearInterval(idleWalkInterval);
+                    idleWalkInterval = null;
+                }
+                bodyTimeline.pause();
+                backCycle.pause();
+                frontCycle.pause();
+            }
+
+            function startIdleWalk() {
+                stopIdleWalk();
+                bodyTimeline.play();
+                backCycle.play();
+                frontCycle.play();
+            }
 
             function setupDesktopScroll() {
+                stopIdleWalk();
                 const numberOfCycles = Math.ceil(3 * window.innerWidth / window.innerHeight);
-                const numSections = document.querySelectorAll(".content-section").length;
+                const numSections = sections.length;
                 const targetXPercent = - ((numSections - 1) / numSections) * 100;
 
                 return gsap.timeline({
@@ -738,7 +1166,14 @@
                         trigger: ".page",
                         scrub: true,
                         start: "0% 0%",
-                        end: "100% 100%"
+                        end: "100% 100%",
+                        onUpdate: (self) => {
+                            const index = Math.min(
+                                numSections - 1,
+                                Math.floor(self.progress * numSections + 0.001)
+                            );
+                            updateJourney(index);
+                        }
                     }
                 })
                     .fromTo(content, {
@@ -764,11 +1199,25 @@
                     }, 0);
             }
 
+            function setupMobileJourney() {
+                startIdleWalk();
+                sections.forEach((section, index) => {
+                    ScrollTrigger.create({
+                        trigger: section,
+                        start: "top center",
+                        end: "bottom center",
+                        onEnter: () => updateJourney(index),
+                        onEnterBack: () => updateJourney(index)
+                    });
+                });
+            }
+
             let aboutScrollTl = null;
             if (desktopAbout.matches) {
                 aboutScrollTl = setupDesktopScroll();
             } else {
                 gsap.set(content, { clearProps: "transform,xPercent" });
+                setupMobileJourney();
             }
 
             desktopAbout.addEventListener("change", (event) => {
@@ -778,10 +1227,12 @@
                     aboutScrollTl = null;
                 }
                 ScrollTrigger.getAll().forEach((t) => t.kill());
+                stopIdleWalk();
                 if (event.matches) {
                     aboutScrollTl = setupDesktopScroll();
                 } else {
                     gsap.set(content, { clearProps: "transform,xPercent" });
+                    setupMobileJourney();
                 }
                 ScrollTrigger.refresh();
             });
