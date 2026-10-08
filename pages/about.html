@@ -299,11 +299,13 @@
 
             .journey-rail {
                 position: fixed;
-                left: 1.25rem;
+                right: 1.25rem;
+                left: auto;
                 bottom: 0.85rem;
                 z-index: 6;
                 width: min(72vw, 520px);
                 pointer-events: none;
+                text-align: right;
             }
 
             .journey-years {
@@ -311,6 +313,7 @@
                 flex-wrap: wrap;
                 gap: 0.3rem;
                 margin-bottom: 0.5rem;
+                justify-content: flex-end;
             }
 
             .journey-years span {
@@ -342,21 +345,23 @@
             .animation-container {
                 position: fixed;
                 left: 0;
+                right: 0;
                 bottom: 3.25rem;
-                width: 30%;
+                width: 100%;
                 height: 36vh;
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-                flex-direction: column;
-                font-family: sans-serif;
-                font-size: 15px;
+                display: block;
                 z-index: 4;
                 pointer-events: none;
+                overflow: visible;
             }
 
             .animation-container svg {
-                height: 38vh;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: min(34vh, 280px);
+                width: auto;
+                will-change: transform;
                 filter: drop-shadow(0 0 8px rgba(0, 255, 204, 0.45));
             }
 
@@ -495,26 +500,28 @@
                 }
 
                 .animation-container {
-                    display: flex !important;
-                    left: auto;
-                    right: 0.5rem;
-                    bottom: 0.5rem;
-                    width: 28vw;
-                    max-width: 120px;
-                    height: 18vh;
-                    opacity: 0.85;
+                    display: block !important;
+                    left: 0;
+                    right: 0;
+                    bottom: 3.5rem;
+                    width: 100%;
+                    height: 16vh;
+                    max-width: none;
+                    opacity: 0.9;
                     z-index: 3;
                 }
 
                 .animation-container svg {
-                    height: 16vh;
+                    height: 14vh;
                 }
 
                 .journey-rail {
-                    left: 0.75rem;
+                    left: auto;
+                    right: 0.75rem;
                     bottom: 0.75rem;
                     width: auto;
                     max-width: 55vw;
+                    text-align: right;
                 }
 
                 .journey-years {
@@ -1016,6 +1023,8 @@
 
             //walking dude
             const dude = document.querySelector(".dude");
+            const walkerSvg = document.querySelector(".animation-container svg");
+            const journeyRail = document.querySelector(".journey-rail");
             const head = dude.querySelector(".head");
             const legs = Array.from(dude.querySelectorAll(".leg"));
             const arms = Array.from(dude.querySelectorAll(".arm"));
@@ -1036,6 +1045,22 @@
                 stageChips.forEach((chip) => {
                     chip.classList.toggle("is-active", chip.dataset.stage === stage);
                 });
+            }
+
+            function getWalkerTravel() {
+                if (!walkerSvg || !journeyRail) {
+                    return { startX: 8, endX: 120, distance: 112 };
+                }
+                const svgWidth = walkerSvg.getBoundingClientRect().width || 120;
+                const railLeft = journeyRail.getBoundingClientRect().left;
+                const startX = Math.max(8, window.innerWidth * 0.02);
+                // Arrive so the figure meets the left edge of the bottom tag container
+                const endX = Math.max(startX + 40, railLeft - svgWidth * 0.28);
+                return {
+                    startX,
+                    endX,
+                    distance: Math.max(40, endX - startX)
+                };
             }
 
             updateJourney(0);
@@ -1134,30 +1159,29 @@
                     ease: "sine.inOut"
                 }, 0)
 
-            // Horizontal scroll + walker only on larger screens
             const desktopAbout = window.matchMedia("(min-width: 769px)");
-            let idleWalkInterval = null;
 
             function stopIdleWalk() {
-                if (idleWalkInterval) {
-                    clearInterval(idleWalkInterval);
-                    idleWalkInterval = null;
-                }
                 bodyTimeline.pause();
                 backCycle.pause();
                 frontCycle.pause();
             }
 
-            function startIdleWalk() {
-                stopIdleWalk();
-                bodyTimeline.play();
-                backCycle.play();
-                frontCycle.play();
+            function syncWalkerToProgress(progress) {
+                const numSections = sections.length;
+                const index = Math.min(
+                    numSections - 1,
+                    Math.floor(progress * numSections + 0.001)
+                );
+                updateJourney(index);
             }
 
             function setupDesktopScroll() {
                 stopIdleWalk();
-                const numberOfCycles = Math.ceil(3 * window.innerWidth / window.innerHeight);
+                const travel = getWalkerTravel();
+                gsap.set(walkerSvg, { x: travel.startX, y: 0 });
+
+                const numberOfCycles = Math.max(4, Math.ceil(travel.distance / 70));
                 const numSections = sections.length;
                 const targetXPercent = - ((numSections - 1) / numSections) * 100;
 
@@ -1167,12 +1191,9 @@
                         scrub: true,
                         start: "0% 0%",
                         end: "100% 100%",
+                        invalidateOnRefresh: true,
                         onUpdate: (self) => {
-                            const index = Math.min(
-                                numSections - 1,
-                                Math.floor(self.progress * numSections + 0.001)
-                            );
-                            updateJourney(index);
+                            syncWalkerToProgress(self.progress);
                         }
                     }
                 })
@@ -1180,6 +1201,12 @@
                         xPercent: 0
                     }, {
                         xPercent: targetXPercent,
+                        ease: "none"
+                    }, 0)
+                    .fromTo(walkerSvg, {
+                        x: () => getWalkerTravel().startX
+                    }, {
+                        x: () => getWalkerTravel().endX,
                         ease: "none"
                     }, 0)
                     .fromTo(bodyTimeline, {
@@ -1200,16 +1227,45 @@
             }
 
             function setupMobileJourney() {
-                startIdleWalk();
-                sections.forEach((section, index) => {
-                    ScrollTrigger.create({
-                        trigger: section,
-                        start: "top center",
-                        end: "bottom center",
-                        onEnter: () => updateJourney(index),
-                        onEnterBack: () => updateJourney(index)
-                    });
-                });
+                stopIdleWalk();
+                const travel = getWalkerTravel();
+                gsap.set(walkerSvg, { x: travel.startX, y: 0 });
+
+                const numberOfCycles = Math.max(3, Math.ceil(travel.distance / 80));
+
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".content",
+                        scrub: true,
+                        start: "top top",
+                        end: "bottom bottom",
+                        invalidateOnRefresh: true,
+                        onUpdate: (self) => {
+                            syncWalkerToProgress(self.progress);
+                        }
+                    }
+                })
+                    .fromTo(walkerSvg, {
+                        x: () => getWalkerTravel().startX
+                    }, {
+                        x: () => getWalkerTravel().endX,
+                        ease: "none"
+                    }, 0)
+                    .fromTo(bodyTimeline, {
+                        time: .7
+                    }, {
+                        time: .75 + numberOfCycles
+                    }, 0)
+                    .fromTo(backCycle, {
+                        time: .7
+                    }, {
+                        time: .75 + numberOfCycles
+                    }, 0)
+                    .fromTo(frontCycle, {
+                        time: .2
+                    }, {
+                        time: .25 + numberOfCycles
+                    }, 0);
             }
 
             let aboutScrollTl = null;
@@ -1228,6 +1284,7 @@
                 }
                 ScrollTrigger.getAll().forEach((t) => t.kill());
                 stopIdleWalk();
+                gsap.set(walkerSvg, { clearProps: "x" });
                 if (event.matches) {
                     aboutScrollTl = setupDesktopScroll();
                 } else {
