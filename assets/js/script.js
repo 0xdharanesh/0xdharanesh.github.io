@@ -40,8 +40,23 @@
 	var menu = document.querySelector(".menu-icon");
 
 	if (body && menu) {
-		menu.addEventListener("click", function () {
+		function toggleNav() {
 			body.classList.toggle("nav-active");
+			var open = body.classList.contains("nav-active");
+			menu.setAttribute("aria-expanded", open ? "true" : "false");
+		}
+
+		menu.setAttribute("aria-expanded", "false");
+		menu.addEventListener("click", toggleNav);
+		menu.addEventListener("keydown", function (ev) {
+			if (ev.key === "Enter" || ev.key === " ") {
+				ev.preventDefault();
+				toggleNav();
+			}
+			if (ev.key === "Escape" && body.classList.contains("nav-active")) {
+				body.classList.remove("nav-active");
+				menu.setAttribute("aria-expanded", "false");
+			}
 		});
 	}
 })();

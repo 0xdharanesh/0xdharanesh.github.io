@@ -11,8 +11,11 @@
 		<meta property="og:description" content="Notes and writing from Dharanesh — life, mindset, and technology.">
 		<meta property="og:url" content="https://0xdharanesh.github.io/blog/">
 		<meta property="og:type" content="website">
+		<meta name="referrer" content="strict-origin-when-cross-origin">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self'; connect-src 'self'; upgrade-insecure-requests">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 		<link rel="icon"
 			href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
 		<style>
@@ -25,11 +28,16 @@
 				color: #c4c3ca;
 				min-height: 100vh;
 				width: 100%;
-				background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(../assets/images/batman.jpeg);
+				background-color: #05070c;
+				background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.62)), url(../assets/images/batman.jpeg);
 				background-position: center;
 				background-size: cover;
 				background-attachment: fixed;
 				overflow-x: hidden;
+			}
+
+			@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+				html, body { background-attachment: scroll; }
 			}
 
 			main {
@@ -42,7 +50,13 @@
 
 			.page-intro {
 				text-align: center;
-				margin-bottom: 2.5rem;
+				margin-bottom: 2rem;
+				padding: 1.5rem 1.25rem;
+				background: rgba(8, 10, 16, 0.72);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				border-radius: 16px;
+				backdrop-filter: blur(8px);
+				-webkit-backdrop-filter: blur(8px);
 			}
 
 			.page-intro h1 {
@@ -61,82 +75,104 @@
 				margin: 0 auto;
 			}
 
+			.post-count {
+				display: inline-block;
+				margin-top: 0.85rem;
+				font-size: 0.78rem;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				color: #b39ddb;
+			}
+
 			.posts {
 				display: flex;
 				flex-direction: column;
-				gap: 1rem;
+				gap: 0.85rem;
 			}
 
 			.post {
 				display: block;
 				padding: 1.25rem 1.4rem;
-				background: rgba(0, 0, 0, 0.55);
+				background: rgba(8, 10, 16, 0.78);
 				border: 1px solid rgba(255, 255, 255, 0.12);
-				border-radius: 12px;
+				border-radius: 14px;
 				color: inherit;
-				transition: border-color 0.25s ease, transform 0.25s ease;
+				transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+				backdrop-filter: blur(6px);
+				-webkit-backdrop-filter: blur(6px);
 			}
 
 			a.post:hover {
 				border-color: rgba(0, 255, 204, 0.55);
+				background: rgba(8, 14, 18, 0.88);
 				transform: translateY(-2px);
 			}
 
+			a.post:focus-visible {
+				outline: 2px solid rgba(0, 255, 204, 0.55);
+				outline-offset: 3px;
+			}
+
 			.post-meta {
-				font-size: 0.8rem;
-				letter-spacing: 1px;
+				font-size: 0.78rem;
+				letter-spacing: 1.2px;
 				text-transform: uppercase;
-				color: #8167a9;
-				margin-bottom: 0.4rem;
+				color: #b39ddb;
+				margin-bottom: 0.45rem;
 			}
 
 			.post h2 {
-				font-size: 1.35rem;
+				font-size: 1.3rem;
 				font-weight: 600;
 				color: #fff;
 				margin-bottom: 0.4rem;
+				line-height: 1.35;
 			}
 
 			.post p {
 				font-size: 0.98rem;
 				color: #c4c3ca;
+				margin: 0;
 			}
 
-			.post.soon {
-				opacity: 0.72;
-				cursor: default;
-			}
-
-			.post.soon h2::after {
-				content: " · Coming soon";
-				font-size: 0.75rem;
-				font-weight: 500;
-				letter-spacing: 0.5px;
+			.post-cta {
+				display: inline-block;
+				margin-top: 0.7rem;
+				font-size: 0.82rem;
+				font-weight: 600;
+				letter-spacing: 0.04em;
 				color: #00ffcc;
-				text-transform: uppercase;
 			}
 
-		@media (max-width: 576px) {
-			main {
-				padding: 5.5rem 1rem 3rem;
+			a.post:hover .post-cta {
+				text-decoration: underline;
 			}
 
-			.page-intro h1 {
-				font-size: 1.75rem;
-			}
+			@media (max-width: 576px) {
+				main {
+					padding: 5.5rem 1rem 3rem;
+				}
 
-			.page-intro p {
-				font-size: 0.98rem;
-			}
+				.page-intro {
+					padding: 1.2rem 1rem;
+				}
 
-			.post {
-				padding: 1.1rem 1rem;
-			}
+				.page-intro h1 {
+					font-size: 1.75rem;
+				}
 
-			.post h2 {
-				font-size: 1.15rem;
+				.page-intro p {
+					font-size: 0.98rem;
+				}
+
+				.post {
+					padding: 1.1rem 1rem;
+				}
+
+				.post h2 {
+					font-size: 1.15rem;
+				}
 			}
-		}
 		</style>
 	</head>
 
@@ -147,7 +183,7 @@
 					<a href="../" class="hover-target"><span>{தாரனேஷ்}!</span></a>
 				</div>
 				<div class="nav-but-wrap">
-					<div class="menu-icon hover-target">
+					<div class="menu-icon hover-target" role="button" tabindex="0" aria-label="Open menu">
 						<span class="menu-icon__line menu-icon__line-left"></span>
 						<span class="menu-icon__line"></span>
 						<span class="menu-icon__line menu-icon__line-right"></span>
@@ -184,7 +220,8 @@
 		<main>
 			<div class="page-intro">
 				<h1>Blog</h1>
-				<p>Notes on life, body, mind, and the systems that shape us.</p>
+				<p>Notes on life, body, mind, and the systems that shape us — research-backed, written carefully.</p>
+				<span class="post-count">7 essays</span>
 			</div>
 
 		<section class="posts" aria-label="Blog posts">
@@ -192,30 +229,49 @@
 				<div class="post-meta">Life · Published</div>
 				<h2>What Is the Core of Life</h2>
 				<p>Health, wealth, and relationships — the three pillars everything else is built on.</p>
+				<span class="post-cta">Read essay →</span>
 			</a>
 
 			<a class="post" href="potential-of-nap.html">
 				<div class="post-meta">Body · Published</div>
 				<h2>The Potential of Nap</h2>
 				<p>NASA-style short rest, sleep inertia, and how a timed nap can buy back alertness.</p>
+				<span class="post-cta">Read essay →</span>
 			</a>
 
 			<a class="post" href="potential-of-water.html">
 				<div class="post-meta">Body · Published</div>
 				<h2>The Potential of Water</h2>
 				<p>What dehydration does to attention and mood — and how to hydrate without obsession.</p>
+				<span class="post-cta">Read essay →</span>
 			</a>
 
 			<a class="post" href="illness-of-social-media.html">
 				<div class="post-meta">Mind · Published</div>
 				<h2>Illness of Social Media</h2>
 				<p>What meta-analyses link to compulsive use: anxiety, FoMO, loneliness, and fractured attention.</p>
+				<span class="post-cta">Read essay →</span>
 			</a>
 
 			<a class="post" href="beauty-of-mental-support.html">
 				<div class="post-meta">Mind · Published</div>
 				<h2>The Beauty of Mental Support</h2>
 				<p>Why connection protects mental health — and how to give and receive support well.</p>
+				<span class="post-cta">Read essay →</span>
+			</a>
+
+			<a class="post" href="why-communism-and-dravidam.html">
+				<div class="post-meta">Society · Published</div>
+				<h2>Why Communism and Dravidam</h2>
+				<p>Egalitarian ideals, Self-Respect politics, and why dignity and material fairness still need defending.</p>
+				<span class="post-cta">Read essay →</span>
+			</a>
+
+			<a class="post" href="hair-that-reflects-health.html">
+				<div class="post-meta">Body · Mind · Published</div>
+				<h2>Hair That Reflects Health</h2>
+				<p>Sleep, stress, hydration, and scalp care — why hair is a readout of recovery, not only a product shelf.</p>
+				<span class="post-cta">Read essay →</span>
 			</a>
 		</section>
 		</main>

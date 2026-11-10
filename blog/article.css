@@ -1,29 +1,69 @@
-/* Shared blog article styles */
-html, body {
+/* Shared blog article styles — keep site brand (Batman BG, cyan/purple), improve read UX */
+:root {
+    --blog-ink: #d4d3d9;
+    --blog-ink-strong: #f2f2f4;
+    --blog-muted: #a9a8b0;
+    --blog-cyan: #00ffcc;
+    --blog-purple: #b39ddb;
+    --blog-panel: rgba(8, 10, 16, 0.78);
+    --blog-panel-border: rgba(255, 255, 255, 0.12);
+    --blog-focus: rgba(0, 255, 204, 0.55);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     font-size: 15px;
     line-height: 1.7;
-    color: #c4c3ca;
+    color: var(--blog-ink);
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url(../assets/images/batman.jpeg);
+    background-color: #05070c;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.68)), url(../assets/images/batman.jpeg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     overflow-x: hidden;
 }
 
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+    html,
+    body {
+        background-attachment: scroll;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Reading panel so long essays stay legible on the photo background */
 main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 7rem 1.25rem 4rem;
+    max-width: 760px;
+    margin: 5.5rem auto 3rem;
+    padding: 1.85rem 1.65rem 2.25rem;
+    background: var(--blog-panel);
+    border: 1px solid var(--blog-panel-border);
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .back {
-    display: inline-block;
-    margin-bottom: 1.5rem;
-    color: #00ffcc;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 1.35rem;
+    color: var(--blog-cyan);
     font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
 .back:hover {
@@ -31,16 +71,16 @@ main {
 }
 
 .article-meta {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    font-size: 0.78rem;
+    letter-spacing: 1.4px;
     text-transform: uppercase;
-    color: #8167a9;
+    color: var(--blog-purple);
     margin-bottom: 0.75rem;
 }
 
 h1 {
-    color: #00ffcc;
-    font-size: 2rem;
+    color: var(--blog-cyan);
+    font-size: clamp(1.7rem, 3.4vw, 2.15rem);
     font-weight: 700;
     line-height: 1.25;
     margin-bottom: 1rem;
@@ -48,42 +88,50 @@ h1 {
 }
 
 .lede {
-    font-size: 1.1rem;
-    color: #e8e8e8;
-    margin-bottom: 2rem;
+    font-size: 1.12rem;
+    color: var(--blog-ink-strong);
+    margin-bottom: 1.75rem;
+    line-height: 1.75;
 }
 
 h2 {
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.28rem;
     font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 0.65rem;
+    margin-top: 2.1rem;
+    margin-bottom: 0.7rem;
+    scroll-margin-top: 5.5rem;
 }
 
 h3 {
-    color: #e8e8e8;
+    color: var(--blog-ink-strong);
     font-size: 1.08rem;
     font-weight: 600;
-    margin-top: 1.25rem;
+    margin-top: 1.3rem;
     margin-bottom: 0.45rem;
+    scroll-margin-top: 5.5rem;
 }
 
 p {
-    color: #c4c3ca;
+    color: var(--blog-ink);
     font-size: 1.05rem;
     margin-bottom: 1rem;
 }
 
-ul {
+ul,
+ol {
     padding-left: 1.25rem;
     margin: 0.5rem 0 1.25rem;
 }
 
 li {
-    color: #c4c3ca;
+    color: var(--blog-ink);
     font-size: 1.05rem;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.5rem;
+}
+
+li::marker {
+    color: rgba(0, 255, 204, 0.65);
 }
 
 strong {
@@ -91,10 +139,39 @@ strong {
     font-weight: 600;
 }
 
+em {
+    color: #e4e3e8;
+}
+
+/* Restore readable in-article links (global * kills underline) */
+main a:not(.back):not(.hover-target) {
+    color: var(--blog-cyan);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: rgba(0, 255, 204, 0.45);
+}
+
+main a:not(.back):not(.hover-target):hover {
+    text-decoration-color: var(--blog-cyan);
+}
+
+.back:focus-visible,
+main a:focus-visible,
+.sources a:focus-visible {
+    outline: 2px solid var(--blog-focus);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
 .note {
-    font-size: 0.92rem;
-    color: #a8a8b0;
-    margin-top: 0.5rem;
+    font-size: 0.94rem;
+    color: var(--blog-muted);
+    margin: 0.85rem 0 1.15rem;
+    padding: 0.85rem 1rem;
+    border-left: 3px solid rgba(0, 255, 204, 0.55);
+    background: rgba(0, 255, 204, 0.06);
+    border-radius: 0 10px 10px 0;
 }
 
 .sources {
@@ -115,12 +192,12 @@ strong {
 
 .sources li {
     font-size: 0.9rem;
-    margin-bottom: 0.55rem;
-    color: #a8a8b0;
+    margin-bottom: 0.6rem;
+    color: var(--blog-muted);
 }
 
 .sources a {
-    color: #00ffcc;
+    color: var(--blog-cyan);
     word-break: break-word;
 }
 
@@ -130,9 +207,22 @@ strong {
     border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.closing p:last-child {
+    margin-bottom: 0;
+}
+
+::selection {
+    background: rgba(0, 255, 204, 0.28);
+    color: #fff;
+}
+
 @media (max-width: 576px) {
     main {
-        padding: 5.5rem 1rem 3rem;
+        margin-top: 4.5rem;
+        margin-left: 0.85rem;
+        margin-right: 0.85rem;
+        padding: 1.3rem 1.05rem 1.6rem;
+        border-radius: 14px;
     }
 
     h1 {
@@ -140,10 +230,11 @@ strong {
     }
 
     .lede {
-        font-size: 1rem;
+        font-size: 1.02rem;
     }
 
-    p, li {
+    p,
+    li {
         font-size: 1rem;
     }
 }
