@@ -99,6 +99,23 @@
             -webkit-backdrop-filter: blur(16px);
             overflow: hidden;
             box-sizing: border-box;
+            opacity: 0.42;
+            transform: scale(0.94) translateY(18px);
+            filter: blur(1.5px);
+            transition:
+                opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.55s ease,
+                border-color 0.45s ease;
+        }
+
+        .content-section.is-active .stage-frame {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: none;
+            border-color: rgba(0, 255, 204, 0.32);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 255, 204, 0.08);
         }
 
         .stage-id {
@@ -138,11 +155,19 @@
             text-align: left;
             max-height: calc(100vh - 16rem);
             overflow-y: auto;
-            overscroll-behavior: contain;
+            overflow-x: hidden;
+            overscroll-behavior-y: auto;
             padding-right: 0.35rem;
             scrollbar-width: thin;
             scrollbar-color: rgba(0, 255, 204, 0.4) transparent;
         }
+
+        .stage-body.is-focused {
+            /* expanded topic owns the panel — avoid nested scroll chrome when possible */
+            scrollbar-width: none;
+        }
+
+        .stage-body.is-focused::-webkit-scrollbar { width: 0; height: 0; }
 
         .stage-body::-webkit-scrollbar { width: 6px; }
         .stage-body::-webkit-scrollbar-thumb {
@@ -207,9 +232,72 @@
             border-radius: 12px;
             background: rgba(0, 255, 204, 0.04);
             overflow: hidden;
+            transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
         }
 
         .stage-more + .stage-more { margin-top: 0.55rem; }
+
+        .stage-more[open],
+        .stage-more.is-opening {
+            border-color: rgba(0, 255, 204, 0.45);
+            background: rgba(0, 255, 204, 0.07);
+            box-shadow: 0 0 24px rgba(0, 255, 204, 0.08);
+        }
+
+        /* While one topic is open: tuck intro blocks + sibling headers away */
+        .stage-body.is-focused > .story-block {
+            max-height: 0;
+            margin: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+            border-width: 0;
+            overflow: hidden;
+            pointer-events: none;
+            transform: translateY(-6px);
+            transition:
+                max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.3s ease,
+                margin 0.35s ease,
+                padding 0.35s ease,
+                transform 0.35s ease,
+                border-width 0.35s ease;
+        }
+
+        .stage-body:not(.is-focused) > .story-block {
+            max-height: 24rem;
+            transition:
+                max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.35s ease,
+                margin 0.35s ease,
+                padding 0.35s ease,
+                transform 0.35s ease;
+        }
+
+        .stage-more.is-tucked {
+            max-height: 0;
+            margin: 0;
+            opacity: 0;
+            border-width: 0;
+            pointer-events: none;
+            overflow: hidden;
+            transform: translateY(-4px);
+            transition:
+                max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.25s ease,
+                margin 0.3s ease,
+                border-width 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .stage-more:not(.is-tucked) {
+            max-height: 40rem;
+            transition:
+                max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.3s ease,
+                margin 0.3s ease,
+                transform 0.3s ease;
+        }
 
         .stage-more > summary {
             list-style: none;
@@ -224,6 +312,8 @@
             align-items: center;
             justify-content: space-between;
             gap: 0.75rem;
+            user-select: none;
+            transition: background 0.25s ease;
         }
 
         .stage-more > summary::-webkit-details-marker { display: none; }
@@ -233,11 +323,43 @@
             font-size: 1.1rem;
             line-height: 1;
             opacity: 0.85;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
         }
 
-        .stage-more[open] > summary::after { content: "–"; }
+        .stage-more[open] > summary::after,
+        .stage-more.is-opening > summary::after {
+            content: "–";
+            transform: rotate(180deg);
+        }
 
         .stage-more > summary:hover { background: rgba(0, 255, 204, 0.06); }
+
+        .stage-more-panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .stage-more[open] .stage-more-panel,
+        .stage-more.is-opening .stage-more-panel {
+            grid-template-rows: 1fr;
+        }
+
+        .stage-more-inner {
+            overflow: hidden;
+            min-height: 0;
+            opacity: 0;
+            transform: translateY(-6px);
+            transition:
+                opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.05s,
+                transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .stage-more[open] .stage-more-inner,
+        .stage-more.is-opening .stage-more-inner {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .stage-more .story-block {
             margin: 0 0.75rem 0.75rem;
@@ -341,7 +463,7 @@
             border-radius: inherit;
             background: linear-gradient(90deg, rgba(0, 255, 204, 0.35), var(--accent));
             box-shadow: 0 0 12px var(--accent-glow);
-            transition: width 0.15s linear;
+            transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .journey-years {
@@ -514,6 +636,19 @@
         @media (prefers-reduced-motion: reduce) {
             .arrow-animated { animation: none; }
             .path-fill { transition: none; }
+            .stage-frame,
+            .stage-more,
+            .stage-more-panel,
+            .stage-more-inner,
+            .stage-more > summary::after,
+            .stage-body > .story-block {
+                transition: none !important;
+            }
+            .stage-frame {
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
         }
     </style>
 </head>
@@ -687,33 +822,45 @@
                     </div>
                     <details class="stage-more">
                         <summary>Awards &amp; contests</summary>
-                        <div class="story-block">
-                            <ul>
-                                <li>Best outgoing student — DOTE &amp; GPTC Coimbatore</li>
-                                <li>1st — AR/VR paper, Sri Ranganathar · 2nd — Web Design, Sri Ramakrishna Polytechnic</li>
-                                <li>2nd — Waste to Art 2022 · 3rd — 5G paper, RVS Institute</li>
-                            </ul>
+                        <div class="stage-more-panel">
+                            <div class="stage-more-inner">
+                                <div class="story-block">
+                                    <ul>
+                                        <li>Best outgoing student — DOTE &amp; GPTC Coimbatore</li>
+                                        <li>1st — AR/VR paper, Sri Ranganathar · 2nd — Web Design, Sri Ramakrishna Polytechnic</li>
+                                        <li>2nd — Waste to Art 2022 · 3rd — 5G paper, RVS Institute</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </details>
                     <details class="stage-more">
                         <summary>Campus life &amp; leadership</summary>
-                        <div class="story-block">
-                            <ul>
-                                <li>Placement coordinator · Secretary — GPL 2023 &amp; Sports Day 2023</li>
-                                <li>President — Video &amp; Photography Club · DJ — Karaoke &amp; Cultural clubs</li>
-                                <li>Admin — Advertisement, Book Reading, Movie, BIS · Anti-drug committee</li>
-                                <li>Coordinator / DJ — Waste to Art, Hostel Day, Pongal, Annual Day, Soul to Scrap</li>
-                            </ul>
+                        <div class="stage-more-panel">
+                            <div class="stage-more-inner">
+                                <div class="story-block">
+                                    <ul>
+                                        <li>Placement coordinator · Secretary — GPL 2023 &amp; Sports Day 2023</li>
+                                        <li>President — Video &amp; Photography Club · DJ — Karaoke &amp; Cultural clubs</li>
+                                        <li>Admin — Advertisement, Book Reading, Movie, BIS · Anti-drug committee</li>
+                                        <li>Coordinator / DJ — Waste to Art, Hostel Day, Pongal, Annual Day, Soul to Scrap</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </details>
                     <details class="stage-more">
                         <summary>College workshops</summary>
-                        <div class="story-block">
-                            <ul>
-                                <li>Embedded Systems (IIES) · ESD &amp; IoT (Pantech) · AR/VR FDP (Naan Mudhalvan / Inga Metaverse)</li>
-                                <li>C training — IIT Bombay Spoken Tutorial · Entrepreneurship — TN EDII</li>
-                            </ul>
-                            <p>Full certificate set is on <a href="../pages/highlights.html">Highlights</a>.</p>
+                        <div class="stage-more-panel">
+                            <div class="stage-more-inner">
+                                <div class="story-block">
+                                    <ul>
+                                        <li>Embedded Systems (IIES) · ESD &amp; IoT (Pantech) · AR/VR FDP (Naan Mudhalvan / Inga Metaverse)</li>
+                                        <li>C training — IIT Bombay Spoken Tutorial · Entrepreneurship — TN EDII</li>
+                                    </ul>
+                                    <p>Full certificate set is on <a href="../pages/highlights.html">Highlights</a>.</p>
+                                </div>
+                            </div>
                         </div>
                     </details>
                 </div>
@@ -737,34 +884,46 @@
                     </div>
                     <details class="stage-more">
                         <summary>Cybersecurity self-learning</summary>
-                        <div class="story-block">
-                            <ul>
-                                <li>Networks, ethical hacking basics, and web security</li>
-                                <li>Udemy — Cybersecurity · Shellcode · Linux OS</li>
-                                <li>Cybrary — Network Engineer career path</li>
-                                <li>Web pentesting workshop — Cyberkrypts</li>
-                            </ul>
+                        <div class="stage-more-panel">
+                            <div class="stage-more-inner">
+                                <div class="story-block">
+                                    <ul>
+                                        <li>Networks, ethical hacking basics, and web security</li>
+                                        <li>Udemy — Cybersecurity · Shellcode · Linux OS</li>
+                                        <li>Cybrary — Network Engineer career path</li>
+                                        <li>Web pentesting workshop — Cyberkrypts</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </details>
                     <details class="stage-more">
                         <summary>Electronics &amp; systems</summary>
-                        <div class="story-block">
-                            <ul>
-                                <li>Hands-on circuits alongside Basic Electrical Engineering</li>
-                                <li>Early tinkering that later connected to embedded / IoT</li>
-                                <li>Comfort with tools, Linux, and small technical experiments</li>
-                            </ul>
+                        <div class="stage-more-panel">
+                            <div class="stage-more-inner">
+                                <div class="story-block">
+                                    <ul>
+                                        <li>Hands-on circuits alongside Basic Electrical Engineering</li>
+                                        <li>Early tinkering that later connected to embedded / IoT</li>
+                                        <li>Comfort with tools, Linux, and small technical experiments</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </details>
                     <details class="stage-more">
                         <summary>Online courses</summary>
-                        <div class="story-block">
-                            <ul>
-                                <li>SoloLearn — JavaScript · Udemy — HTML, Python 3, SEO, Statistics for CS</li>
-                                <li>Devtown — HTML/CSS/JS · Tech for Good — Openweaver</li>
-                                <li>Continued learning on GUVI / Netcad alongside school</li>
-                            </ul>
-                            <p>Browse the certificate gallery on <a href="../pages/highlights.html">Highlights</a>.</p>
+                        <div class="stage-more-panel">
+                            <div class="stage-more-inner">
+                                <div class="story-block">
+                                    <ul>
+                                        <li>SoloLearn — JavaScript · Udemy — HTML, Python 3, SEO, Statistics for CS</li>
+                                        <li>Devtown — HTML/CSS/JS · Tech for Good — Openweaver</li>
+                                        <li>Continued learning on GUVI / Netcad alongside school</li>
+                                    </ul>
+                                    <p>Browse the certificate gallery on <a href="../pages/highlights.html">Highlights</a>.</p>
+                                </div>
+                            </div>
                         </div>
                     </details>
                 </div>
@@ -898,12 +1057,142 @@
         const sections = Array.from(document.querySelectorAll(".content-section"));
         const chapterEl = document.getElementById("journey-chapter");
         const stageChips = Array.from(document.querySelectorAll(".journey-years span"));
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let activeStageIndex = 0;
+
+        function stageProgress(index) {
+            const n = sections.length;
+            if (n <= 1) return 0;
+            return Math.max(0, Math.min(1, index / (n - 1)));
+        }
+
+        function progressToIndex(progress) {
+            const n = sections.length;
+            if (n <= 1) return 0;
+            return Math.max(0, Math.min(n - 1, Math.round(progress * (n - 1))));
+        }
+
+        function syncAccordionFocus(body, openItem) {
+            if (!body) return;
+            const items = Array.from(body.querySelectorAll(".stage-more"));
+            const focused = Boolean(openItem);
+            body.classList.toggle("is-focused", focused);
+            items.forEach((el) => {
+                const tuck = focused && el !== openItem;
+                el.classList.toggle("is-tucked", tuck);
+                el.setAttribute("aria-hidden", tuck ? "true" : "false");
+                if (tuck) {
+                    el.open = false;
+                    el.classList.remove("is-opening");
+                    const panel = el.querySelector(".stage-more-panel");
+                    if (panel) panel.style.gridTemplateRows = "";
+                }
+            });
+            if (focused) body.scrollTop = 0;
+        }
+
+        function collapseStageAccordions(section) {
+            if (!section) return;
+            const body = section.querySelector(".stage-body");
+            section.querySelectorAll(".stage-more[open], .stage-more.is-opening").forEach((el) => {
+                closeAccordion(el, true);
+            });
+            if (body) syncAccordionFocus(body, null);
+        }
+
+        function closeAccordion(details, instant) {
+            if (!details) return;
+            const body = details.closest(".stage-body");
+            const panel = details.querySelector(".stage-more-panel");
+            details.classList.remove("is-opening");
+            const afterClose = () => {
+                details.open = false;
+                if (panel) panel.style.gridTemplateRows = "";
+                if (body && !body.querySelector(".stage-more[open], .stage-more.is-opening")) {
+                    syncAccordionFocus(body, null);
+                }
+            };
+            if (instant || reduceMotion || !panel) {
+                afterClose();
+                return;
+            }
+            if (!details.open && !details.classList.contains("is-opening")) {
+                afterClose();
+                return;
+            }
+            panel.style.gridTemplateRows = "1fr";
+            panel.getBoundingClientRect();
+            panel.style.gridTemplateRows = "0fr";
+            const finish = () => {
+                afterClose();
+                panel.removeEventListener("transitionend", onEnd);
+            };
+            const onEnd = (ev) => {
+                if (ev.propertyName !== "grid-template-rows") return;
+                finish();
+            };
+            panel.addEventListener("transitionend", onEnd);
+            window.setTimeout(finish, 520);
+        }
+
+        function openAccordion(details) {
+            if (!details) return;
+            const body = details.closest(".stage-body");
+            const panel = details.querySelector(".stage-more-panel");
+            if (body) syncAccordionFocus(body, details);
+            details.open = true;
+            details.classList.add("is-opening");
+            if (reduceMotion || !panel) {
+                details.classList.remove("is-opening");
+                return;
+            }
+            panel.style.gridTemplateRows = "0fr";
+            panel.getBoundingClientRect();
+            panel.style.gridTemplateRows = "1fr";
+            const finish = () => {
+                details.classList.remove("is-opening");
+                panel.style.gridTemplateRows = "";
+                panel.removeEventListener("transitionend", onEnd);
+            };
+            const onEnd = (ev) => {
+                if (ev.propertyName !== "grid-template-rows") return;
+                finish();
+            };
+            panel.addEventListener("transitionend", onEnd);
+            window.setTimeout(finish, 520);
+        }
+
+        function setupExclusiveAccordions() {
+            document.querySelectorAll(".stage-body").forEach((body) => {
+                const items = Array.from(body.querySelectorAll(".stage-more"));
+                items.forEach((item) => {
+                    const summary = item.querySelector("summary");
+                    if (!summary) return;
+                    summary.addEventListener("click", (ev) => {
+                        ev.preventDefault();
+                        const willOpen = !item.open && !item.classList.contains("is-opening");
+                        items.forEach((other) => {
+                            if (other !== item && (other.open || other.classList.contains("is-opening"))) {
+                                closeAccordion(other, true);
+                            }
+                        });
+                        if (willOpen) openAccordion(item);
+                        else closeAccordion(item, false);
+                    });
+                });
+            });
+        }
 
         function updateJourney(index, progress) {
             const section = sections[index] || sections[0];
             if (!section) return;
             const chapter = section.dataset.chapter || "About";
             const stage = section.dataset.stage || "about";
+            if (index !== activeStageIndex) {
+                collapseStageAccordions(sections[activeStageIndex]);
+                activeStageIndex = index;
+            }
+            sections.forEach((s, i) => s.classList.toggle("is-active", i === index));
             if (chapterEl) chapterEl.textContent = chapter;
             stageChips.forEach((chip) => {
                 const active = chip.dataset.stage === stage;
@@ -914,11 +1203,9 @@
                 pathFill.style.width = Math.max(4, Math.min(100, progress * 100)) + "%";
             }
             const body = section.querySelector(".stage-body");
-            if (body && body.scrollHeight > body.clientHeight + 8) {
-                if (body.dataset.stageScroll !== stage) {
-                    body.scrollTop = 0;
-                    body.dataset.stageScroll = stage;
-                }
+            if (body && body.dataset.stageScroll !== stage) {
+                body.scrollTop = 0;
+                body.dataset.stageScroll = stage;
             }
         }
 
@@ -937,6 +1224,7 @@
             };
         }
 
+        setupExclusiveAccordions();
         updateJourney(0, 0);
 
         gsap.set(arms, { svgOrigin: "180 58" });
@@ -974,13 +1262,13 @@
                 body.scrollTop = 0;
                 delete body.dataset.stageScroll;
             }
-            const progress = (i + 0.5) / sections.length;
+            const progress = stageProgress(i);
             updateJourney(i, progress);
             if (desktopAbout.matches) {
                 const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-                window.scrollTo({ top: progress * maxScroll, behavior: "smooth" });
+                window.scrollTo({ top: progress * maxScroll, behavior: reduceMotion ? "auto" : "smooth" });
             } else if (sections[i]) {
-                sections[i].scrollIntoView({ behavior: "smooth", block: "start" });
+                sections[i].scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
             }
         }
 
@@ -1001,9 +1289,31 @@
         }
 
         function syncWalkerToProgress(progress) {
-            const numSections = sections.length;
-            const index = Math.min(numSections - 1, Math.floor(progress * numSections + 0.001));
-            updateJourney(index, progress);
+            updateJourney(progressToIndex(progress), progress);
+        }
+
+        function bindStageWheelNav() {
+            sections.forEach((section) => {
+                section.addEventListener("wheel", (ev) => {
+                    if (!desktopAbout.matches) return;
+                    if (Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
+
+                    const body = section.querySelector(".stage-body");
+                    if (body) {
+                        const overflows = body.scrollHeight > body.clientHeight + 2;
+                        if (overflows) {
+                            const atTop = body.scrollTop <= 1;
+                            const atBottom = body.scrollTop + body.clientHeight >= body.scrollHeight - 2;
+                            if ((ev.deltaY < 0 && !atTop) || (ev.deltaY > 0 && !atBottom)) {
+                                return;
+                            }
+                        }
+                    }
+
+                    ev.preventDefault();
+                    window.scrollBy(0, ev.deltaY);
+                }, { passive: false });
+            });
         }
 
         function setupDesktopScroll() {
@@ -1013,15 +1323,33 @@
             const numberOfCycles = Math.max(4, Math.ceil(travel.distance / 70));
             const numSections = sections.length;
             const targetXPercent = -((numSections - 1) / numSections) * 100;
+            const snapPoints = numSections <= 1 ? [0] : Array.from({ length: numSections }, (_, i) => i / (numSections - 1));
 
             return gsap.timeline({
                 scrollTrigger: {
                     trigger: ".page",
-                    scrub: true,
+                    scrub: reduceMotion ? true : 0.65,
                     start: "0% 0%",
                     end: "100% 100%",
                     invalidateOnRefresh: true,
-                    onUpdate: (self) => syncWalkerToProgress(self.progress)
+                    onUpdate: (self) => syncWalkerToProgress(self.progress),
+                    snap: reduceMotion ? false : {
+                        snapTo: (value) => {
+                            let closest = snapPoints[0];
+                            let best = Math.abs(value - closest);
+                            for (let i = 1; i < snapPoints.length; i++) {
+                                const d = Math.abs(value - snapPoints[i]);
+                                if (d < best) {
+                                    best = d;
+                                    closest = snapPoints[i];
+                                }
+                            }
+                            return closest;
+                        },
+                        duration: { min: 0.28, max: 0.6 },
+                        delay: 0.04,
+                        ease: "power3.inOut"
+                    }
                 }
             })
                 .fromTo(content, { xPercent: 0 }, { xPercent: targetXPercent, ease: "none" }, 0)
@@ -1040,7 +1368,7 @@
             gsap.timeline({
                 scrollTrigger: {
                     trigger: ".content",
-                    scrub: true,
+                    scrub: reduceMotion ? true : 0.45,
                     start: "top top",
                     end: "bottom bottom",
                     invalidateOnRefresh: true,
@@ -1052,6 +1380,8 @@
                 .fromTo(backCycle, { time: 0.7 }, { time: 0.75 + numberOfCycles }, 0)
                 .fromTo(frontCycle, { time: 0.2 }, { time: 0.25 + numberOfCycles }, 0);
         }
+
+        bindStageWheelNav();
 
         let aboutScrollTl = null;
         if (desktopAbout.matches) {
