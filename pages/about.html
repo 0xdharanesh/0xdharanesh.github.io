@@ -1,740 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>About | Dharanesh</title>
-        <meta name="description"
-            content="Software engineer at Iotics Technology — diploma in Computer Engineering (GPTC Coimbatore), coursework in B.E. ECE at GCT, currently pursuing BBA at Manipal University.">
-        <link rel="canonical" href="https://0xdharanesh.github.io/pages/about.html">
-        <meta property="og:title" content="About | Dharanesh">
-        <meta property="og:description"
-            content="Software engineer focused on IoT, embedded systems, and applied R&amp;D.">
-        <meta property="og:url" content="https://0xdharanesh.github.io/pages/about.html">
-        <meta property="og:type" content="website">
-        <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
-        <link rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" />
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-				<text y='.9em' font-size='90'>🤔</text></svg>">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Dharanesh</title>
+    <meta name="description"
+        content="Software engineer at Iotics Technology — diploma in Computer Engineering (GPTC Coimbatore), coursework in B.E. ECE at GCT, currently pursuing BBA at Manipal University.">
+    <link rel="canonical" href="https://0xdharanesh.github.io/pages/about.html">
+    <meta property="og:title" content="About | Dharanesh">
+    <meta property="og:description"
+        content="Software engineer focused on IoT, embedded systems, and applied R&amp;D.">
+    <meta property="og:url" content="https://0xdharanesh.github.io/pages/about.html">
+    <meta property="og:type" content="website">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤔</text></svg>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <style>
-            :root {
-                --accent-color: #00ffcc;
-                --accent-glow: rgba(0, 255, 204, 0.5);
-                --text-primary: #ffffff;
-                --text-secondary: #c4c3ca;
+    <style>
+        :root {
+            --accent: #00ffcc;
+            --accent-dim: rgba(0, 255, 204, 0.14);
+            --accent-glow: rgba(0, 255, 204, 0.45);
+            --ink: #e8e7ec;
+            --ink-soft: #b8b7bf;
+            --panel: rgba(6, 8, 14, 0.82);
+            --line: rgba(255, 255, 255, 0.12);
+            --stage-pad-top: 5.75rem;
+            --stage-pad-bottom: 7.75rem;
+        }
+
+        html,
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--ink-soft);
+            min-height: 100vh;
+            width: 100%;
+            background-color: #05070c;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.62)), url(../assets/images/batman.jpeg);
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 900px), (prefers-reduced-motion: reduce) {
+            html, body { background-attachment: scroll; }
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar { display: none; }
+
+        html, body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .page { height: 720vh; }
+
+        .content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+        }
+
+        .content-section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--stage-pad-top) 1.5rem var(--stage-pad-bottom);
+            box-sizing: border-box;
+        }
+
+        /* —— Stage frame —— */
+        .stage-frame {
+            width: min(94vw, 1080px);
+            max-height: calc(100vh - 13.5rem);
+            display: grid;
+            grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.25fr);
+            gap: 1.75rem 2.25rem;
+            align-items: start;
+            padding: 1.6rem 1.75rem;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .stage-id {
+            text-align: left;
+            padding-right: 0.5rem;
+            border-right: 1px solid rgba(0, 255, 204, 0.18);
+            min-height: 100%;
+        }
+
+        .stage-index {
+            margin: 0 0 0.85rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(0, 255, 204, 0.75);
+        }
+
+        .stage-id h2 {
+            margin: 0 0 0.65rem;
+            font-size: clamp(1.7rem, 3vw, 2.35rem);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            line-height: 1.15;
+            color: var(--accent);
+            text-shadow: 0 0 22px var(--accent-glow);
+        }
+
+        .stage-kicker {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--ink-soft);
+            max-width: 18rem;
+        }
+
+        .stage-body {
+            text-align: left;
+            max-height: calc(100vh - 16rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding-right: 0.35rem;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 255, 204, 0.4) transparent;
+        }
+
+        .stage-body::-webkit-scrollbar { width: 6px; }
+        .stage-body::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 204, 0.35);
+            border-radius: 999px;
+        }
+
+        .story-block {
+            margin-bottom: 0.85rem;
+            padding: 0.85rem 1rem;
+            border-left: 2px solid var(--accent);
+            background: linear-gradient(90deg, var(--accent-dim), transparent 70%);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .story-block:last-child { margin-bottom: 0; }
+
+        .story-tag {
+            display: inline-block;
+            margin-bottom: 0.35rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .story-block h3 {
+            margin: 0 0 0.3rem;
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.02em;
+        }
+
+        .story-block p,
+        .story-block li {
+            margin: 0;
+            font-size: 0.92rem;
+            line-height: 1.45;
+            color: var(--ink-soft);
+        }
+
+        .story-block p + p { margin-top: 0.35rem; }
+
+        .story-block ul {
+            margin: 0.4rem 0 0;
+            padding-left: 1.05rem;
+        }
+
+        .story-block li { margin-bottom: 0.25rem; }
+
+        .story-block a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+
+        /* Accordion for dense chapters */
+        .stage-more {
+            margin-top: 0.85rem;
+            border: 1px solid rgba(0, 255, 204, 0.22);
+            border-radius: 12px;
+            background: rgba(0, 255, 204, 0.04);
+            overflow: hidden;
+        }
+
+        .stage-more + .stage-more { margin-top: 0.55rem; }
+
+        .stage-more > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .stage-more > summary::-webkit-details-marker { display: none; }
+
+        .stage-more > summary::after {
+            content: "+";
+            font-size: 1.1rem;
+            line-height: 1;
+            opacity: 0.85;
+        }
+
+        .stage-more[open] > summary::after { content: "–"; }
+
+        .stage-more > summary:hover { background: rgba(0, 255, 204, 0.06); }
+
+        .stage-more .story-block {
+            margin: 0 0.75rem 0.75rem;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        /* Hero — only centered stage */
+        .stage-hero {
+            grid-template-columns: 1fr;
+            text-align: center;
+            justify-items: center;
+            padding: 2.25rem 2rem;
+            max-width: 720px;
+        }
+
+        .stage-hero .stage-id {
+            border-right: none;
+            text-align: center;
+            padding: 0;
+        }
+
+        .stage-hero .stage-kicker {
+            max-width: 34rem;
+            margin: 0 auto;
+        }
+
+        .stage-hero h1 {
+            margin: 0.35rem 0 0.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            text-shadow: 0 0 24px var(--accent-glow);
+        }
+
+        .name-subtitle {
+            margin: 0 0 1rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .manifesto {
+            margin: 0 auto 1.25rem;
+            max-width: 34rem;
+            font-size: 1.05rem;
+            line-height: 1.55;
+            color: var(--ink-soft);
+        }
+
+        .walk-text {
+            margin: 0;
+            font-size: 0.95rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .arrow-animated {
+            margin: 0.35rem 0 0;
+            font-size: 1.6rem;
+            color: var(--accent);
+            animation: arrow-move 1.1s ease-in-out infinite;
+        }
+
+        @keyframes arrow-move {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        .scroll-hint {
+            margin: 0.45rem 0 0;
+            font-size: 0.85rem;
+            color: rgba(196, 195, 202, 0.8);
+        }
+
+        .mobile-path-hint { display: none; }
+
+        /* Journey chrome */
+        .journey-rail {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 0.85rem;
+            z-index: 6;
+            width: min(70vw, 540px);
+            text-align: right;
+            pointer-events: none;
+        }
+
+        .path-track {
+            height: 3px;
+            margin: 0 0 0.65rem auto;
+            width: 100%;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+        }
+
+        .path-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, rgba(0, 255, 204, 0.35), var(--accent));
+            box-shadow: 0 0 12px var(--accent-glow);
+            transition: width 0.15s linear;
+        }
+
+        .journey-years {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            justify-content: flex-end;
+            margin-bottom: 0.45rem;
+            pointer-events: auto;
+        }
+
+        .journey-years span {
+            font-size: 0.62rem;
+            letter-spacing: 0.05em;
+            padding: 0.22rem 0.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            color: rgba(196, 195, 202, 0.75);
+            background: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .journey-years span:hover {
+            color: #fff;
+            border-color: rgba(0, 255, 204, 0.7);
+            transform: translateY(-1px);
+        }
+
+        .journey-years span.is-active {
+            color: #04120f;
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 14px var(--accent-glow);
+        }
+
+        .journey-years span:focus-visible {
+            outline: 2px solid rgba(0, 255, 204, 0.7);
+            outline-offset: 2px;
+        }
+
+        .journey-chapter {
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .animation-container {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 3.1rem;
+            width: 100%;
+            height: min(42vh, 340px);
+            z-index: 4;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .animation-container svg {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: min(36vh, 300px);
+            width: auto;
+            will-change: transform;
+            filter: drop-shadow(0 0 8px rgba(0, 255, 204, 0.45));
+            overflow: visible;
+        }
+
+        .dude { stroke: var(--accent); stroke-width: 6; }
+
+        @media (max-width: 900px) {
+            .stage-frame {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                max-height: none;
+                overflow: visible;
             }
 
-            html,
-            body {
-                font-family: 'Montserrat', sans-serif;
-                font-weight: 300;
-                font-size: 15px;
-                line-height: 1.7;
-                color: var(--text-secondary);
-                min-height: 100vh;
-                width: 100%;
-                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../assets/images/batman.jpeg);
-                background-position: center;
-                background-size: cover;
-                background-attachment: fixed;
-                position: relative;
-                overflow-x: hidden;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                -webkit-transition: all 1000ms linear;
-                transition: all 1000ms linear;
+            .stage-id {
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 255, 204, 0.18);
+                padding: 0 0 0.85rem;
             }
 
-            html::-webkit-scrollbar,
-            body::-webkit-scrollbar {
-                display: none;
+            .stage-kicker { max-width: none; }
+
+            .stage-body {
+                max-height: none;
+                overflow: visible;
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html, body {
+                height: auto !important;
+                display: block;
             }
 
-            html,
-            body {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
+            .page { height: auto !important; min-height: 0; }
 
             .content {
-                position: fixed;
-                top: 0;
-                left: 0;
+                position: static !important;
                 display: flex;
+                flex-direction: column;
+                width: 100% !important;
+                transform: none !important;
             }
 
             .content-section {
-                width: 100vw;
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .content-section>div {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                width: 90%;
-                margin-top: -6vh;
-                margin-bottom: -6vh;
-                max-width: 1000px;
-                text-align: center;
-                background: rgba(0, 0, 0, 0.65);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border-radius: 20px;
-                padding: 28px 32px;
-                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            h1 {
-                padding: 0;
-                margin: .5em 0;
-                color: var(--text-primary);
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            }
-
-            p {
-                padding: 0;
-                margin: .25em 0;
-                font-size: 1.1rem;
-                line-height: 1.6;
-            }
-
-            .arrow-animated {
-                font-size: 35px;
-                color: var(--accent-color);
-                animation: arrow-move 1s infinite;
-            }
-
-            @keyframes arrow-move {
-                0% { transform: translateX(0); }
-                50% { transform: translateX(15px); }
-                100% { transform: translateX(0); }
-            }
-
-            .Name h1 {
+                position: static;
                 width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                text-align: center;
-                font-size: 2rem;
-                font-weight: 700;
-                letter-spacing: 3px;
-                color: var(--accent-color);
-                text-shadow: 0px 0px 20px var(--accent-glow);
+                height: auto !important;
+                padding: 0.85rem 0.85rem;
+                align-items: stretch;
             }
 
-            .Name p {
-                color: var(--text-secondary);
+            .content-section:first-of-type { padding-top: 5.25rem; }
+            .content-section:last-of-type { padding-bottom: 6.5rem; }
+
+            .stage-frame {
+                width: 100%;
+                padding: 1.15rem 1rem 1.25rem;
+                border-radius: 16px;
             }
 
-            .name-subtitle {
-                margin-top: 0.35rem !important;
-                font-size: 1rem !important;
-                letter-spacing: 0.04em;
-                color: rgba(255, 255, 255, 0.85) !important;
-            }
+            .stage-id h2 { font-size: 1.55rem; }
 
-            .manifesto {
-                max-width: 34rem;
-                margin: 1rem auto 0.5rem !important;
-                font-size: 1.05rem !important;
-                line-height: 1.55 !important;
-                color: var(--text-secondary) !important;
-            }
-
-            .walk-text {
-                margin-top: 1.25rem !important;
-                font-size: 1.15rem !important;
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-                color: var(--accent-color) !important;
-            }
-
-            .scroll-hint {
-                margin-top: 0.35rem !important;
-                font-size: 0.9rem !important;
-                color: rgba(196, 195, 202, 0.85) !important;
-            }
+            .walk-text, .arrow-animated, .scroll-hint { display: none; }
 
             .mobile-path-hint {
-                display: none;
-            }
-
-            .role-bullets {
-                margin: 0.75rem 0 0;
-                padding-left: 1.1rem;
-                text-align: left;
-                color: var(--text-secondary);
-                font-size: 0.95rem;
-                line-height: 1.45;
-                font-weight: 400;
-                letter-spacing: normal;
-                text-shadow: none;
-            }
-
-            .role-bullets li {
-                margin-bottom: 0.4rem;
-            }
-
-            .section-note {
-                margin-top: 1rem !important;
-                font-size: 0.9rem !important;
-                color: rgba(196, 195, 202, 0.9) !important;
-                text-align: left;
-                width: 100%;
-            }
-
-            .group-label {
                 display: block;
-                width: 100%;
-                text-align: left;
-                margin: 1rem 0 0.4rem;
-                font-size: 0.85rem;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                color: var(--accent-color);
-                text-shadow: none;
-            }
-
-            .group-label:first-of-type {
-                margin-top: 0;
-            }
-
-            .year-panel {
-                width: 100%;
-                max-height: none;
-                overflow: visible;
-                text-align: left;
-                align-items: stretch !important;
-            }
-
-            .year-panel h2 {
-                width: 100%;
-                text-align: center;
-                font-size: 2.2rem;
-                color: var(--accent-color);
-                text-shadow: 0 0 20px var(--accent-glow);
-                margin: 0 0 0.25rem;
-                letter-spacing: 0.12em;
-            }
-
-            .year-kicker {
-                text-align: center;
-                width: 100%;
-                margin: 0 0 0.75rem !important;
-                font-size: 0.9rem !important;
-                color: rgba(196, 195, 202, 0.9) !important;
-            }
-
-            .timeline-block {
-                margin-bottom: 0.7rem;
-                padding: 0.65rem 0.85rem;
-                border-left: 3px solid var(--accent-color);
-                background: rgba(0, 255, 204, 0.06);
-                border-radius: 0 10px 10px 0;
-            }
-
-            .timeline-block h3 {
-                margin: 0 0 0.25rem;
-                font-size: 1rem;
-                color: var(--accent-color);
-                letter-spacing: 0.04em;
-                text-shadow: none;
-            }
-
-            .timeline-block p,
-            .timeline-block li {
-                font-size: 0.88rem;
-                line-height: 1.4;
-                color: var(--text-secondary);
-                font-weight: 400;
-                letter-spacing: normal;
-                text-shadow: none;
-            }
-
-            .timeline-block ul {
-                margin: 0.25rem 0 0;
-                padding-left: 1.05rem;
-            }
-
-            .timeline-block li {
-                margin-bottom: 0.2rem;
-            }
-
-            .timeline-block a {
-                color: var(--accent-color);
-                text-decoration: underline;
-            }
-
-            .timeline-tag {
-                display: inline-block;
-                margin-bottom: 0.35rem;
-                font-size: 0.7rem;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                color: #04120f;
-                background: var(--accent-color);
-                padding: 0.15rem 0.45rem;
-                border-radius: 999px;
-            }
-
-            .page {
-                height: 640vh;
+                margin-top: 0.85rem;
+                font-size: 0.9rem;
+                color: var(--accent);
             }
 
             .journey-rail {
-                position: fixed;
-                right: 1.25rem;
-                left: auto;
-                bottom: 0.85rem;
-                z-index: 6;
-                width: min(72vw, 520px);
-                pointer-events: none;
-                text-align: right;
+                right: 0.7rem;
+                bottom: 0.7rem;
+                width: auto;
+                max-width: 58vw;
             }
 
-            .journey-years {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.3rem;
-                margin-bottom: 0.5rem;
-                justify-content: flex-end;
-            }
+            .journey-years { display: none; }
 
-            .journey-years span {
-                font-size: 0.62rem;
-                letter-spacing: 0.04em;
-                padding: 0.18rem 0.4rem;
-                border-radius: 999px;
-                border: 1px solid rgba(0, 255, 204, 0.35);
-                color: rgba(196, 195, 202, 0.7);
-                background: rgba(0, 0, 0, 0.35);
-                transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-            }
-
-            .journey-years span.is-active {
-                color: #04120f;
-                background: var(--accent-color);
-                border-color: var(--accent-color);
-                box-shadow: 0 0 12px var(--accent-glow);
-            }
+            .path-track { display: none; }
 
             .journey-chapter {
-                font-size: 0.8rem;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                color: var(--accent-color);
-                text-shadow: 0 0 10px var(--accent-glow);
+                font-size: 0.7rem;
+                background: rgba(0, 0, 0, 0.5);
+                padding: 0.28rem 0.55rem;
+                border-radius: 8px;
+                display: inline-block;
             }
 
             .animation-container {
-                position: fixed;
-                left: 0;
-                right: 0;
-                bottom: 3.25rem;
-                width: 100%;
-                height: 36vh;
-                display: block;
-                z-index: 4;
-                pointer-events: none;
-                overflow: visible;
+                height: 17vh;
+                bottom: 3.4rem;
+                opacity: 0.92;
             }
 
-            .animation-container svg {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                height: min(34vh, 280px);
-                width: auto;
-                will-change: transform;
-                filter: drop-shadow(0 0 8px rgba(0, 255, 204, 0.45));
-            }
+            .animation-container svg { height: 14vh; }
+        }
 
-            .dude {
-                stroke: var(--accent-color);
-                stroke-width: 6;
-            }
+        @media (prefers-reduced-motion: reduce) {
+            .arrow-animated { animation: none; }
+            .path-fill { transition: none; }
+        }
+    </style>
+</head>
 
-            .Experience {
-                width: 100%;
-                min-height: 0;
-                height: auto;
-                max-height: 78vh;
-                overflow-y: auto;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                font-size: 2rem;
-                font-weight: 700;
-                letter-spacing: 3px;
-                color: var(--accent-color);
-                text-shadow: 0px 0px 20px var(--accent-glow);
-            }
-
-            .Experience h2 {
-                font-size: 2.5rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .Experience h3 {
-                font-size: 1.5rem;
-            }
-
-            .Experience h4 {
-                font-size: 1.2rem;
-                color: var(--text-secondary);
-            }
-
-            .Experience p {
-                font-size: 1rem;
-                color: var(--text-secondary);
-            }
-
-            .Education {
-                width: 100%;
-                min-height: 0;
-                height: auto;
-                max-height: 78vh;
-                overflow-y: auto;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-            }
-
-            .Education h2 {
-                font-size: 2.5rem;
-                color: var(--accent-color);
-                margin-bottom: 1.5rem;
-                text-shadow: 0px 0px 20px var(--accent-glow);
-            }
-
-            .Education h4 {
-                font-size: 1.3rem;
-                color: var(--accent-color);
-            }
-
-            .Education p {
-                font-size: 1rem;
-                color: var(--text-secondary);
-            }
-
-            .two-col-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
-                width: 100%;
-                text-align: left;
-                align-items: start;
-            }
-
-            .two-col-grid-list {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem 1.5rem;
-                width: 100%;
-                text-align: left;
-                padding: 0;
-                list-style: none;
-            }
-
-            .styled-list li {
-                margin-bottom: 0.3em;
-                padding-left: 1.2em;
-                position: relative;
-                font-size: 0.9rem;
-                line-height: 1.4;
-            }
-
-            .styled-list li::before {
-                content: "▹";
-                position: absolute;
-                left: 0;
-                color: var(--accent-color);
-            }
-
-            .content-section h4 {
-                font-size: 1.5rem;
-                color: var(--accent-color);
-                margin-bottom: 1rem;
-                text-shadow: 0px 0px 20px var(--accent-glow);
-            }
-
-            @media (max-width: 768px) {
-                html, body {
-                    overflow-y: auto !important;
-                    overflow-x: hidden !important;
-                    height: auto !important;
-                    display: block;
-                    justify-content: flex-start;
-                    align-items: stretch;
-                }
-
-                .two-col-grid,
-                .two-col-grid-list {
-                    grid-template-columns: 1fr;
-                    text-align: left;
-                }
-
-                .styled-list li {
-                    text-align: left;
-                    font-size: 0.85rem;
-                }
-
-                .animation-container {
-                    display: block !important;
-                    left: 0;
-                    right: 0;
-                    bottom: 3.5rem;
-                    width: 100%;
-                    height: 16vh;
-                    max-width: none;
-                    opacity: 0.9;
-                    z-index: 3;
-                }
-
-                .animation-container svg {
-                    height: 14vh;
-                }
-
-                .journey-rail {
-                    left: auto;
-                    right: 0.75rem;
-                    bottom: 0.75rem;
-                    width: auto;
-                    max-width: 55vw;
-                    text-align: right;
-                }
-
-                .journey-years {
-                    display: none;
-                }
-
-                .journey-chapter {
-                    font-size: 0.7rem;
-                    background: rgba(0, 0, 0, 0.45);
-                    padding: 0.25rem 0.5rem;
-                    border-radius: 6px;
-                }
-
-                .page {
-                    height: auto !important;
-                    min-height: 0;
-                    position: static;
-                    width: 100%;
-                }
-
-                .content {
-                    position: static !important;
-                    display: flex;
-                    flex-direction: column;
-                    width: 100% !important;
-                    left: auto !important;
-                    top: auto !important;
-                    transform: none !important;
-                }
-
-                .content-section {
-                    position: static;
-                    width: 100%;
-                    height: auto !important;
-                    min-height: 0;
-                    display: flex;
-                    align-items: stretch;
-                    justify-content: flex-start;
-                    padding: 0.75rem 12px;
-                    margin: 0;
-                }
-
-                .content-section:first-of-type {
-                    padding-top: 5rem;
-                }
-
-                .content-section:last-of-type {
-                    padding-bottom: 2rem;
-                }
-
-                .content-section>div {
-                    position: static !important;
-                    margin: 0 auto !important;
-                    padding: 1.1rem 0.9rem;
-                    width: 100%;
-                    max-width: 520px;
-                    text-align: left;
-                    overflow-x: hidden;
-                    word-wrap: break-word;
-                    overflow-wrap: break-word;
-                    box-sizing: border-box;
-                }
-
-                .Name {
-                    text-align: center;
-                    align-items: center;
-                }
-
-                .Name h1 {
-                    font-size: 1.45rem;
-                    height: auto;
-                    padding: 0.5rem 0;
-                    justify-content: center;
-                    width: 100%;
-                }
-
-                .name-subtitle {
-                    font-size: 0.9rem !important;
-                }
-
-                .manifesto {
-                    font-size: 0.95rem !important;
-                    text-align: center;
-                }
-
-                .walk-text,
-                .arrow-animated {
-                    display: none;
-                }
-
-                .scroll-hint {
-                    display: none;
-                }
-
-                .mobile-path-hint {
-                    display: block;
-                    margin-top: 0.85rem !important;
-                    font-size: 0.9rem !important;
-                    color: var(--accent-color) !important;
-                    text-align: center;
-                }
-
-                .Experience,
-                .Education {
-                    font-size: 1rem;
-                    height: auto;
-                    width: 100%;
-                    align-items: stretch;
-                }
-
-                .Experience h2,
-                .Education h2,
-                .content-section h4 {
-                    font-size: 1.25rem;
-                    text-align: left;
-                }
-
-                .Education .two-col-grid > div {
-                    word-break: break-word;
-                    overflow-wrap: break-word;
-                }
-
-                .role-bullets {
-                    font-size: 0.88rem;
-                }
-
-                .year-panel {
-                    max-height: none;
-                    overflow: visible;
-                }
-
-                .year-panel h2 {
-                    font-size: 1.6rem;
-                    text-align: left;
-                    letter-spacing: 0.08em;
-                }
-
-                .year-kicker {
-                    text-align: left !important;
-                    font-size: 0.85rem !important;
-                }
-
-                .timeline-block {
-                    padding: 0.7rem 0.8rem;
-                }
-
-                .timeline-block h3 {
-                    font-size: 0.95rem;
-                }
-
-                .timeline-block p,
-                .timeline-block li {
-                    font-size: 0.85rem;
-                }
-
-                .resume-btn {
-                    align-self: flex-start;
-                }
-            }
-
-            .content-section>div {
-                max-width: 900px;
-            }
-        </style>
-    </head>
-
-    <body>
-
-        <header class="cd-header">
-            <div class="header-wrapper">
-                <div class="logo-wrap">
-                    <a class="hover-target"><span>{தாரனேஷ்}!</span></a>
-                </div>
-                <div class="nav-but-wrap">
-                    <div class="menu-icon hover-target">
-                        <span class="menu-icon__line menu-icon__line-left"></span>
-                        <span class="menu-icon__line"></span>
-                        <span class="menu-icon__line menu-icon__line-right"></span>
-                    </div>
-                </div>
+<body>
+    <header class="cd-header">
+        <div class="header-wrapper">
+            <div class="logo-wrap">
+                <a href="../" class="hover-target"><span>{தாரனேஷ்}!</span></a>
             </div>
-        </header>
-
-
-        <div class="nav">
-            <div class="nav__content">
-                <ul class="nav__list">
-                    <li class="nav__list-item">
-                        <a href="../" class="hover-target">Home</a>
-                    </li>
-                    <li class="nav__list-item active-nav">
-                        <a href="../pages/about.html" class="hover-target">About</a>
-                    </li>
-                    <li class="nav__list-item">
-                        <a href="../projects/" class="hover-target">Projects</a>
-                    </li>
-                    <li class="nav__list-item">
-                        <a href="../pages/highlights.html" class="hover-target">Highlights</a>
-                    </li>
-                    <li class="nav__list-item">
-                        <a href="../blog/" class="hover-target">Blog</a>
-                    </li>
-                    <li class="nav__list-item">
-                        <a href="../pages/contact.html" class="hover-target">Contact</a>
-                    </li>
-                </ul>
+            <div class="nav-but-wrap">
+                <div class="menu-icon hover-target" role="button" tabindex="0" aria-label="Open menu">
+                    <span class="menu-icon__line menu-icon__line-left"></span>
+                    <span class="menu-icon__line"></span>
+                    <span class="menu-icon__line menu-icon__line-right"></span>
+                </div>
             </div>
         </div>
+    </header>
 
-        <div class="page"></div>
-        <div class="content">
-            <div class="content-section" data-stage="about" data-chapter="About">
-                <div class="Name">
+    <div class="nav">
+        <div class="nav__content">
+            <ul class="nav__list">
+                <li class="nav__list-item"><a href="../" class="hover-target">Home</a></li>
+                <li class="nav__list-item active-nav"><a href="../pages/about.html" class="hover-target">About</a></li>
+                <li class="nav__list-item"><a href="../projects/" class="hover-target">Projects</a></li>
+                <li class="nav__list-item"><a href="../pages/highlights.html" class="hover-target">Highlights</a></li>
+                <li class="nav__list-item"><a href="../blog/" class="hover-target">Blog</a></li>
+                <li class="nav__list-item"><a href="../pages/contact.html" class="hover-target">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page" aria-hidden="true"></div>
+
+    <div class="content">
+        <!-- 01 About -->
+        <div class="content-section" data-stage="about" data-chapter="About">
+            <article class="stage-frame stage-hero Name">
+                <div class="stage-id">
+                    <p class="stage-index">01 / 08 · Origin</p>
                     <h1>0xD#4R4N35#</h1>
                     <p class="name-subtitle">Dharanesh — Software Engineer · IoT &amp; R&amp;D</p>
                     <p class="manifesto">
@@ -743,183 +563,230 @@
                     </p>
                     <p class="walk-text">Walk with me</p>
                     <p class="arrow-animated" aria-hidden="true">→</p>
-                    <p class="scroll-hint">Scroll to walk the stages — Work + study → school</p>
+                    <p class="scroll-hint">Scroll to walk the stages — present → school</p>
                     <p class="mobile-path-hint">Scroll the stages ↓</p>
                 </div>
-            </div>
+            </article>
+        </div>
 
-            <div class="content-section" data-stage="work-bba" data-chapter="Work + BBA">
-                <div class="year-panel">
+        <!-- 02 Work + BBA -->
+        <div class="content-section" data-stage="work-bba" data-chapter="Work + BBA">
+            <article class="stage-frame">
+                <header class="stage-id">
+                    <p class="stage-index">02 / 08 · Now</p>
                     <h2>Work + BBA</h2>
-                    <p class="year-kicker">Current chapter — industry R&amp;D with business studies</p>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Work</span>
+                    <p class="stage-kicker">Industry R&amp;D with business studies in parallel.</p>
+                </header>
+                <div class="stage-body">
+                    <div class="story-block">
+                        <span class="story-tag">Work</span>
                         <h3>Software Engineer — R&amp;D · Iotics Technology</h3>
                         <p>Jul 2023 – present</p>
                         <ul>
-                            <li>Contribute to R&amp;D software for IoT and applied systems.</li>
-                            <li>Work across application and embedded-adjacent product development.</li>
-                            <li>Collaborate on builds that connect hardware, data, and software.</li>
+                            <li>R&amp;D software for IoT and applied systems</li>
+                            <li>Application and embedded-adjacent product work</li>
+                            <li>Builds that connect hardware, data, and software</li>
                         </ul>
                     </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Study</span>
+                    <div class="story-block">
+                        <span class="story-tag">Study</span>
                         <h3>BBA · Manipal University</h3>
-                        <p>In progress — pursuing Bachelor of Business Administration alongside full-time work, building business fundamentals next to engineering practice.</p>
+                        <p>In progress — Bachelor of Business Administration alongside full-time work, pairing business fundamentals with engineering practice.</p>
                     </div>
                 </div>
-            </div>
+            </article>
+        </div>
 
-            <div class="content-section" data-stage="work-be" data-chapter="Work + BE">
-                <div class="year-panel">
+        <!-- 03 Work + BE -->
+        <div class="content-section" data-stage="work-be" data-chapter="Work + BE">
+            <article class="stage-frame">
+                <header class="stage-id">
+                    <p class="stage-index">03 / 08 · Dual path</p>
                     <h2>Work + BE</h2>
-                    <p class="year-kicker">Industry role during the engineering attempt</p>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Work</span>
+                    <p class="stage-kicker">Full-time R&amp;D during the engineering attempt.</p>
+                </header>
+                <div class="stage-body">
+                    <div class="story-block">
+                        <span class="story-tag">Work</span>
                         <h3>Software Engineer — R&amp;D · Iotics Technology</h3>
                         <p>Continued full-time R&amp;D while exploring a formal B.E. path after diploma.</p>
                     </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Study</span>
-                        <h3>B.E. ECE · Government College of Technology (GCT), Coimbatore</h3>
-                        <p>Started Electronics and Communication Engineering after diploma; later discontinued the program to realign toward industry work and continuing studies (BBA).</p>
+                    <div class="story-block">
+                        <span class="story-tag">Study</span>
+                        <h3>B.E. ECE · GCT, Coimbatore</h3>
+                        <p>Started Electronics and Communication Engineering after diploma; later discontinued to realign toward industry work and continuing studies (BBA).</p>
                     </div>
                 </div>
-            </div>
+            </article>
+        </div>
 
-            <div class="content-section" data-stage="work" data-chapter="Work">
-                <div class="year-panel">
+        <!-- 04 Work -->
+        <div class="content-section" data-stage="work" data-chapter="Work">
+            <article class="stage-frame">
+                <header class="stage-id">
+                    <p class="stage-index">04 / 08 · Industry</p>
                     <h2>Work</h2>
-                    <p class="year-kicker">First industry chapter — career before dual study framing</p>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Work</span>
+                    <p class="stage-kicker">First full-time chapter — before dual-study framing.</p>
+                </header>
+                <div class="stage-body">
+                    <div class="story-block">
+                        <span class="story-tag">Work</span>
                         <h3>Joined Iotics Technology — Software Engineer (R&amp;D)</h3>
                         <p>From 28 Jul 2023 — first full-time industry role in research and development for IoT and applied systems.</p>
                         <ul>
-                            <li>Entered professional R&amp;D after diploma and skill training.</li>
-                            <li>This chapter sits between college/PLC and later Work + study stages.</li>
+                            <li>Entered professional R&amp;D after diploma and skill training</li>
+                            <li>Sits between college / PLC and later Work + study stages</li>
                         </ul>
                     </div>
                 </div>
-            </div>
+            </article>
+        </div>
 
-            <div class="content-section" data-stage="plc" data-chapter="PLC">
-                <div class="year-panel">
+        <!-- 05 PLC -->
+        <div class="content-section" data-stage="plc" data-chapter="PLC">
+            <article class="stage-frame">
+                <header class="stage-id">
+                    <p class="stage-index">05 / 08 · Skills</p>
                     <h2>PLC course</h2>
-                    <p class="year-kicker">National skill certification</p>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Certificate</span>
+                    <p class="stage-kicker">National skill certification before the industry jump.</p>
+                </header>
+                <div class="stage-body">
+                    <div class="story-block">
+                        <span class="story-tag">Certificate</span>
                         <h3>PLC Programmer &amp; Troubleshooter · NSDC / IAS</h3>
                         <p>Job role IAS/Q5604 · NSQF Level 4 · PMKVY · Cleared 14 Aug 2023 · Grade B (81.69%)</p>
                         <ul>
                             <li>Develop PLC programs using related software</li>
-                            <li>Test programs with simulators</li>
-                            <li>Commission and trial-run on site</li>
+                            <li>Test with simulators · commission and trial-run on site</li>
                             <li>Troubleshoot faults in machines / process plants</li>
                             <li>Employability, teamwork, and workplace safety modules</li>
                         </ul>
                     </div>
                 </div>
-            </div>
+            </article>
+        </div>
 
-            <div class="content-section" data-stage="diploma" data-chapter="Diploma">
-                <div class="year-panel">
-                    <h2>Diploma + college days</h2>
-                    <p class="year-kicker">GPTC Coimbatore — study, internship, campus life</p>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">College</span>
+        <!-- 06 Diploma -->
+        <div class="content-section" data-stage="diploma" data-chapter="Diploma">
+            <article class="stage-frame">
+                <header class="stage-id">
+                    <p class="stage-index">06 / 08 · College</p>
+                    <h2>Diploma</h2>
+                    <p class="stage-kicker">GPTC Coimbatore — study, internship, campus life.</p>
+                </header>
+                <div class="stage-body">
+                    <div class="story-block">
+                        <span class="story-tag">College</span>
                         <h3>Diploma — Computer Engineering · GPTC Coimbatore</h3>
                         <p>2021–2023 · Overall 81.44%. Computing fundamentals, systems, and practical builds.</p>
                     </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Internship</span>
+                    <div class="story-block">
+                        <span class="story-tag">Internship</span>
                         <h3>Intern — Taramsys</h3>
                         <p>1–28 Jul 2022 · Web design — day-to-day UI and layout under guidance. <a href="../pages/highlights.html">Certificate on Highlights</a>.</p>
                     </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Achievements</span>
-                        <h3>College awards &amp; contests</h3>
-                        <ul>
-                            <li>Best outgoing student — DOTE &amp; GPTC Coimbatore</li>
-                            <li>1st — AR/VR paper, Sri Ranganathar · 2nd — Web Design, Sri Ramakrishna Polytechnic</li>
-                            <li>2nd — Waste to Art 2022 · 3rd — 5G paper, RVS Institute</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Campus life</span>
-                        <h3>Leadership, clubs &amp; events</h3>
-                        <ul>
-                            <li>Placement coordinator · Secretary — GPL 2023 &amp; Sports Day 2023</li>
-                            <li>President — Video &amp; Photography Club · DJ — Karaoke &amp; Cultural clubs</li>
-                            <li>Admin — Advertisement, Book Reading, Movie, BIS · Anti-drug committee</li>
-                            <li>Coordinator / DJ — Waste to Art, Hostel Day, Pongal, Annual Day, Soul to Scrap, club events</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">College workshops</span>
-                        <h3>Campus-linked training</h3>
-                        <ul>
-                            <li>Embedded Systems (IIES) · ESD &amp; IoT (Pantech) · AR/VR FDP (Naan Mudhalvan / Inga Metaverse)</li>
-                            <li>C training — IIT Bombay Spoken Tutorial · Entrepreneurship — TN EDII</li>
-                        </ul>
-                        <p>Full certificate set is on <a href="../pages/highlights.html">Highlights</a>.</p>
-                    </div>
+                    <details class="stage-more">
+                        <summary>Awards &amp; contests</summary>
+                        <div class="story-block">
+                            <ul>
+                                <li>Best outgoing student — DOTE &amp; GPTC Coimbatore</li>
+                                <li>1st — AR/VR paper, Sri Ranganathar · 2nd — Web Design, Sri Ramakrishna Polytechnic</li>
+                                <li>2nd — Waste to Art 2022 · 3rd — 5G paper, RVS Institute</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details class="stage-more">
+                        <summary>Campus life &amp; leadership</summary>
+                        <div class="story-block">
+                            <ul>
+                                <li>Placement coordinator · Secretary — GPL 2023 &amp; Sports Day 2023</li>
+                                <li>President — Video &amp; Photography Club · DJ — Karaoke &amp; Cultural clubs</li>
+                                <li>Admin — Advertisement, Book Reading, Movie, BIS · Anti-drug committee</li>
+                                <li>Coordinator / DJ — Waste to Art, Hostel Day, Pongal, Annual Day, Soul to Scrap</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details class="stage-more">
+                        <summary>College workshops</summary>
+                        <div class="story-block">
+                            <ul>
+                                <li>Embedded Systems (IIES) · ESD &amp; IoT (Pantech) · AR/VR FDP (Naan Mudhalvan / Inga Metaverse)</li>
+                                <li>C training — IIT Bombay Spoken Tutorial · Entrepreneurship — TN EDII</li>
+                            </ul>
+                            <p>Full certificate set is on <a href="../pages/highlights.html">Highlights</a>.</p>
+                        </div>
+                    </details>
                 </div>
-            </div>
+            </article>
+        </div>
 
-            <div class="content-section" data-stage="hss" data-chapter="HSS">
-                <div class="year-panel">
+        <!-- 07 HSS -->
+        <div class="content-section" data-stage="hss" data-chapter="HSS">
+            <article class="stage-frame">
+                <header class="stage-id">
+                    <p class="stage-index">07 / 08 · Secondary</p>
                     <h2>HSS</h2>
-                    <p class="year-kicker">Higher secondary · self-learning · early courses</p>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">School</span>
+                    <p class="stage-kicker">Higher secondary · self-learning · early courses.</p>
+                </header>
+                <div class="stage-body">
+                    <div class="story-block">
+                        <span class="story-tag">School</span>
                         <h3>Higher Secondary · Government Hr. Sec. School, Malliyagarai</h3>
                         <p>2019–2021 · Basic Electrical Engineering · 84%</p>
                         <p>Formal electrical foundation that opened the door to electronics and IoT experiments.</p>
                     </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Self-learning</span>
-                        <h3>Cybersecurity</h3>
-                        <ul>
-                            <li>Self-driven study across networks, ethical hacking basics, and web security</li>
-                            <li>Udemy — Cybersecurity · Shellcode · Linux OS</li>
-                            <li>Cybrary — Network Engineer career path</li>
-                            <li>Web pentesting workshop — Cyberkrypts</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Self-learning</span>
-                        <h3>Electronics &amp; systems curiosity</h3>
-                        <ul>
-                            <li>Hands-on interest in circuits and electronics alongside Basic Electrical Engineering</li>
-                            <li>Early tinkering that later connected to embedded / IoT paths</li>
-                            <li>Comfort with tools, OS (Linux), and building small technical experiments</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Courses</span>
-                        <h3>Online courses &amp; certificates</h3>
-                        <ul>
-                            <li>SoloLearn — JavaScript · Udemy — HTML, Python 3, SEO, Statistics for CS</li>
-                            <li>Devtown — HTML/CSS/JS · Tech for Good — Openweaver</li>
-                            <li>Continued learning on platforms like GUVI / Netcad alongside formal school</li>
-                        </ul>
-                        <p>Browse the certificate gallery on <a href="../pages/highlights.html">Highlights</a>.</p>
-                    </div>
+                    <details class="stage-more">
+                        <summary>Cybersecurity self-learning</summary>
+                        <div class="story-block">
+                            <ul>
+                                <li>Networks, ethical hacking basics, and web security</li>
+                                <li>Udemy — Cybersecurity · Shellcode · Linux OS</li>
+                                <li>Cybrary — Network Engineer career path</li>
+                                <li>Web pentesting workshop — Cyberkrypts</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details class="stage-more">
+                        <summary>Electronics &amp; systems</summary>
+                        <div class="story-block">
+                            <ul>
+                                <li>Hands-on circuits alongside Basic Electrical Engineering</li>
+                                <li>Early tinkering that later connected to embedded / IoT</li>
+                                <li>Comfort with tools, Linux, and small technical experiments</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details class="stage-more">
+                        <summary>Online courses</summary>
+                        <div class="story-block">
+                            <ul>
+                                <li>SoloLearn — JavaScript · Udemy — HTML, Python 3, SEO, Statistics for CS</li>
+                                <li>Devtown — HTML/CSS/JS · Tech for Good — Openweaver</li>
+                                <li>Continued learning on GUVI / Netcad alongside school</li>
+                            </ul>
+                            <p>Browse the certificate gallery on <a href="../pages/highlights.html">Highlights</a>.</p>
+                        </div>
+                    </details>
                 </div>
-            </div>
+            </article>
+        </div>
 
-            <div class="content-section" data-stage="sslc" data-chapter="SSLC">
-                <div class="year-panel">
-                    <h2>SSLC + school days</h2>
-                    <p class="year-kicker">Where the walk begins</p>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">School</span>
+        <!-- 08 SSLC -->
+        <div class="content-section" data-stage="sslc" data-chapter="SSLC">
+            <article class="stage-frame">
+                <header class="stage-id">
+                    <p class="stage-index">08 / 08 · Beginning</p>
+                    <h2>SSLC</h2>
+                    <p class="stage-kicker">Where the walk begins.</p>
+                </header>
+                <div class="stage-body">
+                    <div class="story-block">
+                        <span class="story-tag">School</span>
                         <h3>Senior Secondary · Saraswathi Matric School, Ulipuram</h3>
                         <p>2019 · Tamil Nadu State Board · 72%</p>
                     </div>
-                    <div class="timeline-block">
-                        <span class="timeline-tag">Achievements</span>
+                    <div class="story-block">
+                        <span class="story-tag">Achievements</span>
                         <h3>School days</h3>
                         <ul>
                             <li>2nd — Interschool kabaddi</li>
@@ -928,376 +795,292 @@
                         <p>The start of the path that leads to polytechnic, industry, and beyond.</p>
                     </div>
                 </div>
-            </div>
+            </article>
         </div>
+    </div>
 
-        <div class="journey-rail" aria-hidden="true">
-            <div class="journey-years">
-                <span data-stage="about">About</span>
-                <span data-stage="work-bba">Work+BBA</span>
-                <span data-stage="work-be">Work+BE</span>
-                <span data-stage="work">Work</span>
-                <span data-stage="plc">PLC</span>
-                <span data-stage="diploma">Diploma</span>
-                <span data-stage="hss">HSS</span>
-                <span data-stage="sslc">SSLC</span>
-            </div>
-            <div class="journey-chapter" id="journey-chapter">About</div>
+    <div class="journey-rail" aria-label="Journey stages">
+        <div class="path-track" aria-hidden="true"><div class="path-fill" id="path-fill"></div></div>
+        <div class="journey-years" role="tablist" aria-label="Life stages">
+            <span data-stage="about" role="tab" tabindex="0">About</span>
+            <span data-stage="work-bba" role="tab" tabindex="0">Work+BBA</span>
+            <span data-stage="work-be" role="tab" tabindex="0">Work+BE</span>
+            <span data-stage="work" role="tab" tabindex="0">Work</span>
+            <span data-stage="plc" role="tab" tabindex="0">PLC</span>
+            <span data-stage="diploma" role="tab" tabindex="0">Diploma</span>
+            <span data-stage="hss" role="tab" tabindex="0">HSS</span>
+            <span data-stage="sslc" role="tab" tabindex="0">SSLC</span>
         </div>
+        <div class="journey-chapter" id="journey-chapter">About</div>
+    </div>
 
-        <div class="animation-container">
-            <svg viewBox="0 -10 315 350" aria-hidden="true">
-                <g class="dude" stroke-linecap="round" stroke-linejoin="round"
-                    fill="none">
-                    <g class="leg">
-                        <path class="leg-bottom"
-                            d="M182,317l-10.4-2.8c-2.7-0.7-4.5-3.2-4.4-6c1.7-13,3-27,3.7-42.1c0.8-16.5,0.7-32,0.1-46.1" />
-                        <path d="M171,220l6-60" />
-                    </g>
-                    <g class="leg">
-                        <path class="leg-bottom"
-                            d="M182,317l-10.2-2.7c-2.8-0.8-4.7-3.4-4.6-6.3c-0.8-13.9-1-29.2-0.2-45.8c0.7-15.2,2.1-29.4,4-42.2" />
-                        <path d="M171,222c0.3-10,4.3-42,5.3-48" />
-                    </g>
-
-                    <g class="arm">
-                        <path d="M175,75c-0.6,8.7-0.6,18.9,0.8,30.1c0.6,4.6,1.3,8.9,2.2,12.9" />
-                        <path class="arm-bottom" d="M186,175c-0.2-3.1-0.4-6.2-0.7-9.3c-1.5-16.9-4.1-32.9-7.3-47.7" />
-                    </g>
-                    <g class="arm">
-                        <path d="M178.8,82.2c-1.9,13.1-1.8,25.2-0.8,35.8" />
-                        <path class="arm-bottom" d="M186,175c-2.4-7.6-4.7-16.8-6.3-27.2c-1.6-11.3-2-21.3-1.7-29.8" />
-                    </g>
-                    <path class="head"
-                        d="M195,14.8c-10.8-5.7-23.9,1.3-28.2,12.4c-4.9,13,6.3,28.4,17.8,29.1c13.2,0.8,22.2-16.1,19.5-26.7c-1.6-6.5-5.2-7.1-5.2-7.1" />
+    <div class="animation-container">
+        <svg viewBox="0 -10 315 350" aria-hidden="true">
+            <g class="dude" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                <g class="leg">
+                    <path class="leg-bottom"
+                        d="M182,317l-10.4-2.8c-2.7-0.7-4.5-3.2-4.4-6c1.7-13,3-27,3.7-42.1c0.8-16.5,0.7-32,0.1-46.1" />
+                    <path d="M171,220l6-60" />
                 </g>
-            </svg>
-        </div>
+                <g class="leg">
+                    <path class="leg-bottom"
+                        d="M182,317l-10.2-2.7c-2.8-0.8-4.7-3.4-4.6-6.3c-0.8-13.9-1-29.2-0.2-45.8c0.7-15.2,2.1-29.4,4-42.2" />
+                    <path d="M171,222c0.3-10,4.3-42,5.3-48" />
+                </g>
+                <g class="arm">
+                    <path d="M175,75c-0.6,8.7-0.6,18.9,0.8,30.1c0.6,4.6,1.3,8.9,2.2,12.9" />
+                    <path class="arm-bottom" d="M186,175c-0.2-3.1-0.4-6.2-0.7-9.3c-1.5-16.9-4.1-32.9-7.3-47.7" />
+                </g>
+                <g class="arm">
+                    <path d="M178.8,82.2c-1.9,13.1-1.8,25.2-0.8,35.8" />
+                    <path class="arm-bottom" d="M186,175c-2.4-7.6-4.7-16.8-6.3-27.2c-1.6-11.3-2-21.3-1.7-29.8" />
+                </g>
+                <path class="head"
+                    d="M195,14.8c-10.8-5.7-23.9,1.3-28.2,12.4c-4.9,13,6.3,28.4,17.8,29.1c13.2,0.8,22.2-16.1,19.5-26.7c-1.6-6.5-5.2-7.1-5.2-7.1" />
+            </g>
+        </svg>
+    </div>
 
-        <section>
-            <div class="cursor" id="cursor"></div>
-            <div class="cursor2" id="cursor2"></div>
-            <div class="cursor3" id="cursor3"></div>
-        </section>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor2" id="cursor2"></div>
+    <div class="cursor3" id="cursor3"></div>
 
-        <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
 
-        <script>
-            gsap.registerPlugin(ScrollTrigger);
+        document.addEventListener("DOMContentLoaded", function () {
+            const h1 = document.querySelector(".Name h1");
+            if (!h1) return;
+            const originalText = "0xD#4R4N35#";
+            const finalText = "0xDHARANESH";
+            let index = 0;
 
-            //name effect
-            document.addEventListener("DOMContentLoaded", function () {
-                const h1 = document.querySelector(".Name h1");
-                const originalText = "0xD#4R4N35#";
-                const finalText = "0xDHARANESH";
-                let index = 0;
+            function typeEffect() {
+                if (index < finalText.length) {
+                    h1.textContent = finalText.slice(0, index + 1);
+                    index++;
+                    setTimeout(typeEffect, 100);
+                } else {
+                    setTimeout(reverseEffect, 500);
+                }
+            }
 
-                function typeEffect() {
-                    if (index < finalText.length) {
-                        h1.textContent = finalText.slice(0, index + 1);
-                        index++;
-                        setTimeout(typeEffect, 100);
+            function reverseEffect() {
+                let letters = finalText.split("");
+                let targetLetters = originalText.split("");
+                let i = 0;
+                let interval = setInterval(() => {
+                    if (i < targetLetters.length) {
+                        letters[i] = targetLetters[i];
+                        h1.textContent = letters.join("");
+                        i++;
                     } else {
-                        setTimeout(reverseEffect, 500);
+                        clearInterval(interval);
                     }
+                }, 100);
+            }
+
+            typeEffect();
+        });
+
+        const dude = document.querySelector(".dude");
+        const walkerSvg = document.querySelector(".animation-container svg");
+        const journeyRail = document.querySelector(".journey-rail");
+        const pathFill = document.getElementById("path-fill");
+        const head = dude.querySelector(".head");
+        const legs = Array.from(dude.querySelectorAll(".leg"));
+        const arms = Array.from(dude.querySelectorAll(".arm"));
+        const legBottoms = Array.from(dude.querySelectorAll(".leg-bottom"));
+        const armBottoms = Array.from(dude.querySelectorAll(".arm-bottom"));
+
+        const content = document.querySelector(".content");
+        const sections = Array.from(document.querySelectorAll(".content-section"));
+        const chapterEl = document.getElementById("journey-chapter");
+        const stageChips = Array.from(document.querySelectorAll(".journey-years span"));
+
+        function updateJourney(index, progress) {
+            const section = sections[index] || sections[0];
+            if (!section) return;
+            const chapter = section.dataset.chapter || "About";
+            const stage = section.dataset.stage || "about";
+            if (chapterEl) chapterEl.textContent = chapter;
+            stageChips.forEach((chip) => {
+                const active = chip.dataset.stage === stage;
+                chip.classList.toggle("is-active", active);
+                chip.setAttribute("aria-selected", active ? "true" : "false");
+            });
+            if (pathFill && typeof progress === "number") {
+                pathFill.style.width = Math.max(4, Math.min(100, progress * 100)) + "%";
+            }
+            const body = section.querySelector(".stage-body");
+            if (body && body.scrollHeight > body.clientHeight + 8) {
+                if (body.dataset.stageScroll !== stage) {
+                    body.scrollTop = 0;
+                    body.dataset.stageScroll = stage;
                 }
-
-                function reverseEffect() {
-                    let letters = finalText.split("");
-                    let targetLetters = originalText.split("");
-                    let i = 0;
-
-                    let interval = setInterval(() => {
-                        if (i < targetLetters.length) {
-                            letters[i] = targetLetters[i];
-                            h1.textContent = letters.join("");
-                            i++;
-                        } else {
-                            clearInterval(interval);
-                        }
-                    }, 100);
-                }
-
-                typeEffect();
-            });
-
-            //walking dude
-            const dude = document.querySelector(".dude");
-            const walkerSvg = document.querySelector(".animation-container svg");
-            const journeyRail = document.querySelector(".journey-rail");
-            const head = dude.querySelector(".head");
-            const legs = Array.from(dude.querySelectorAll(".leg"));
-            const arms = Array.from(dude.querySelectorAll(".arm"));
-            const legBottoms = Array.from(dude.querySelectorAll(".leg-bottom"));
-            const armBottoms = Array.from(dude.querySelectorAll(".arm-bottom"));
-
-            const content = document.querySelector(".content");
-            const sections = Array.from(document.querySelectorAll(".content-section"));
-            const chapterEl = document.getElementById("journey-chapter");
-            const stageChips = Array.from(document.querySelectorAll(".journey-years span"));
-
-            function updateJourney(index) {
-                const section = sections[index] || sections[0];
-                if (!section) return;
-                const chapter = section.dataset.chapter || "About";
-                const stage = section.dataset.stage || "about";
-                if (chapterEl) chapterEl.textContent = chapter;
-                stageChips.forEach((chip) => {
-                    chip.classList.toggle("is-active", chip.dataset.stage === stage);
-                });
             }
+        }
 
-            function getWalkerTravel() {
-                if (!walkerSvg || !journeyRail) {
-                    return { startX: 8, endX: 120, distance: 112 };
-                }
-                const svgWidth = walkerSvg.getBoundingClientRect().width || 120;
-                const railLeft = journeyRail.getBoundingClientRect().left;
-                const startX = Math.max(8, window.innerWidth * 0.02);
-                // Arrive so the figure meets the left edge of the bottom tag container
-                const endX = Math.max(startX + 40, railLeft - svgWidth * 0.28);
-                return {
-                    startX,
-                    endX,
-                    distance: Math.max(40, endX - startX)
-                };
+        function getWalkerTravel() {
+            if (!walkerSvg || !journeyRail) {
+                return { startX: 8, endX: 120, distance: 112 };
             }
+            const svgWidth = walkerSvg.getBoundingClientRect().width || 120;
+            const railLeft = journeyRail.getBoundingClientRect().left;
+            const startX = Math.max(8, window.innerWidth * 0.02);
+            const endX = Math.max(startX + 40, railLeft - svgWidth * 0.28);
+            return {
+                startX,
+                endX,
+                distance: Math.max(40, endX - startX)
+            };
+        }
 
-            updateJourney(0);
+        updateJourney(0, 0);
 
-            gsap.set(arms, {
-                svgOrigin: "180 58"
-            });
-            gsap.set(head, {
-                svgOrigin: "180 45",
-            });
-            gsap.set(armBottoms, {
-                svgOrigin: "178 118"
-            });
-            gsap.set(legs, {
-                svgOrigin: "177 145",
-            });
-            gsap.set(legBottoms, {
-                svgOrigin: "171 220"
-            });
+        gsap.set(arms, { svgOrigin: "180 58" });
+        gsap.set(head, { svgOrigin: "180 45" });
+        gsap.set(armBottoms, { svgOrigin: "178 118" });
+        gsap.set(legs, { svgOrigin: "177 145" });
+        gsap.set(legBottoms, { svgOrigin: "171 220" });
 
-            const halfBodyTimeline = (leg, arm) => {
-                const legBottom = leg.querySelector(".leg-bottom");
-                const armBottom = arm.querySelector(".arm-bottom");
+        const halfBodyTimeline = (leg, arm) => {
+            const legBottom = leg.querySelector(".leg-bottom");
+            const armBottom = arm.querySelector(".arm-bottom");
+            return gsap.timeline({ repeat: -1, paused: true })
+                .fromTo(leg, { rotation: -25 }, { duration: 0.5, rotation: 15, ease: "sine.inOut" }, 0)
+                .to(leg, { duration: 0.25, rotation: -25, ease: "sine.in" }, ">")
+                .to(legBottom, { duration: 0.25, rotation: 15, ease: "sine.inOut" }, 0.25)
+                .to(legBottom, { duration: 0.25, rotation: 80, ease: "sine.in" }, ">")
+                .to(legBottom, { duration: 0.25, rotation: 0, ease: "sine.out" }, ">")
+                .fromTo(arm, { rotation: -12 }, { duration: 0.5, rotation: 12, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0)
+                .fromTo(armBottom, { rotation: -15 }, { duration: 0.5, rotation: 10, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+        };
 
-                return gsap.timeline({
-                    repeat: -1,
-                    paused: true
-                })
-                    .fromTo(leg, {
-                        rotation: -25
-                    }, {
-                        duration: .5,
-                        rotation: 15,
-                        ease: "sine.inOut"
-                    }, 0)
-                    .to(leg, {
-                        duration: .25,
-                        rotation: -25,
-                        ease: "sine.in"
-                    }, ">")
-                    .to(legBottom, {
-                        duration: .25,
-                        rotation: 15,
-                        ease: "sine.inOut"
-                    }, .25)
-                    .to(legBottom, {
-                        duration: .25,
-                        rotation: 80,
-                        ease: "sine.in"
-                    }, ">")
-                    .to(legBottom, {
-                        duration: .25,
-                        rotation: 0,
-                        ease: "sine.out"
-                    }, ">")
-                    .fromTo(arm, {
-                        rotation: -12
-                    }, {
-                        duration: .5,
-                        rotation: 12,
-                        ease: "sine.inOut",
-                        yoyo: true,
-                        repeat: 1
-                    }, 0)
-                    .fromTo(armBottom, {
-                        rotation: -15
-                    }, {
-                        duration: .5,
-                        rotation: 10,
-                        ease: "sine.inOut",
-                        yoyo: true,
-                        repeat: 1
-                    }, 0)
+        const backCycle = halfBodyTimeline(legs[0], arms[1]);
+        const frontCycle = halfBodyTimeline(legs[1], arms[0]);
+
+        const bodyTimeline = gsap.timeline({ paused: true })
+            .to(dude, { duration: 0.25, y: "-=20", repeat: -1, yoyo: true, ease: "sine.inOut" }, 0)
+            .fromTo(head, { rotation: -25 }, { duration: 0.25, rotation: 1, repeat: -1, yoyo: true, ease: "sine.inOut" }, 0);
+
+        const desktopAbout = window.matchMedia("(min-width: 769px)");
+
+        function jumpToStage(index) {
+            const i = Math.max(0, Math.min(sections.length - 1, index));
+            const body = sections[i] && sections[i].querySelector(".stage-body");
+            if (body) {
+                body.scrollTop = 0;
+                delete body.dataset.stageScroll;
             }
-
-            const backCycle = halfBodyTimeline(legs[0], arms[1]);
-            const frontCycle = halfBodyTimeline(legs[1], arms[0]);
-
-            const bodyTimeline = gsap.timeline({
-                paused: true,
-            })
-                .to(dude, {
-                    duration: .25,
-                    y: "-=20",
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut"
-                }, 0)
-                .fromTo(head, {
-                    rotation: -25
-                }, {
-                    duration: .25,
-                    rotation: 1,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut"
-                }, 0)
-
-            const desktopAbout = window.matchMedia("(min-width: 769px)");
-
-            function stopIdleWalk() {
-                bodyTimeline.pause();
-                backCycle.pause();
-                frontCycle.pause();
-            }
-
-            function syncWalkerToProgress(progress) {
-                const numSections = sections.length;
-                const index = Math.min(
-                    numSections - 1,
-                    Math.floor(progress * numSections + 0.001)
-                );
-                updateJourney(index);
-            }
-
-            function setupDesktopScroll() {
-                stopIdleWalk();
-                const travel = getWalkerTravel();
-                gsap.set(walkerSvg, { x: travel.startX, y: 0 });
-
-                const numberOfCycles = Math.max(4, Math.ceil(travel.distance / 70));
-                const numSections = sections.length;
-                const targetXPercent = - ((numSections - 1) / numSections) * 100;
-
-                return gsap.timeline({
-                    scrollTrigger: {
-                        trigger: ".page",
-                        scrub: true,
-                        start: "0% 0%",
-                        end: "100% 100%",
-                        invalidateOnRefresh: true,
-                        onUpdate: (self) => {
-                            syncWalkerToProgress(self.progress);
-                        }
-                    }
-                })
-                    .fromTo(content, {
-                        xPercent: 0
-                    }, {
-                        xPercent: targetXPercent,
-                        ease: "none"
-                    }, 0)
-                    .fromTo(walkerSvg, {
-                        x: () => getWalkerTravel().startX
-                    }, {
-                        x: () => getWalkerTravel().endX,
-                        ease: "none"
-                    }, 0)
-                    .fromTo(bodyTimeline, {
-                        time: .7
-                    }, {
-                        time: .75 + numberOfCycles
-                    }, 0)
-                    .fromTo(backCycle, {
-                        time: .7
-                    }, {
-                        time: .75 + numberOfCycles
-                    }, 0)
-                    .fromTo(frontCycle, {
-                        time: .2
-                    }, {
-                        time: .25 + numberOfCycles
-                    }, 0);
-            }
-
-            function setupMobileJourney() {
-                stopIdleWalk();
-                const travel = getWalkerTravel();
-                gsap.set(walkerSvg, { x: travel.startX, y: 0 });
-
-                const numberOfCycles = Math.max(3, Math.ceil(travel.distance / 80));
-
-                gsap.timeline({
-                    scrollTrigger: {
-                        trigger: ".content",
-                        scrub: true,
-                        start: "top top",
-                        end: "bottom bottom",
-                        invalidateOnRefresh: true,
-                        onUpdate: (self) => {
-                            syncWalkerToProgress(self.progress);
-                        }
-                    }
-                })
-                    .fromTo(walkerSvg, {
-                        x: () => getWalkerTravel().startX
-                    }, {
-                        x: () => getWalkerTravel().endX,
-                        ease: "none"
-                    }, 0)
-                    .fromTo(bodyTimeline, {
-                        time: .7
-                    }, {
-                        time: .75 + numberOfCycles
-                    }, 0)
-                    .fromTo(backCycle, {
-                        time: .7
-                    }, {
-                        time: .75 + numberOfCycles
-                    }, 0)
-                    .fromTo(frontCycle, {
-                        time: .2
-                    }, {
-                        time: .25 + numberOfCycles
-                    }, 0);
-            }
-
-            let aboutScrollTl = null;
+            const progress = (i + 0.5) / sections.length;
+            updateJourney(i, progress);
             if (desktopAbout.matches) {
+                const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+                window.scrollTo({ top: progress * maxScroll, behavior: "smooth" });
+            } else if (sections[i]) {
+                sections[i].scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
+        stageChips.forEach((chip, index) => {
+            chip.addEventListener("click", () => jumpToStage(index));
+            chip.addEventListener("keydown", (ev) => {
+                if (ev.key === "Enter" || ev.key === " ") {
+                    ev.preventDefault();
+                    jumpToStage(index);
+                }
+            });
+        });
+
+        function stopIdleWalk() {
+            bodyTimeline.pause();
+            backCycle.pause();
+            frontCycle.pause();
+        }
+
+        function syncWalkerToProgress(progress) {
+            const numSections = sections.length;
+            const index = Math.min(numSections - 1, Math.floor(progress * numSections + 0.001));
+            updateJourney(index, progress);
+        }
+
+        function setupDesktopScroll() {
+            stopIdleWalk();
+            const travel = getWalkerTravel();
+            gsap.set(walkerSvg, { x: travel.startX, y: 0 });
+            const numberOfCycles = Math.max(4, Math.ceil(travel.distance / 70));
+            const numSections = sections.length;
+            const targetXPercent = -((numSections - 1) / numSections) * 100;
+
+            return gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".page",
+                    scrub: true,
+                    start: "0% 0%",
+                    end: "100% 100%",
+                    invalidateOnRefresh: true,
+                    onUpdate: (self) => syncWalkerToProgress(self.progress)
+                }
+            })
+                .fromTo(content, { xPercent: 0 }, { xPercent: targetXPercent, ease: "none" }, 0)
+                .fromTo(walkerSvg, { x: () => getWalkerTravel().startX }, { x: () => getWalkerTravel().endX, ease: "none" }, 0)
+                .fromTo(bodyTimeline, { time: 0.7 }, { time: 0.75 + numberOfCycles }, 0)
+                .fromTo(backCycle, { time: 0.7 }, { time: 0.75 + numberOfCycles }, 0)
+                .fromTo(frontCycle, { time: 0.2 }, { time: 0.25 + numberOfCycles }, 0);
+        }
+
+        function setupMobileJourney() {
+            stopIdleWalk();
+            const travel = getWalkerTravel();
+            gsap.set(walkerSvg, { x: travel.startX, y: 0 });
+            const numberOfCycles = Math.max(3, Math.ceil(travel.distance / 80));
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".content",
+                    scrub: true,
+                    start: "top top",
+                    end: "bottom bottom",
+                    invalidateOnRefresh: true,
+                    onUpdate: (self) => syncWalkerToProgress(self.progress)
+                }
+            })
+                .fromTo(walkerSvg, { x: () => getWalkerTravel().startX }, { x: () => getWalkerTravel().endX, ease: "none" }, 0)
+                .fromTo(bodyTimeline, { time: 0.7 }, { time: 0.75 + numberOfCycles }, 0)
+                .fromTo(backCycle, { time: 0.7 }, { time: 0.75 + numberOfCycles }, 0)
+                .fromTo(frontCycle, { time: 0.2 }, { time: 0.25 + numberOfCycles }, 0);
+        }
+
+        let aboutScrollTl = null;
+        if (desktopAbout.matches) {
+            aboutScrollTl = setupDesktopScroll();
+        } else {
+            gsap.set(content, { clearProps: "transform,xPercent" });
+            setupMobileJourney();
+        }
+
+        desktopAbout.addEventListener("change", (event) => {
+            if (aboutScrollTl) {
+                aboutScrollTl.scrollTrigger && aboutScrollTl.scrollTrigger.kill();
+                aboutScrollTl.kill();
+                aboutScrollTl = null;
+            }
+            ScrollTrigger.getAll().forEach((t) => t.kill());
+            stopIdleWalk();
+            gsap.set(walkerSvg, { clearProps: "x" });
+            if (event.matches) {
                 aboutScrollTl = setupDesktopScroll();
             } else {
                 gsap.set(content, { clearProps: "transform,xPercent" });
                 setupMobileJourney();
             }
+            ScrollTrigger.refresh();
+        });
 
-            desktopAbout.addEventListener("change", (event) => {
-                if (aboutScrollTl) {
-                    aboutScrollTl.scrollTrigger && aboutScrollTl.scrollTrigger.kill();
-                    aboutScrollTl.kill();
-                    aboutScrollTl = null;
-                }
-                ScrollTrigger.getAll().forEach((t) => t.kill());
-                stopIdleWalk();
-                gsap.set(walkerSvg, { clearProps: "x" });
-                if (event.matches) {
-                    aboutScrollTl = setupDesktopScroll();
-                } else {
-                    gsap.set(content, { clearProps: "transform,xPercent" });
-                    setupMobileJourney();
-                }
-                ScrollTrigger.refresh();
-            });
-
-            window.addEventListener("resize", () => {
-                ScrollTrigger.refresh();
-            });
-        </script>
-    </body>
+        window.addEventListener("resize", () => ScrollTrigger.refresh());
+    </script>
+</body>
 
 </html>
