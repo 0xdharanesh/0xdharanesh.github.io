@@ -31,7 +31,8 @@
             --panel: rgba(6, 8, 14, 0.82);
             --line: rgba(255, 255, 255, 0.12);
             --stage-pad-top: 5.75rem;
-            --stage-pad-bottom: 7.75rem;
+            --stage-pad-bottom: 9.5rem;
+            --walk-ground: 3.35rem;
         }
 
         html,
@@ -63,7 +64,7 @@
             scrollbar-width: none;
         }
 
-        .page { height: 720vh; }
+        .page { height: 1400vh; }
 
         .content {
             position: fixed;
@@ -162,13 +163,6 @@
             scrollbar-color: rgba(0, 255, 204, 0.4) transparent;
         }
 
-        .stage-body.is-focused {
-            /* expanded topic owns the panel — avoid nested scroll chrome when possible */
-            scrollbar-width: none;
-        }
-
-        .stage-body.is-focused::-webkit-scrollbar { width: 0; height: 0; }
-
         .stage-body::-webkit-scrollbar { width: 6px; }
         .stage-body::-webkit-scrollbar-thumb {
             background: rgba(0, 255, 204, 0.35);
@@ -242,61 +236,6 @@
             border-color: rgba(0, 255, 204, 0.45);
             background: rgba(0, 255, 204, 0.07);
             box-shadow: 0 0 24px rgba(0, 255, 204, 0.08);
-        }
-
-        /* While one topic is open: tuck intro blocks + sibling headers away */
-        .stage-body.is-focused > .story-block {
-            max-height: 0;
-            margin: 0;
-            padding-top: 0;
-            padding-bottom: 0;
-            opacity: 0;
-            border-width: 0;
-            overflow: hidden;
-            pointer-events: none;
-            transform: translateY(-6px);
-            transition:
-                max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.3s ease,
-                margin 0.35s ease,
-                padding 0.35s ease,
-                transform 0.35s ease,
-                border-width 0.35s ease;
-        }
-
-        .stage-body:not(.is-focused) > .story-block {
-            max-height: 24rem;
-            transition:
-                max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.35s ease,
-                margin 0.35s ease,
-                padding 0.35s ease,
-                transform 0.35s ease;
-        }
-
-        .stage-more.is-tucked {
-            max-height: 0;
-            margin: 0;
-            opacity: 0;
-            border-width: 0;
-            pointer-events: none;
-            overflow: hidden;
-            transform: translateY(-4px);
-            transition:
-                max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.25s ease,
-                margin 0.3s ease,
-                border-width 0.3s ease,
-                transform 0.3s ease;
-        }
-
-        .stage-more:not(.is-tucked) {
-            max-height: 40rem;
-            transition:
-                max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.3s ease,
-                margin 0.3s ease,
-                transform 0.3s ease;
         }
 
         .stage-more > summary {
@@ -437,33 +376,39 @@
 
         .mobile-path-hint { display: none; }
 
+        /* Full-width ground path under walker feet */
+        .walk-path {
+            position: fixed;
+            left: 4vw;
+            right: 4vw;
+            bottom: var(--walk-ground);
+            z-index: 5;
+            height: 3px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 0 18px rgba(0, 255, 204, 0.12);
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .walk-path .path-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, rgba(0, 255, 204, 0.25), var(--accent));
+            box-shadow: 0 0 14px var(--accent-glow);
+            transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
         /* Journey chrome */
         .journey-rail {
             position: fixed;
             right: 1.25rem;
-            bottom: 0.85rem;
+            bottom: 0.55rem;
             z-index: 6;
             width: min(70vw, 540px);
             text-align: right;
             pointer-events: none;
-        }
-
-        .path-track {
-            height: 3px;
-            margin: 0 0 0.65rem auto;
-            width: 100%;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.12);
-            overflow: hidden;
-        }
-
-        .path-fill {
-            height: 100%;
-            width: 0%;
-            border-radius: inherit;
-            background: linear-gradient(90deg, rgba(0, 255, 204, 0.35), var(--accent));
-            box-shadow: 0 0 12px var(--accent-glow);
-            transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .journey-years {
@@ -471,7 +416,7 @@
             flex-wrap: wrap;
             gap: 0.35rem;
             justify-content: flex-end;
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.35rem;
             pointer-events: auto;
         }
 
@@ -517,10 +462,10 @@
             position: fixed;
             left: 0;
             right: 0;
-            bottom: 3.1rem;
+            bottom: var(--walk-ground);
             width: 100%;
             height: min(42vh, 340px);
-            z-index: 4;
+            z-index: 6;
             pointer-events: none;
             overflow: visible;
         }
@@ -528,7 +473,7 @@
         .animation-container svg {
             position: absolute;
             left: 0;
-            bottom: 0;
+            bottom: -2px;
             height: min(36vh, 300px);
             width: auto;
             will-change: transform;
@@ -607,14 +552,19 @@
 
             .journey-rail {
                 right: 0.7rem;
-                bottom: 0.7rem;
+                bottom: 0.45rem;
                 width: auto;
                 max-width: 58vw;
             }
 
             .journey-years { display: none; }
 
-            .path-track { display: none; }
+            .walk-path {
+                left: 3vw;
+                right: 3vw;
+                bottom: 2.85rem;
+                opacity: 0.85;
+            }
 
             .journey-chapter {
                 font-size: 0.7rem;
@@ -626,11 +576,11 @@
 
             .animation-container {
                 height: 17vh;
-                bottom: 3.4rem;
+                bottom: 2.85rem;
                 opacity: 0.92;
             }
 
-            .animation-container svg { height: 14vh; }
+            .animation-container svg { height: 14vh; bottom: -1px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -640,8 +590,7 @@
             .stage-more,
             .stage-more-panel,
             .stage-more-inner,
-            .stage-more > summary::after,
-            .stage-body > .story-block {
+            .stage-more > summary::after {
                 transition: none !important;
             }
             .stage-frame {
@@ -810,16 +759,30 @@
                     <p class="stage-kicker">GPTC Coimbatore — study, internship, campus life.</p>
                 </header>
                 <div class="stage-body">
-                    <div class="story-block">
-                        <span class="story-tag">College</span>
-                        <h3>Diploma — Computer Engineering · GPTC Coimbatore</h3>
-                        <p>2021–2023 · Overall 81.44%. Computing fundamentals, systems, and practical builds.</p>
-                    </div>
-                    <div class="story-block">
-                        <span class="story-tag">Internship</span>
-                        <h3>Intern — Taramsys</h3>
-                        <p>1–28 Jul 2022 · Web design — day-to-day UI and layout under guidance. <a href="../pages/highlights.html">Certificate on Highlights</a>.</p>
-                    </div>
+                    <details class="stage-more" open>
+                        <summary>College</summary>
+                        <div class="stage-more-panel">
+                            <div class="stage-more-inner">
+                                <div class="story-block">
+                                    <span class="story-tag">College</span>
+                                    <h3>Diploma — Computer Engineering · GPTC Coimbatore</h3>
+                                    <p>2021–2023 · Overall 81.44%. Computing fundamentals, systems, and practical builds.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                    <details class="stage-more">
+                        <summary>Internship</summary>
+                        <div class="stage-more-panel">
+                            <div class="stage-more-inner">
+                                <div class="story-block">
+                                    <span class="story-tag">Internship</span>
+                                    <h3>Intern — Taramsys</h3>
+                                    <p>1–28 Jul 2022 · Web design — day-to-day UI and layout under guidance. <a href="../pages/highlights.html">Certificate on Highlights</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
                     <details class="stage-more">
                         <summary>Awards &amp; contests</summary>
                         <div class="stage-more-panel">
@@ -876,12 +839,19 @@
                     <p class="stage-kicker">Higher secondary · self-learning · early courses.</p>
                 </header>
                 <div class="stage-body">
-                    <div class="story-block">
-                        <span class="story-tag">School</span>
-                        <h3>Higher Secondary · Government Hr. Sec. School, Malliyagarai</h3>
-                        <p>2019–2021 · Basic Electrical Engineering · 84%</p>
-                        <p>Formal electrical foundation that opened the door to electronics and IoT experiments.</p>
-                    </div>
+                    <details class="stage-more" open>
+                        <summary>School</summary>
+                        <div class="stage-more-panel">
+                            <div class="stage-more-inner">
+                                <div class="story-block">
+                                    <span class="story-tag">School</span>
+                                    <h3>Higher Secondary · Government Hr. Sec. School, Malliyagarai</h3>
+                                    <p>2019–2021 · Basic Electrical Engineering · 84%</p>
+                                    <p>Formal electrical foundation that opened the door to electronics and IoT experiments.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
                     <details class="stage-more">
                         <summary>Cybersecurity self-learning</summary>
                         <div class="stage-more-panel">
@@ -958,8 +928,9 @@
         </div>
     </div>
 
+    <div class="walk-path" aria-hidden="true"><div class="path-fill" id="path-fill"></div></div>
+
     <div class="journey-rail" aria-label="Journey stages">
-        <div class="path-track" aria-hidden="true"><div class="path-fill" id="path-fill"></div></div>
         <div class="journey-years" role="tablist" aria-label="Life stages">
             <span data-stage="about" role="tab" tabindex="0">About</span>
             <span data-stage="work-bba" role="tab" tabindex="0">Work+BBA</span>
@@ -1072,45 +1043,25 @@
             return Math.max(0, Math.min(n - 1, Math.round(progress * (n - 1))));
         }
 
-        function syncAccordionFocus(body, openItem) {
-            if (!body) return;
-            const items = Array.from(body.querySelectorAll(".stage-more"));
-            const focused = Boolean(openItem);
-            body.classList.toggle("is-focused", focused);
-            items.forEach((el) => {
-                const tuck = focused && el !== openItem;
-                el.classList.toggle("is-tucked", tuck);
-                el.setAttribute("aria-hidden", tuck ? "true" : "false");
-                if (tuck) {
-                    el.open = false;
-                    el.classList.remove("is-opening");
-                    const panel = el.querySelector(".stage-more-panel");
-                    if (panel) panel.style.gridTemplateRows = "";
-                }
-            });
-            if (focused) body.scrollTop = 0;
-        }
-
         function collapseStageAccordions(section) {
             if (!section) return;
-            const body = section.querySelector(".stage-body");
-            section.querySelectorAll(".stage-more[open], .stage-more.is-opening").forEach((el) => {
-                closeAccordion(el, true);
+            const items = Array.from(section.querySelectorAll(".stage-more"));
+            if (!items.length) return;
+            items.forEach((el, i) => {
+                el.classList.remove("is-opening");
+                const panel = el.querySelector(".stage-more-panel");
+                if (panel) panel.style.gridTemplateRows = "";
+                el.open = i === 0; // default: first heading unfolded
             });
-            if (body) syncAccordionFocus(body, null);
         }
 
         function closeAccordion(details, instant) {
             if (!details) return;
-            const body = details.closest(".stage-body");
             const panel = details.querySelector(".stage-more-panel");
             details.classList.remove("is-opening");
             const afterClose = () => {
                 details.open = false;
                 if (panel) panel.style.gridTemplateRows = "";
-                if (body && !body.querySelector(".stage-more[open], .stage-more.is-opening")) {
-                    syncAccordionFocus(body, null);
-                }
             };
             if (instant || reduceMotion || !panel) {
                 afterClose();
@@ -1137,9 +1088,7 @@
 
         function openAccordion(details) {
             if (!details) return;
-            const body = details.closest(".stage-body");
             const panel = details.querySelector(".stage-more-panel");
-            if (body) syncAccordionFocus(body, details);
             details.open = true;
             details.classList.add("is-opening");
             if (reduceMotion || !panel) {
@@ -1210,13 +1159,16 @@
         }
 
         function getWalkerTravel() {
-            if (!walkerSvg || !journeyRail) {
+            if (!walkerSvg) {
                 return { startX: 8, endX: 120, distance: 112 };
             }
             const svgWidth = walkerSvg.getBoundingClientRect().width || 120;
-            const railLeft = journeyRail.getBoundingClientRect().left;
-            const startX = Math.max(8, window.innerWidth * 0.02);
-            const endX = Math.max(startX + 40, railLeft - svgWidth * 0.28);
+            const walkPath = document.querySelector(".walk-path");
+            const pathBox = walkPath ? walkPath.getBoundingClientRect() : null;
+            const railLeft = journeyRail ? journeyRail.getBoundingClientRect().left : window.innerWidth * 0.72;
+            const startX = pathBox ? Math.max(8, pathBox.left - svgWidth * 0.18) : Math.max(8, window.innerWidth * 0.02);
+            const endCap = Math.min(railLeft - svgWidth * 0.2, (pathBox ? pathBox.right : window.innerWidth) - svgWidth * 0.35);
+            const endX = Math.max(startX + 40, endCap);
             return {
                 startX,
                 endX,
@@ -1292,27 +1244,40 @@
             updateJourney(progressToIndex(progress), progress);
         }
 
-        function bindStageWheelNav() {
-            sections.forEach((section) => {
-                section.addEventListener("wheel", (ev) => {
-                    if (!desktopAbout.matches) return;
-                    if (Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
+        let stageWheelLock = false;
 
-                    const body = section.querySelector(".stage-body");
-                    if (body) {
-                        const overflows = body.scrollHeight > body.clientHeight + 2;
-                        if (overflows) {
-                            const atTop = body.scrollTop <= 1;
-                            const atBottom = body.scrollTop + body.clientHeight >= body.scrollHeight - 2;
-                            if ((ev.deltaY < 0 && !atTop) || (ev.deltaY > 0 && !atBottom)) {
-                                return;
-                            }
+        function bindStageWheelNav() {
+            const stepWheel = (ev) => {
+                if (!desktopAbout.matches) return;
+                if (Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
+                if (Math.abs(ev.deltaY) < 4) return;
+
+                const body = ev.currentTarget.querySelector
+                    ? ev.currentTarget.querySelector(".stage-body")
+                    : null;
+                if (body) {
+                    const overflows = body.scrollHeight > body.clientHeight + 2;
+                    if (overflows) {
+                        const atTop = body.scrollTop <= 1;
+                        const atBottom = body.scrollTop + body.clientHeight >= body.scrollHeight - 2;
+                        if ((ev.deltaY < 0 && !atTop) || (ev.deltaY > 0 && !atBottom)) {
+                            return;
                         }
                     }
+                }
 
-                    ev.preventDefault();
-                    window.scrollBy(0, ev.deltaY);
-                }, { passive: false });
+                ev.preventDefault();
+                if (stageWheelLock || reduceMotion) {
+                    if (!stageWheelLock) jumpToStage(activeStageIndex + (ev.deltaY > 0 ? 1 : -1));
+                    return;
+                }
+                stageWheelLock = true;
+                jumpToStage(activeStageIndex + (ev.deltaY > 0 ? 1 : -1));
+                window.setTimeout(() => { stageWheelLock = false; }, 720);
+            };
+
+            sections.forEach((section) => {
+                section.addEventListener("wheel", stepWheel, { passive: false });
             });
         }
 
@@ -1323,31 +1288,24 @@
             const numberOfCycles = Math.max(4, Math.ceil(travel.distance / 70));
             const numSections = sections.length;
             const targetXPercent = -((numSections - 1) / numSections) * 100;
-            const snapPoints = numSections <= 1 ? [0] : Array.from({ length: numSections }, (_, i) => i / (numSections - 1));
+            const step = numSections <= 1 ? 1 : 1 / (numSections - 1);
 
             return gsap.timeline({
                 scrollTrigger: {
                     trigger: ".page",
-                    scrub: reduceMotion ? true : 0.65,
+                    scrub: reduceMotion ? true : 0.85,
                     start: "0% 0%",
                     end: "100% 100%",
                     invalidateOnRefresh: true,
                     onUpdate: (self) => syncWalkerToProgress(self.progress),
                     snap: reduceMotion ? false : {
-                        snapTo: (value) => {
-                            let closest = snapPoints[0];
-                            let best = Math.abs(value - closest);
-                            for (let i = 1; i < snapPoints.length; i++) {
-                                const d = Math.abs(value - snapPoints[i]);
-                                if (d < best) {
-                                    best = d;
-                                    closest = snapPoints[i];
-                                }
-                            }
-                            return closest;
+                        snapTo: (value, self) => {
+                            const idx = value / step;
+                            const target = self.direction >= 0 ? Math.ceil(idx - 0.12) : Math.floor(idx + 0.12);
+                            return Math.max(0, Math.min(numSections - 1, target)) * step;
                         },
-                        duration: { min: 0.28, max: 0.6 },
-                        delay: 0.04,
+                        duration: { min: 0.35, max: 0.75 },
+                        delay: 0.08,
                         ease: "power3.inOut"
                     }
                 }
