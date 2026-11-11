@@ -5,9 +5,10 @@
     --blog-muted: #a9a8b0;
     --blog-cyan: #00ffcc;
     --blog-purple: #b39ddb;
-    --blog-panel: rgba(8, 10, 16, 0.78);
+    --blog-panel: rgba(8, 10, 16, 0.82);
     --blog-panel-border: rgba(255, 255, 255, 0.12);
     --blog-focus: rgba(0, 255, 204, 0.55);
+    --blog-gutter: clamp(0.85rem, 4vw, 1.5rem);
 }
 
 html {
@@ -18,16 +19,24 @@ html,
 body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.7;
     color: var(--blog-ink);
     min-height: 100vh;
+    width: 100%;
     background-color: #05070c;
     background-image: linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.68)), url(../assets/images/batman.jpeg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body,
+body * {
+    font-family: 'Montserrat', sans-serif;
 }
 
 @media (max-width: 900px), (prefers-reduced-motion: reduce) {
@@ -45,8 +54,9 @@ body {
 
 /* Reading panel so long essays stay legible on the photo background */
 main {
+    width: min(760px, calc(100% - (var(--blog-gutter) * 2)));
     max-width: 760px;
-    margin: 5.5rem auto 3rem;
+    margin: 5.75rem auto 3.25rem;
     padding: 1.85rem 1.65rem 2.25rem;
     background: var(--blog-panel);
     border: 1px solid var(--blog-panel-border);
@@ -54,13 +64,18 @@ main {
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .back {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    margin-bottom: 1.35rem;
+    min-height: 2.75rem;
+    margin-bottom: 1.1rem;
+    padding: 0.35rem 0;
     color: var(--blog-cyan);
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -80,7 +95,7 @@ main {
 
 h1 {
     color: var(--blog-cyan);
-    font-size: clamp(1.7rem, 3.4vw, 2.15rem);
+    font-size: clamp(1.55rem, 6vw, 2.15rem);
     font-weight: 700;
     line-height: 1.25;
     margin-bottom: 1rem;
@@ -88,24 +103,25 @@ h1 {
 }
 
 .lede {
-    font-size: 1.12rem;
+    font-size: clamp(1.02rem, 2.8vw, 1.12rem);
     color: var(--blog-ink-strong);
     margin-bottom: 1.75rem;
-    line-height: 1.75;
+    line-height: 1.7;
 }
 
 h2 {
     color: #fff;
-    font-size: 1.28rem;
+    font-size: clamp(1.12rem, 3.4vw, 1.28rem);
     font-weight: 600;
     margin-top: 2.1rem;
     margin-bottom: 0.7rem;
     scroll-margin-top: 5.5rem;
+    line-height: 1.35;
 }
 
 h3 {
     color: var(--blog-ink-strong);
-    font-size: 1.08rem;
+    font-size: 1.05rem;
     font-weight: 600;
     margin-top: 1.3rem;
     margin-bottom: 0.45rem;
@@ -120,14 +136,15 @@ p {
 
 ul,
 ol {
-    padding-left: 1.25rem;
+    padding-left: 1.2rem;
     margin: 0.5rem 0 1.25rem;
 }
 
 li {
     color: var(--blog-ink);
     font-size: 1.05rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.55rem;
+    padding-left: 0.15rem;
 }
 
 li::marker {
@@ -186,18 +203,20 @@ main a:focus-visible,
 }
 
 .sources ol {
-    padding-left: 1.25rem;
+    padding-left: 1.2rem;
     margin: 0.75rem 0 0;
 }
 
 .sources li {
-    font-size: 0.9rem;
-    margin-bottom: 0.6rem;
+    font-size: 0.92rem;
+    margin-bottom: 0.75rem;
     color: var(--blog-muted);
+    line-height: 1.55;
 }
 
 .sources a {
     color: var(--blog-cyan);
+    overflow-wrap: anywhere;
     word-break: break-word;
 }
 
@@ -216,25 +235,84 @@ main a:focus-visible,
     color: #fff;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
     main {
-        margin-top: 4.5rem;
-        margin-left: 0.85rem;
-        margin-right: 0.85rem;
-        padding: 1.3rem 1.05rem 1.6rem;
+        width: calc(100% - (var(--blog-gutter) * 2));
+        margin: 5.25rem var(--blog-gutter) 2.75rem;
+        padding: 1.35rem 1.1rem 1.75rem;
         border-radius: 14px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+    }
+
+    .back {
+        margin-bottom: 0.85rem;
     }
 
     h1 {
-        font-size: 1.65rem;
+        font-size: clamp(1.45rem, 7vw, 1.75rem);
+        margin-bottom: 0.85rem;
     }
 
     .lede {
         font-size: 1.02rem;
+        margin-bottom: 1.35rem;
+    }
+
+    h2 {
+        margin-top: 1.65rem;
+        scroll-margin-top: 4.75rem;
+    }
+
+    h3 {
+        scroll-margin-top: 4.75rem;
     }
 
     p,
     li {
         font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    ul,
+    ol {
+        padding-left: 1.05rem;
+    }
+
+    .note {
+        font-size: 0.92rem;
+        padding: 0.75rem 0.85rem;
+    }
+
+    .sources li {
+        font-size: 0.88rem;
+    }
+}
+
+@media (max-width: 420px) {
+    :root {
+        --blog-gutter: 0.7rem;
+    }
+
+    main {
+        padding: 1.15rem 0.9rem 1.5rem;
+        border-radius: 12px;
+    }
+
+    .article-meta {
+        font-size: 0.72rem;
+        letter-spacing: 1.1px;
+    }
+}
+
+@supports (padding: max(0px)) {
+    @media (max-width: 768px) {
+        main {
+            margin-left: max(var(--blog-gutter), env(safe-area-inset-left));
+            margin-right: max(var(--blog-gutter), env(safe-area-inset-right));
+            margin-bottom: max(2.75rem, calc(1.5rem + env(safe-area-inset-bottom)));
+            width: auto;
+        }
     }
 }

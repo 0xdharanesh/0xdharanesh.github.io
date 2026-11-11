@@ -31,8 +31,9 @@
             --panel: rgba(6, 8, 14, 0.82);
             --line: rgba(255, 255, 255, 0.12);
             --stage-pad-top: 5.75rem;
-            --stage-pad-bottom: 9.5rem;
-            --walk-ground: 3.35rem;
+            --stage-pad-bottom: 14.5rem;
+            --walk-ground: 4.75rem;
+            --walker-h: min(20vh, 168px);
         }
 
         html,
@@ -71,6 +72,7 @@
             top: 0;
             left: 0;
             display: flex;
+            z-index: 2;
         }
 
         .content-section {
@@ -86,7 +88,7 @@
         /* —— Stage frame —— */
         .stage-frame {
             width: min(94vw, 1080px);
-            max-height: calc(100vh - 13.5rem);
+            max-height: none;
             display: grid;
             grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.25fr);
             gap: 1.75rem 2.25rem;
@@ -98,7 +100,7 @@
             box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            overflow: hidden;
+            overflow: visible;
             box-sizing: border-box;
             opacity: 0.42;
             transform: scale(0.94) translateY(18px);
@@ -154,19 +156,9 @@
 
         .stage-body {
             text-align: left;
-            max-height: calc(100vh - 16rem);
-            overflow-y: auto;
-            overflow-x: hidden;
-            overscroll-behavior-y: auto;
-            padding-right: 0.35rem;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(0, 255, 204, 0.4) transparent;
-        }
-
-        .stage-body::-webkit-scrollbar { width: 6px; }
-        .stage-body::-webkit-scrollbar-thumb {
-            background: rgba(0, 255, 204, 0.35);
-            border-radius: 999px;
+            max-height: none;
+            overflow: visible;
+            padding-right: 0;
         }
 
         .story-block {
@@ -376,13 +368,13 @@
 
         .mobile-path-hint { display: none; }
 
-        /* Full-width ground path under walker feet */
+        /* Full-width ground path under walker feet — stays under stage cards on desktop */
         .walk-path {
             position: fixed;
             left: 4vw;
             right: 4vw;
             bottom: var(--walk-ground);
-            z-index: 5;
+            z-index: 1;
             height: 3px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.14);
@@ -405,7 +397,7 @@
             position: fixed;
             right: 1.25rem;
             bottom: 0.55rem;
-            z-index: 6;
+            z-index: 5;
             width: min(70vw, 540px);
             text-align: right;
             pointer-events: none;
@@ -464,8 +456,8 @@
             right: 0;
             bottom: var(--walk-ground);
             width: 100%;
-            height: min(42vh, 340px);
-            z-index: 6;
+            height: var(--walker-h);
+            z-index: 3;
             pointer-events: none;
             overflow: visible;
         }
@@ -474,7 +466,7 @@
             position: absolute;
             left: 0;
             bottom: -2px;
-            height: min(36vh, 300px);
+            height: var(--walker-h);
             width: auto;
             will-change: transform;
             filter: drop-shadow(0 0 8px rgba(0, 255, 204, 0.45));
@@ -499,11 +491,6 @@
 
             .stage-kicker { max-width: none; }
 
-            .stage-body {
-                max-height: none;
-                overflow: visible;
-                padding-right: 0;
-            }
         }
 
         @media (max-width: 768px) {
@@ -563,6 +550,7 @@
                 left: 3vw;
                 right: 3vw;
                 bottom: 2.85rem;
+                z-index: 5;
                 opacity: 0.85;
             }
 
@@ -575,12 +563,14 @@
             }
 
             .animation-container {
+                --walker-h: 14vh;
                 height: 17vh;
                 bottom: 2.85rem;
+                z-index: 6;
                 opacity: 0.92;
             }
 
-            .animation-container svg { height: 14vh; bottom: -1px; }
+            .animation-container svg { height: var(--walker-h); bottom: -1px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1252,25 +1242,8 @@
                 if (Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
                 if (Math.abs(ev.deltaY) < 4) return;
 
-                const body = ev.currentTarget.querySelector
-                    ? ev.currentTarget.querySelector(".stage-body")
-                    : null;
-                if (body) {
-                    const overflows = body.scrollHeight > body.clientHeight + 2;
-                    if (overflows) {
-                        const atTop = body.scrollTop <= 1;
-                        const atBottom = body.scrollTop + body.clientHeight >= body.scrollHeight - 2;
-                        if ((ev.deltaY < 0 && !atTop) || (ev.deltaY > 0 && !atBottom)) {
-                            return;
-                        }
-                    }
-                }
-
                 ev.preventDefault();
-                if (stageWheelLock || reduceMotion) {
-                    if (!stageWheelLock) jumpToStage(activeStageIndex + (ev.deltaY > 0 ? 1 : -1));
-                    return;
-                }
+                if (stageWheelLock) return;
                 stageWheelLock = true;
                 jumpToStage(activeStageIndex + (ev.deltaY > 0 ? 1 : -1));
                 window.setTimeout(() => { stageWheelLock = false; }, 720);
